@@ -19,7 +19,7 @@ import FacilityCorner from './components/pages/facilityCorner';
 import GarbageTracking from './components/pages/garbageTracking';
 import Security from './components/pages/security';
 import Elections from './components/pages/elections';
-import Tendor from './components/pages/tendor';
+import Tender from './components/pages/tender';
 import Advertisement from './components/pages/advertisement';
 import NotFound from './components/not-found';
 import Payment from './components/payment';
@@ -52,7 +52,7 @@ const App = () => {
 					<Route path='/garbage-tracking' component={GarbageTracking} />
 					<Route path='/security' component={Security} />
 					<Route path='/elections' component={Elections} />
-					<Route path='/tendor' component={Tendor} />
+					<Route path='/tenders' component={Tender} />
 					<Route path='/advertisement' component={Advertisement} />
 					<Route path='/dashboard' component={Dashboard} />
 					<Route path='/not-found' component={NotFound} />
