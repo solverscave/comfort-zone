@@ -64,6 +64,12 @@ class FundForm extends Form {
 						<div className='row'>
 							<div className='col-3'></div>
 						</div>
+						<div class='custom-file mb-4'>
+							<input type='file' class='custom-file-input' id='customFile' />
+							<label class='custom-file-label' for='customFile'>
+								Upload the image
+							</label>
+						</div>
 						{this.renderButton('Submit')}
 					</form>
 				</div>
