@@ -19,7 +19,8 @@ class FundForm extends Form {
 	schema = {
 		title: Joi.string()
 			.required()
-			.min(15)
+			.min(25)
+			.max(40)
 			.label('Title'),
 		description: Joi.string()
 			.required()
