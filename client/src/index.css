@@ -1,14 +1,14 @@
 body {
 	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 		monospace;
 }
 
@@ -136,15 +136,15 @@ rect {
 }
 
 @font-face {
-	font-family: "Proxima Nova Alt Bold";
-	src: url("../src/assets/fonts/proxima-nova-alt-bold.woff") format("woff");
+	font-family: 'Proxima Nova Alt Bold';
+	src: url('../src/assets/fonts/proxima-nova-alt-bold.woff') format('woff');
 	font-weight: bold;
 	font-style: bold;
 }
 
 @font-face {
-	font-family: "Proxima Nova Alt Semi Bold";
-	src: url("../src/assets/fonts/proxima-nova-alt-bold.woff") format("woff");
+	font-family: 'Proxima Nova Alt Semi Bold';
+	src: url('../src/assets/fonts/proxima-nova-alt-bold.woff') format('woff');
 	font-weight: bold;
 	font-style: normal;
 }
@@ -170,8 +170,8 @@ button.StripeCheckout {
 button.StripeCheckout > span {
 	background-color: #159570 !important;
 	background-image: none !important;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 		sans-serif !important;
 	position: relative !important;
 	display: block !important;
@@ -208,16 +208,16 @@ button.StripeCheckout:hover > span {
 }
 
 .subheader-billing {
-	background-image: url("./assets/img/subheaders/billing.jpg");
+	background-image: url('./assets/img/subheaders/billing.jpg');
 }
 .subheader-forum {
-	background-image: url("./assets/img/subheaders/forum.jpg");
+	background-image: url('./assets/img/subheaders/forum.jpg');
 }
 .subheader-fundraising {
-	background-image: url("./assets/img/subheaders/fundraising.jpg");
+	background-image: url('./assets/img/subheaders/fundraising.jpg');
 }
 .subheader-complaint {
-	background-image: url("./assets/img/subheaders/complaint.jpg");
+	background-image: url('./assets/img/subheaders/complaint.jpg');
 }
 .btn:focus {
 	border-color: #159570 !important;
@@ -243,4 +243,10 @@ button.StripeCheckout:hover > span {
 	top: 80.5px !important;
 	left: 740.5px !important;
 	width: 315px !important;
+}
+
+.card-img-top {
+	width: 100%;
+	height: 13vw;
+	object-fit: cover;
 }

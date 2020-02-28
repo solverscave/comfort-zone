@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import Joi from "joi-browser";
-import Input from "./input";
-import Select from "./select";
-import TextArea from "./textarea";
+import React, { Component } from 'react';
+import Joi from 'joi-browser';
+import Input from './input';
+import Select from './select';
+import TextArea from './textarea';
 
 class Form extends Component {
 	state = {
@@ -53,13 +53,13 @@ class Form extends Component {
 
 	renderButton(label) {
 		return (
-			<button disabled={this.validate()} className="btn btn-cz">
+			<button disabled={this.validate()} className='btn btn-cz'>
 				{label}
 			</button>
 		);
 	}
 
-	renderInput(name, label, type = "text", placeholder) {
+	renderInput(name, label, type = 'text', placeholder, className, id) {
 		const { data, errors } = this.state;
 		return (
 			<Input
@@ -71,11 +71,13 @@ class Form extends Component {
 				type={type}
 				error={errors[name]}
 				placeholder={placeholder}
+				className={className}
+				id={id}
 			/>
 		);
 	}
 
-	renderTextArea(name, label, type = "text", placeholder) {
+	renderTextArea(name, label, type = 'text', placeholder) {
 		const { data, errors } = this.state;
 		return (
 			<TextArea
