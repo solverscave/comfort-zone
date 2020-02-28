@@ -52,7 +52,7 @@ const App = () => {
 					<Route path='/garbage-tracking' component={GarbageTracking} />
 					<Route path='/security' component={Security} />
 					<Route path='/elections' component={Elections} />
-					<Route path='/tenders' component={Tender} />
+					<Route path='/tender' component={Tender} />
 					<Route path='/advertisement' component={Advertisement} />
 					<Route path='/dashboard' component={Dashboard} />
 					<Route path='/not-found' component={NotFound} />
