@@ -25,6 +25,7 @@ import Advertisement from './components/pages/advertisement';
 import NotFound from './components/not-found';
 import Payment from './components/payment';
 import LoginForm from './components/loginForm';
+import Logout from './components/logout';
 import RegisterForm from './components/registerForm';
 import Dashboard from './components/admin/dashboard';
 
@@ -32,19 +33,17 @@ class App extends Component {
 	state = {};
 
 	componentDidMount() {
-		const jwt = localStorage.getItem('token');
-		if (jwt === null) {
-			console.log('No one is logged in!');
-		} else {
+		try {
+			const jwt = localStorage.getItem('token');
 			const user = jwtDecode(jwt);
-			console.log(user);
-		}
+			this.setState({ user });
+		} catch (ex) {}
 	}
 
 	render() {
 		return (
-			<div>
-				<Navbar />
+			<React.Fragment>
+				<Navbar user={this.state.user} />
 				<main>
 					<Switch>
 						<Route path='/users/:id' component={UserForm} />
@@ -53,6 +52,7 @@ class App extends Component {
 						<Route path='/movies' component={Movies} />
 						<Route path='/register' component={RegisterForm} />
 						<Route path='/login' component={LoginForm} />
+						<Route path='/logout' component={Logout} />
 						<Route path='/billing/payment' component={Payment} />
 						<Route path='/billing' component={Billing} />
 						<Route path='/forum/:id' component={ForumIssue} />
@@ -73,9 +73,9 @@ class App extends Component {
 						<Route path='/' exact component={Home} />
 						<Redirect to='/not-found' />
 					</Switch>
+					<Footer />
 				</main>
-				<Footer />
-			</div>
+			</React.Fragment>
 		);
 	}
 }
