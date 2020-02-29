@@ -1,4 +1,5 @@
 // Importing all packages
+const auth = require('../middleware/auth');
 const express = require('express');
 
 // Importing the complains JSON
@@ -30,7 +31,7 @@ router.get('/id/:id', async (req, res) => {
 });
 
 // Posting a single user
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
 	// Validating the complain
 	const result = validateComplain(req.body);
 
@@ -46,7 +47,7 @@ router.post('/', async (req, res) => {
 });
 
 // Updating a single user
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
 	// Finding the user under the Id and updating the provided variables
 	await Complains.findByIdAndUpdate(req.params.id, {
 		$set: { ...req.body }
@@ -57,7 +58,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Deleting a user by ID
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
 	const data = await Complains.findByIdAndDelete(req.params.id);
 	res.json({
 		message: data ? 'Successfully deleted!' : "Wasn't able to delete!"

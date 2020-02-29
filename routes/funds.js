@@ -1,4 +1,5 @@
 // Importing all packages
+const auth = require('../middleware/auth');
 const express = require('express');
 const Funds = require('../models/funds');
 
@@ -34,7 +35,7 @@ router.get('/isApproved/:isApproved', async (req, res) => {
 });
 
 // Posting a single user
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
 	// Validating the complain
 	// const result = validateComplain(req.body);
 

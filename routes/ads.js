@@ -1,4 +1,5 @@
 // Importing all packages
+const auth = require('../middleware/auth');
 const express = require('express');
 const Ads = require('../models/ads');
 const { validateAd } = require('../models/ads');
@@ -53,7 +54,7 @@ router.get('/condition/:condition', async (req, res) => {
 });
 
 // Posting a single ad
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
 	// Validating the ad
 	const result = validateAd(req.body);
 
@@ -69,7 +70,7 @@ router.post('/', async (req, res) => {
 });
 
 // Updating an ads
-router.put('/id/:id', async (req, res) => {
+router.put('/id/:id', auth, async (req, res) => {
 	const data = await ads.findByIdAndUpdate(req.params.id, {
 		$set: { ...req.body }
 	});
@@ -79,7 +80,7 @@ router.put('/id/:id', async (req, res) => {
 });
 
 // Deleting a ad by ID
-router.delete('/id/:id', async (req, res) => {
+router.delete('/id/:id', auth, async (req, res) => {
 	const data = await Ads.findByIdAndDelete(req.params.id);
 	res.json({
 		message: data ? 'Successfully deleted!' : "Wasn't able to delete!"

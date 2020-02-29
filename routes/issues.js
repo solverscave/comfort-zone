@@ -1,4 +1,5 @@
 // Importing all packages
+const auth = require('../middleware/auth');
 const express = require('express');
 
 // Importing the issues JSON
@@ -33,7 +34,7 @@ router.get('/category/:category', async (req, res) => {
 });
 
 // Posting an ad
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
 	const data = await Issues.create({ ...req.body });
 	res.json({
 		data,
@@ -41,7 +42,7 @@ router.post('/', async (req, res) => {
 	});
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
 	const data = await Issues.findByIdAndUpdate(req.params.id, {
 		$set: { ...req.body }
 	});
@@ -50,7 +51,7 @@ router.put('/:id', async (req, res) => {
 	});
 });
 
-router.put('/comment/:id', async (req, res) => {
+router.put('/comment/:id', auth, async (req, res) => {
 	const data = await Issues.findOne({ _id: req.params.id });
 
 	const numberOfComments = data.comments.length;
