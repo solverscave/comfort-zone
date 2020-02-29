@@ -1,10 +1,16 @@
 // Importing the packages
+const config = require('config');
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const path = require('path');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
+
+if (!config.get('jwtPrivateKey')) {
+	console.error('FATAL ERROR: jwtPrivateKey is not defined.');
+	process.exit(1);
+}
 
 // Connection
 mongoose.connect('mongodb://localhost/comfort-zone', {
