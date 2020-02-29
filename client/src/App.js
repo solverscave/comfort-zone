@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import jwtDecode from 'jwt-decode';
 import Navbar from './components/common/navbar';
 import Footer from './components/common/footer';
 import Home from './components/pages/home';
@@ -26,6 +25,7 @@ import NotFound from './components/not-found';
 import Payment from './components/payment';
 import LoginForm from './components/loginForm';
 import Logout from './components/logout';
+import auth from './services/authService';
 import RegisterForm from './components/registerForm';
 import Dashboard from './components/admin/dashboard';
 
@@ -33,11 +33,8 @@ class App extends Component {
 	state = {};
 
 	componentDidMount() {
-		try {
-			const jwt = localStorage.getItem('token');
-			const user = jwtDecode(jwt);
-			this.setState({ user });
-		} catch (ex) {}
+		const user = auth.getCurrentUser();
+		this.setState({ user });
 	}
 
 	render() {

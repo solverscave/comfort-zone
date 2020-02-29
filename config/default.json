@@ -1,3 +1,6 @@
 {
-	"jwtPrivateKey": ""
+	"jwtPrivateKey": "",
+	"db": "mongodb://localhost/comfort-zone",
+	"port": "5000",
+	"requiresAuth": false
 }
