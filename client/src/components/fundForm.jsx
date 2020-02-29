@@ -33,7 +33,7 @@ class FundForm extends Form {
 		const file = e.target.files[0];
 		this.setState({ file });
 
-		const filename = e.target.files[0].name;
+		let filename = e.target.files[0].name;
 		this.setState({ filename });
 	};
 
