@@ -1,5 +1,6 @@
 // Importing all packages
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const express = require('express');
 const Funds = require('../models/funds');
 
@@ -51,7 +52,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 // Updating a single user
-router.put('/:id', async (req, res) => {
+router.put('/:id', [auth, admin], async (req, res) => {
 	// Finding the user under the Id and updating the provided variables
 	await Funds.findByIdAndUpdate(req.params.id, {
 		$set: { ...req.body }
