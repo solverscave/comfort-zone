@@ -20,7 +20,7 @@ import GarbageTracking from "./components/pages/garbageTracking";
 import Security from "./components/pages/security";
 import Elections from "./components/pages/elections";
 import Tendor from "./components/pages/tendor";
-import AdDetail from "./components/adDetail";
+import Addetail from "./components/adDetail";
 import Advertisement from "./components/pages/advertisement";
 import NotFound from "./components/not-found";
 import Payment from "./components/payment";
@@ -28,7 +28,6 @@ import LoginForm from "./components/loginForm";
 import RegisterForm from "./components/registerForm";
 import "./App.css";
 import Dashboard from "./components/admin/dashboard";
-import adDetail from "./components/adDetail";
 
 class App extends Component {
   render() {
@@ -57,7 +56,6 @@ class App extends Component {
             <Route path="/security" component={Security} />
             <Route path="/elections" component={Elections} />
             <Route path="/tendor" component={Tendor} />
-            <Route path="/advertisement/:id" component={adDetail} />
             <Route path="/advertisement" component={Advertisement} />
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/not-found" component={NotFound} />
