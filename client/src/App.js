@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 import Navbar from './components/common/navbar';
 import Footer from './components/common/footer';
 import Home from './components/pages/home';
@@ -27,42 +28,52 @@ import LoginForm from './components/loginForm';
 import RegisterForm from './components/registerForm';
 import Dashboard from './components/admin/dashboard';
 
-const App = () => {
-	return (
-		<div>
-			<Navbar />
-			<main>
-				<Switch>
-					<Route path='/users/:id' component={UserForm} />
-					<Route path='/users' component={Users} />
-					<Route path='/movies/:id' component={MovieForm} />
-					<Route path='/movies' component={Movies} />
-					<Route path='/register' component={RegisterForm} />
-					<Route path='/login' component={LoginForm} />
-					<Route path='/billing/payment' component={Payment} />
-					<Route path='/billing' component={Billing} />
-					<Route path='/forum/:id' component={ForumIssue} />
-					<Route path='/forum' component={Forum} />
-					<Route path='/complaint/:id' component={ComplainDetail} />
-					<Route path='/complaint' component={Complaint} />
-					<Route path='/fundraising/form' component={FundForm} />
-					<Route path='/fundraising/:id' component={FundDetail} />
-					<Route path='/fundraising' component={Fundraising} />
-					<Route path='/facility-corner' component={FacilityCorner} />
-					<Route path='/garbage-tracking' component={GarbageTracking} />
-					<Route path='/security' component={Security} />
-					<Route path='/elections' component={Elections} />
-					<Route path='/tender' component={Tender} />
-					<Route path='/advertisement' component={Advertisement} />
-					<Route path='/dashboard' component={Dashboard} />
-					<Route path='/not-found' component={NotFound} />
-					<Route path='/' exact component={Home} />
-					<Redirect to='/not-found' />
-				</Switch>
-			</main>
-			<Footer />
-		</div>
-	);
-};
+class App extends Component {
+	state = {};
+
+	componentDidMount() {
+		const jwt = localStorage.getItem('token');
+		const user = jwtDecode(jwt);
+		console.log(user);
+	}
+
+	render() {
+		return (
+			<div>
+				<Navbar />
+				<main>
+					<Switch>
+						<Route path='/users/:id' component={UserForm} />
+						<Route path='/users' component={Users} />
+						<Route path='/movies/:id' component={MovieForm} />
+						<Route path='/movies' component={Movies} />
+						<Route path='/register' component={RegisterForm} />
+						<Route path='/login' component={LoginForm} />
+						<Route path='/billing/payment' component={Payment} />
+						<Route path='/billing' component={Billing} />
+						<Route path='/forum/:id' component={ForumIssue} />
+						<Route path='/forum' component={Forum} />
+						<Route path='/complaint/:id' component={ComplainDetail} />
+						<Route path='/complaint' component={Complaint} />
+						<Route path='/fundraising/form' component={FundForm} />
+						<Route path='/fundraising/:id' component={FundDetail} />
+						<Route path='/fundraising' component={Fundraising} />
+						<Route path='/facility-corner' component={FacilityCorner} />
+						<Route path='/garbage-tracking' component={GarbageTracking} />
+						<Route path='/security' component={Security} />
+						<Route path='/elections' component={Elections} />
+						<Route path='/tender' component={Tender} />
+						<Route path='/advertisement' component={Advertisement} />
+						<Route path='/dashboard' component={Dashboard} />
+						<Route path='/not-found' component={NotFound} />
+						<Route path='/' exact component={Home} />
+						<Redirect to='/not-found' />
+					</Switch>
+				</main>
+				<Footer />
+			</div>
+		);
+	}
+}
 
 export default App;
