@@ -20,12 +20,13 @@ db.once('open', () => console.log('Connected to MongoDb'));
 db.on('errors', err => console.log(err));
 
 // Importing all routes
-const users = require('./routes/users');
 const ads = require('./routes/ads');
 const complains = require('./routes/complains');
 const funds = require('./routes/funds');
 const issues = require('./routes/issues');
 const bills = require('./routes/bills');
+const users = require('./routes/users');
+const auth = require('./routes/auth');
 
 // Body Parser Middleware
 app.use(express.json());
@@ -40,12 +41,13 @@ app.use(cors());
 var whitelist = ['http://localhost:3000'];
 
 // Setting all routers
-app.use('/api/users', users);
 app.use('/api/ads', ads);
 app.use('/api/complains', complains);
 app.use('/api/funds', funds);
 app.use('/api/issues', issues);
 app.use('/api/bills', bills);
+app.use('/api/users', users);
+app.use('/api/auth', auth);
 
 // Upload Endpoint
 app.post('/upload', (req, res) => {
