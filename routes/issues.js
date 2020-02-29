@@ -1,24 +1,24 @@
 // Importing all packages
-const express = require("express");
+const express = require('express');
 
 // Importing the issues JSON
-const Issues = require("../../models/issues");
+const Issues = require('../models/issues');
 
 // Setting the router
 const router = express.Router();
 
 // Getting
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
 	const issues = await Issues.find({});
 	res.json(issues);
 });
 
-router.get("/:id", async (req, res) => {
+router.get('/:id', async (req, res) => {
 	res.json(await Issues.find({ _id: req.params.id }));
 });
 
 // Finding ad by category
-router.get("/category/:category", async (req, res) => {
+router.get('/category/:category', async (req, res) => {
 	// Declaring a category variable
 	const category = req.params.category;
 	// Getting all issues under the required category
@@ -27,30 +27,30 @@ router.get("/category/:category", async (req, res) => {
 	if (!issues.length)
 		res
 			.status(400)
-			.send("Alas! There are no issues exits under this category!");
+			.send('Alas! There are no issues exits under this category!');
 	// If issues exits under the required category
 	else res.json(issues);
 });
 
 // Posting an ad
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
 	const data = await Issues.create({ ...req.body });
 	res.json({
 		data,
-		message: data ? "Successfully Posted" : "Wasn't able to post!"
+		message: data ? 'Successfully Posted' : "Wasn't able to post!"
 	});
 });
 
-router.put("/:id", async (req, res) => {
+router.put('/:id', async (req, res) => {
 	const data = await Issues.findByIdAndUpdate(req.params.id, {
 		$set: { ...req.body }
 	});
 	res.json({
-		message: data ? "Successfully updated!" : "Wasn't able to update!"
+		message: data ? 'Successfully updated!' : "Wasn't able to update!"
 	});
 });
 
-router.put("/comment/:id", async (req, res) => {
+router.put('/comment/:id', async (req, res) => {
 	const data = await Issues.findOne({ _id: req.params.id });
 
 	const numberOfComments = data.comments.length;
@@ -69,10 +69,10 @@ router.put("/comment/:id", async (req, res) => {
 });
 
 // Deleting a issue by ID
-router.delete("/:id", async (req, res) => {
+router.delete('/:id', async (req, res) => {
 	const data = await Issues.findByIdAndDelete(req.params.id);
 	res.json({
-		message: data ? "Successfully deleted!" : "Wasn't able to delete!"
+		message: data ? 'Successfully deleted!' : "Wasn't able to delete!"
 	});
 });
 

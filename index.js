@@ -20,12 +20,12 @@ db.once('open', () => console.log('Connected to MongoDb'));
 db.on('errors', err => console.log(err));
 
 // Importing all routes
-const users = require('./routes/api/users');
-const ads = require('./routes/api/ads');
-const complains = require('./routes/api/complains');
-const funds = require('./routes/api/funds');
-const issues = require('./routes/api/issues');
-const bills = require('./routes/api/bills');
+const users = require('./routes/users');
+const ads = require('./routes/ads');
+const complains = require('./routes/complains');
+const funds = require('./routes/funds');
+const issues = require('./routes/issues');
+const bills = require('./routes/bills');
 
 // Body Parser Middleware
 app.use(express.json());

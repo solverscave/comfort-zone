@@ -1,1 +1,0 @@
-{"_id":{"$oid":"5e4bcd4e59f0034b4c9e404d"},"name":"Muhammad Osama","cnic":"37103-9911831-5","dob":{"$date":{"$numberLong":"854218800000"}},"phone":"0335-2522522","email":"imuhammadosama@Outlook.com","houseID":"235","membershipID":"1","sector":"A","type":"admin"}
