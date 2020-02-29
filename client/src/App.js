@@ -33,8 +33,12 @@ class App extends Component {
 
 	componentDidMount() {
 		const jwt = localStorage.getItem('token');
-		const user = jwtDecode(jwt);
-		console.log(user);
+		if (jwt === null) {
+			console.log('No one is logged in!');
+		} else {
+			const user = jwtDecode(jwt);
+			console.log(user);
+		}
 	}
 
 	render() {
