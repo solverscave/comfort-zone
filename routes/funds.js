@@ -36,7 +36,7 @@ router.get('/isApproved/:isApproved', async (req, res) => {
 });
 
 // Posting a single user
-router.post('/', auth, async (req, res) => {
+router.post('/', async (req, res) => {
 	// Validating the complain
 	// const result = validateComplain(req.body);
 
@@ -52,7 +52,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 // Updating a single user
-router.put('/:id', [auth, admin], async (req, res) => {
+router.put('/:id', async (req, res) => {
 	// Finding the user under the Id and updating the provided variables
 	await Funds.findByIdAndUpdate(req.params.id, {
 		$set: { ...req.body }
