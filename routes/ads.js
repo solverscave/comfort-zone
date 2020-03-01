@@ -18,13 +18,8 @@ router.get('/', async (req, res) => {
 });
 
 // Finding ad by id
-router.get('/id/:id', async (req, res) => {
-	// Getting a ad
-	const ad = await Ads.find({ _id: req.params.id });
-	// If no ad was found under this id
-	if (!ad.length) res.status(400).send('Alas! No ad was found with this id!');
-	// Send the ad if the ad exits under this id
-	else res.json(ad);
+router.get('/:id', async (req, res) => {
+	res.json(await Ads.find({ _id: req.params.id }));
 });
 
 // Finding ad by category
@@ -70,7 +65,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 // Updating an ads
-router.put('/id/:id', auth, async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
 	const data = await ads.findByIdAndUpdate(req.params.id, {
 		$set: { ...req.body }
 	});
@@ -80,7 +75,7 @@ router.put('/id/:id', auth, async (req, res) => {
 });
 
 // Deleting a ad by ID
-router.delete('/id/:id', auth, async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
 	const data = await Ads.findByIdAndDelete(req.params.id);
 	res.json({
 		message: data ? 'Successfully deleted!' : "Wasn't able to delete!"

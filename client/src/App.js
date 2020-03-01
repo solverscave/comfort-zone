@@ -20,6 +20,7 @@ import GarbageTracking from './components/pages/garbageTracking';
 import Security from './components/pages/security';
 import Elections from './components/pages/elections';
 import Tender from './components/pages/tender';
+import AdDetail from './components/adDetail';
 import Advertisement from './components/pages/advertisement';
 import NotFound from './components/not-found';
 import Payment from './components/payment';
@@ -64,6 +65,7 @@ class App extends Component {
 						<Route path='/security' component={Security} />
 						<Route path='/elections' component={Elections} />
 						<Route path='/tender' component={Tender} />
+						<Route path='/advertisement/:id' component={AdDetail} />
 						<Route path='/advertisement' component={Advertisement} />
 						<Route path='/dashboard' component={Dashboard} />
 						<Route path='/not-found' component={NotFound} />
