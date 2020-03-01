@@ -17,7 +17,7 @@ const FundCard = ({ _id, title, description, imgUrl }) => {
 				</Card.Title>
 				<Card.Text
 					style={{
-						width: '150px',
+						width: '200px',
 						whiteSpace: 'nowrap',
 						overflow: 'hidden',
 						textOverflow: 'ellipsis'
