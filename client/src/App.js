@@ -61,13 +61,13 @@ class App extends Component {
 						<Route path='/fundraising/form' component={FundForm} />
 						<Route path='/fundraising/:id' component={FundDetail} />
 						<Route path='/fundraising' component={Fundraising} />
+						<Route path='/advertisement/:id' component={AdDetail} />
+						<Route path='/advertisement' component={Advertisement} />
 						<Route path='/facility-corner' component={FacilityCorner} />
 						<Route path='/garbage-tracking' component={GarbageTracking} />
 						<Route path='/security' component={Security} />
 						<Route path='/elections' component={Elections} />
 						<Route path='/tender' component={Tender} />
-						<Route path='/advertisement/:id' component={AdDetail} />
-						<Route path='/advertisement' component={Advertisement} />
 						<Route path='/dashboard' component={Dashboard} />
 						<Route path='/not-found' component={NotFound} />
 						<Route path='/' exact component={Home} />

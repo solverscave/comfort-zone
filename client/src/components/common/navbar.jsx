@@ -22,7 +22,10 @@ const Navbar = ({ user }) => {
 					<NavLink className='nav-item nav-link' to='/fundraising'>
 						Fundraising
 					</NavLink>
-					<NavLink className='nav-item nav-link' to='/facility-corner'>
+					<NavLink className='nav-item nav-link' to='/advertisement'>
+						Advertisement
+					</NavLink>
+					{/* <NavLink className='nav-item nav-link' to='/facility-corner'>
 						Facility Corner
 					</NavLink>
 					<NavLink className='nav-item nav-link' to='/garbage-tracking'>
@@ -36,10 +39,7 @@ const Navbar = ({ user }) => {
 					</NavLink>
 					<NavLink className='nav-item nav-link' to='/tender'>
 						Tender
-					</NavLink>
-					<NavLink className='nav-item nav-link' to='/advertisement'>
-						Advertisement
-					</NavLink>
+					</NavLink> */}
 					<NavLink className='nav-item nav-link' to='/dashboard'>
 						Dashboard
 					</NavLink>
