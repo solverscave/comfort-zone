@@ -69,6 +69,8 @@ class Fundraising extends Component {
 									title={fund.title}
 									description={fund.description}
 									imgUrl={fund.imageUrl}
+									requiredAmount={fund.requiredAmount}
+									raisedAmount={fund.raisedAmount}
 								/>
 							</div>
 						))}

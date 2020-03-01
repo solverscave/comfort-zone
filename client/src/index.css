@@ -254,3 +254,7 @@ button.StripeCheckout:hover > span {
 .btn-lg-new {
 	padding: 0.5rem 5rem !important;
 }
+
+.progress-bar {
+	background-color: #159570 !important;
+}

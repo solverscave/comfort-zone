@@ -1,8 +1,22 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import { Card, ProgressBar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-const FundCard = ({ _id, title, description, imgUrl }) => {
+const FundCard = ({
+	_id,
+	title,
+	description,
+	imgUrl,
+	requiredAmount,
+	raisedAmount
+}) => {
+	function getProgressBar() {
+		const now = (raisedAmount / requiredAmount) * 100;
+		const progressInstance = (
+			<ProgressBar now={now} label={`${Math.ceil(now)}%`} />
+		);
+		return progressInstance;
+	}
 	return (
 		<Card style={{ width: '17rem' }}>
 			<Link to={`/fundraising/${_id}`}>
@@ -24,6 +38,17 @@ const FundCard = ({ _id, title, description, imgUrl }) => {
 					}}
 				>
 					{description}
+				</Card.Text>
+				{getProgressBar()}
+				<Card.Text
+					style={{
+						width: '200px',
+						whiteSpace: 'nowrap',
+						overflow: 'hidden',
+						textOverflow: 'ellipsis'
+					}}
+				>
+					<b>Rs. {raisedAmount} Raised</b> of Rs. {requiredAmount}
 				</Card.Text>
 				<Link className='btn btn-cz' to='/funding' variant='primary'>
 					Donate
