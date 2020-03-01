@@ -24,16 +24,14 @@ const AdDetail = () => {
 
           <div className="row">
             <div className="col-4">
-              <Card className="mt-3">
-                <Card.Img
-                  style={{ height: 150, width: "100%", overflow: "hidden" }}
-                  variant="top"
-                  src="https://i.imgur.com/7DySqBX.png"
-                />
-              </Card>
+              <Card.Img
+                style={{ height: 150, width: "100%", overflow: "hidden" }}
+                variant="top"
+                src="https://i.imgur.com/7DySqBX.png"
+              />
             </div>
             <div className="col-4 ">
-              <Card className="mt-3">
+              <Card className="mt-2">
                 <Card.Img
                   style={{ height: 150, width: "100%", overflow: "hidden" }}
                   variant="top"
@@ -42,13 +40,11 @@ const AdDetail = () => {
               </Card>
             </div>
             <div className="col-4">
-              <Card className="mt-3">
-                <Card.Img
-                  style={{ height: 150, width: "100%", overflow: "hidden" }}
-                  variant="top"
-                  src="https://i.imgur.com/7DySqBX.png"
-                />
-              </Card>
+              <Card.Img
+                style={{ height: 150, width: "100%", overflow: "hidden" }}
+                variant="top"
+                src="https://i.imgur.com/7DySqBX.png"
+              />
             </div>
           </div>
         </div>

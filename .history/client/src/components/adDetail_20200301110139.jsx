@@ -24,31 +24,28 @@ const AdDetail = () => {
 
           <div className="row">
             <div className="col-4">
-              <Card className="mt-3">
-                <Card.Img
-                  style={{ height: 150, width: "100%", overflow: "hidden" }}
-                  variant="top"
-                  src="https://i.imgur.com/7DySqBX.png"
-                />
-              </Card>
-            </div>
-            <div className="col-4 ">
-              <Card className="mt-3">
-                <Card.Img
-                  style={{ height: 150, width: "100%", overflow: "hidden" }}
-                  variant="top"
-                  src="https://i.imgur.com/7DySqBX.png"
-                />
-              </Card>
+              <p>col4</p>
+              <Card.Img
+                style={{ height: 150, width: "100%", overflow: "hidden" }}
+                variant="top"
+                src="https://i.imgur.com/7DySqBX.png"
+              />
             </div>
             <div className="col-4">
-              <Card className="mt-3">
-                <Card.Img
-                  style={{ height: 150, width: "100%", overflow: "hidden" }}
-                  variant="top"
-                  src="https://i.imgur.com/7DySqBX.png"
-                />
-              </Card>
+              <p>col4</p>
+              <Card.Img
+                style={{ height: 150, width: "100%", overflow: "hidden" }}
+                variant="top"
+                src="https://i.imgur.com/7DySqBX.png"
+              />
+            </div>
+            <div className="col-4">
+              <p>col4</p>
+              <Card.Img
+                style={{ height: 150, width: "100%", overflow: "hidden" }}
+                variant="top"
+                src="https://i.imgur.com/7DySqBX.png"
+              />
             </div>
           </div>
         </div>
