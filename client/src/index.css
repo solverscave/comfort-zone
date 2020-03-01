@@ -250,3 +250,7 @@ button.StripeCheckout:hover > span {
 	height: 13vw;
 	object-fit: cover;
 }
+
+.btn-lg-new {
+	padding: 0.5rem 5rem !important;
+}
