@@ -17,25 +17,25 @@ code {
 }
 
 .btn-cz {
-	background-color: #159570;
+	background-color: #159570 !important;
 	border-color: #159570;
 	color: white;
 }
 
 .btn-cz:hover {
-	background-color: white;
+	background-color: white !important;
 	border-color: #159570;
 	color: #159570;
 }
 
 .btn-czo {
-	background-color: white;
+	background-color: white !important;
 	border-color: #159570;
 	color: #159570;
 }
 
 .btn-czo:hover {
-	background-color: #159570;
+	background-color: #159570 !important;
 	border-color: #159570;
 	color: white;
 }
@@ -218,6 +218,9 @@ button.StripeCheckout:hover > span {
 }
 .subheader-complaint {
 	background-image: url('./assets/img/subheaders/complaint.jpg');
+}
+.subheader-advertisement {
+	background-image: url('./assets/img/subheaders/advertisement.jpg');
 }
 .btn:focus {
 	border-color: #159570 !important;

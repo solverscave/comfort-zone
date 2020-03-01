@@ -30,13 +30,13 @@ class Fundraising extends Component {
 	getButton() {
 		if (!this.state.user)
 			return (
-				<button className='btn btn-czo' onClick={() => this.handleGetFund()}>
+				<button className='btn btn-cz' onClick={() => this.handleGetFund()}>
 					Get Funds
 				</button>
 			);
 		else if (this.state.user)
 			return (
-				<Link className='btn btn-czo' to='/fundraising/form'>
+				<Link className='btn btn-cz' to='/fundraising/form'>
 					Get Funds
 				</Link>
 			);

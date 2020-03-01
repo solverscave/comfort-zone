@@ -35,7 +35,7 @@ class AdDetail extends Component {
 								height: '20.7rem',
 								objectFit: 'cover'
 							}}
-							src='http://localhost:3000/uploads/Office-000.jpg'
+							src={ad.imageUrl}
 							className='rounded mx-auto d-block'
 							alt='...'
 						/>
@@ -49,7 +49,7 @@ class AdDetail extends Component {
 										height: '10rem',
 										objectFit: 'cover'
 									}}
-									src='http://localhost:3000/uploads/Office-000.jpg'
+									src={ad.imageUrl}
 									className='rounded mx-auto d-block'
 									alt='...'
 								/>
@@ -63,7 +63,7 @@ class AdDetail extends Component {
 										height: '10rem',
 										objectFit: 'cover'
 									}}
-									src='http://localhost:3000/uploads/Office-000.jpg'
+									src={ad.imageUrl}
 									className='rounded mx-auto d-block'
 									alt='...'
 								/>
@@ -77,7 +77,7 @@ class AdDetail extends Component {
 										height: '10rem',
 										objectFit: 'cover'
 									}}
-									src='http://localhost:3000/uploads/Office-000.jpg'
+									src={ad.imageUrl}
 									className='rounded mx-auto d-block'
 									alt='...'
 								/>
