@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import thousandRupees from "../assets/img/PKR_Rs_1000.jpg";
-import { ProgressBar } from "react-bootstrap";
+
 const apiEndpoint = "http://localhost:5000/api/funds/";
 
 class FundDetail extends Component {
@@ -26,19 +26,6 @@ class FundDetail extends Component {
           <img src={thousandRupees} alt="thousandRupees" width="260px" /> x 1
         </h3>
       );
-  };
-
-  getProgressBar = () => {
-    const now =
-      (this.state.fund.raisedAmount / this.state.fund.requiredAmount) * 100;
-    const progressInstance = (
-      <ProgressBar
-        className="progress-bar mt-2"
-        now={now}
-        label={`${Math.ceil(now)}%`}
-      />
-    );
-    return progressInstance;
   };
   render() {
     const { fund } = this.state;
@@ -147,12 +134,9 @@ class FundDetail extends Component {
                 >
                   Rs. 500 raised of Rs. 5000
                 </h3>
-                {/* <a href="#" className="btn btn-cz btn-lg-new btn-lg mt-2 w-100">
+                <a href="#" className="btn btn-cz btn-lg-new btn-lg mt-2 w-100">
                   <i className="fa fa-alert"></i> Safety Precautions
-                </a> */}
-
-                {this.getProgressBar()}
-
+                </a>
                 <h4
                   className="card-title mt-4 text-left"
                   style={{
@@ -161,22 +145,14 @@ class FundDetail extends Component {
                     fontSize: "18px",
                     color: "#159570"
                   }}
-                ></h4>
+                >
+                  <ol>
+                    <li>Use a safe location to meet seller</li>
+                    <li>Avoid cash transactions</li>
+                    <li>Beware of unrealistic offers</li>
+                  </ol>
+                </h4>
               </div>
-            </div>
-            <div className="">
-              <button
-                style={{
-                  marginBottom: "",
-                  fontFamily: "Proxima Nova",
-                  fontSize: "36px",
-                  color: "#fff"
-                }}
-                className="btn bg-cz btn-lg  w-100  mt-5 text-center"
-              >
-                {" "}
-                Donate
-              </button>
             </div>
           </div>
         </div>

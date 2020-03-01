@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const apiEndpoint = "http://localhost:5000/api/ads/";
 
-class AdDetail extends Component {
+class FundDetail extends Component {
   state = {
     ad: {}
   };
@@ -77,7 +77,7 @@ class AdDetail extends Component {
                     height: "10rem",
                     objectFit: "cover"
                   }}
-                  src="http://localhost:3000/uploads/Office-000.jpg"
+                  src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fvideohive.net%2Fitem%2Fview-from-window-in-business-office-in-skyskraper-on-cloudy-sky-background-plate-chroma-key-video%2F21923740&psig=AOvVaw2zGFNGwsUn6oA_QVc8t405&ust=1583166738051000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLjC5evZ-ecCFQAAAAAdAAAAABAD"
                   className="rounded mx-auto d-block"
                   alt="..."
                 />
@@ -111,7 +111,39 @@ class AdDetail extends Component {
                     color: "#2e2e2e"
                   }}
                 >
-                  {ad.description}
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Integer fringilla a sapien vulputate aliquet. Donec sodales,
+                  diam ac vulputate dictum, dolor ligula ornare arcu, sed ornare
+                  orci dolor eget nunc. Curabitur non faucibus lorem, ac auctor
+                  urna. Vivamus porttitor quam lorem, id tempus nibh volutpat
+                  eu. Vestibulum vitae ipsum ac libero vulputate aliquet vel sit
+                  amet sapien. Fusce et felis mollis, lobortis sem nec,
+                  malesuada arcu. Morbi enim velit, dictum a venenatis laoreet,
+                  viverra a lacus. Aliquam dolor dui, efficitur vitae laoreet
+                  vitae, consequat eu est. Quisque faucibus rhoncus est ac
+                  posuere. Vestibulum ante ipsum primis in faucibus orci luctus
+                  et ultrices posuere cubilia Curae; Donec in neque cursus,
+                  hendrerit ante eget, vehicula ex. Donec mollis lacinia nunc,
+                  vitae porttitor tellus porttitor sed. Cras id nisl id tortor
+                  viverra cursus vel congue lectus. Proin accumsan ipsum vitae
+                  eros consectetur placerat. Vivamus ultrices felis vel urna
+                  finibus vestibulum.Lorem ipsum dolor sit amet, consectetur
+                  adipiscing elit. Integer fringilla a sapien vulputate aliquet.
+                  Donec sodales, diam ac vulputate dictum, dolor ligula ornare
+                  arcu, sed ornare orci dolor eget nunc. Curabitur non faucibus
+                  lorem, ac auctor urna. Vivamus porttitor quam lorem, id tempus
+                  nibh volutpat eu. Vestibulum vitae ipsum ac libero vulputate
+                  aliquet vel sit amet sapien. Fusce et felis mollis, lobortis
+                  sem nec, malesuada arcu. Morbi enim velit, dictum a venenatis
+                  laoreet, viverra a lacus. Aliquam dolor dui, efficitur vitae
+                  laoreet vitae, consequat eu est. Quisque faucibus rhoncus est
+                  ac posuere. Vestibulum ante ipsum primis in faucibus orci
+                  luctus et ultrices posuere cubilia Curae; Donec in neque
+                  cursus, hendrerit ante eget, vehicula ex. Donec mollis lacinia
+                  nunc, vitae porttitor tellus porttitor sed. Cras id nisl id
+                  tortor viverra cursus vel congue lectus. Proin accumsan ipsum
+                  vitae eros consectetur placerat. Vivamus ultrices felis vel
+                  urna finibus vestibulum. {/* {ad.description} */}
                 </p>
               </div>
             </div>
@@ -224,4 +256,4 @@ class AdDetail extends Component {
   }
 }
 
-export default AdDetail;
+export default FundDetail;

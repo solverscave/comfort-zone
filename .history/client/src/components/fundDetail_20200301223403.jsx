@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import thousandRupees from "../assets/img/PKR_Rs_1000.jpg";
-import { ProgressBar } from "react-bootstrap";
+
 const apiEndpoint = "http://localhost:5000/api/funds/";
 
 class FundDetail extends Component {
@@ -26,19 +26,6 @@ class FundDetail extends Component {
           <img src={thousandRupees} alt="thousandRupees" width="260px" /> x 1
         </h3>
       );
-  };
-
-  getProgressBar = () => {
-    const now =
-      (this.state.fund.raisedAmount / this.state.fund.requiredAmount) * 100;
-    const progressInstance = (
-      <ProgressBar
-        className="progress-bar mt-2"
-        now={now}
-        label={`${Math.ceil(now)}%`}
-      />
-    );
-    return progressInstance;
   };
   render() {
     const { fund } = this.state;
@@ -92,8 +79,7 @@ class FundDetail extends Component {
                     color: "#159570"
                   }}
                 >
-                  You didn't gift just milk, you gifted life.
-                  {/* {fund.title} */}
+                  {fund.title}
                 </h4>
                 <p
                   className="card-text"
@@ -104,25 +90,7 @@ class FundDetail extends Component {
                     color: "#2e2e2e"
                   }}
                 >
-                  {/* {fund.description} */}
-                  On novembrer 2019, Antonella, one of our project managers, was
-                  in Benin to check on our kids and to bring to our nutritional
-                  centers the thing they need the most: milk powder. Thanks also
-                  to your generosity, this time we managed to bring with us
-                  1000€ worth of this precious powder that were distributed
-                  among our 4 centers in Abomey, Perma, Natitingou and
-                  Boukoumbè. With this we helped more than 130 babies! Milk
-                  powder is essential to help undernourished children to
-                  recover, but this isn't the only reason why it is important.
-                  Breast milk, infact, can be the carrier of the HIV virus,
-                  which is sadly quite spread here. This means that for many
-                  mothers it is impossible to breastfeed without transmitting
-                  the virus to their children. To have milk powder means, for
-                  all of theese children, to have a chace to live. That's why
-                  your support for this project means not only giving milk, but
-                  litteraly saving lives! So Thank you, dear friend, for all the
-                  lives you saved! We hope you'll continue to support our effort
-                  to save the lives of many children.
+                  {fund.description}
                 </p>
               </div>
             </div>
@@ -136,47 +104,19 @@ class FundDetail extends Component {
               }}
             >
               <div className="card-body">
-                <h3
-                  className="card-title mt-4 text-center"
+                <h4
+                  className="card-title"
                   style={{
                     marginBottom: "2px",
                     fontFamily: "Proxima Nova",
-                    fontSize: "27px",
+                    fontSize: "30px",
                     color: "#159570"
                   }}
                 >
-                  Rs. 500 raised of Rs. 5000
-                </h3>
-                {/* <a href="#" className="btn btn-cz btn-lg-new btn-lg mt-2 w-100">
-                  <i className="fa fa-alert"></i> Safety Precautions
-                </a> */}
-
-                {this.getProgressBar()}
-
-                <h4
-                  className="card-title mt-4 text-left"
-                  style={{
-                    marginBottom: "2px",
-                    fontFamily: "Proxima Nova",
-                    fontSize: "18px",
-                    color: "#159570"
-                  }}
-                ></h4>
+                  Price: Rs.
+                  {/* {ad.requiredAmount} */}
+                </h4>
               </div>
-            </div>
-            <div className="">
-              <button
-                style={{
-                  marginBottom: "",
-                  fontFamily: "Proxima Nova",
-                  fontSize: "36px",
-                  color: "#fff"
-                }}
-                className="btn bg-cz btn-lg  w-100  mt-5 text-center"
-              >
-                {" "}
-                Donate
-              </button>
             </div>
           </div>
         </div>

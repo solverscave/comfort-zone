@@ -33,7 +33,7 @@ class FundDetail extends Component {
       (this.state.fund.raisedAmount / this.state.fund.requiredAmount) * 100;
     const progressInstance = (
       <ProgressBar
-        className="progress-bar mt-2"
+        className="progress-bar pt-2"
         now={now}
         label={`${Math.ceil(now)}%`}
       />

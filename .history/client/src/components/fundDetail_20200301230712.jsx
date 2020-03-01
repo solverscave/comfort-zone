@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import thousandRupees from "../assets/img/PKR_Rs_1000.jpg";
-import { ProgressBar } from "react-bootstrap";
+
 const apiEndpoint = "http://localhost:5000/api/funds/";
 
 class FundDetail extends Component {
@@ -29,14 +29,9 @@ class FundDetail extends Component {
   };
 
   getProgressBar = () => {
-    const now =
-      (this.state.fund.raisedAmount / this.state.fund.requiredAmount) * 100;
+    const now = (raisedAmount / requiredAmount) * 100;
     const progressInstance = (
-      <ProgressBar
-        className="progress-bar mt-2"
-        now={now}
-        label={`${Math.ceil(now)}%`}
-      />
+      <ProgressBar now={now} label={`${Math.ceil(now)}%`} />
     );
     return progressInstance;
   };
@@ -150,8 +145,6 @@ class FundDetail extends Component {
                 {/* <a href="#" className="btn btn-cz btn-lg-new btn-lg mt-2 w-100">
                   <i className="fa fa-alert"></i> Safety Precautions
                 </a> */}
-
-                {this.getProgressBar()}
 
                 <h4
                   className="card-title mt-4 text-left"
