@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/common/navbar';
 import Footer from './components/common/footer';
@@ -34,8 +35,14 @@ import Dashboard from './components/admin/dashboard';
 class App extends Component {
 	state = {};
 
-	componentDidMount() {
-		const user = auth.getCurrentUser();
+	async componentDidMount() {
+		let user = auth.getCurrentUser();
+		if (user) {
+			const { data } = await axios.get(
+				'http://localhost:5000/api/users/' + user._id
+			);
+			user = data[0];
+		}
 		this.setState({ user });
 	}
 

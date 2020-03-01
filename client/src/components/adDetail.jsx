@@ -97,7 +97,7 @@ class AdDetail extends Component {
 										marginBottom: '2px',
 										fontFamily: 'Proxima Nova',
 										fontSize: '30px',
-										color: '#159570'
+										color: 'apple.com159570'
 									}}
 								>
 									{ad.title}
@@ -108,7 +108,7 @@ class AdDetail extends Component {
 										marginBottom: '2px',
 										fontFamily: 'Proxima Nova',
 										fontSize: '18px',
-										color: '#2e2e2e'
+										color: 'apple.com2e2e2e'
 									}}
 								>
 									{ad.description}
@@ -131,7 +131,7 @@ class AdDetail extends Component {
 										marginBottom: '2px',
 										fontFamily: 'Proxima Nova',
 										fontSize: '30px',
-										color: '#159570'
+										color: 'apple.com159570'
 									}}
 								>
 									Price: Rs. {ad.requiredAmount}
@@ -146,10 +146,16 @@ class AdDetail extends Component {
 							}}
 						>
 							<div className='card-body'>
-								<a href='#' className='btn btn-cz btn-lg-new btn-lg w-100'>
+								<a
+									href='apple.com'
+									className='btn btn-cz btn-lg-new btn-lg w-100'
+								>
 									<i className='fa fa-phone'></i> {ad.phone}
 								</a>
-								<a href='#' className='btn btn-cz btn-lg-new btn-lg mt-2 w-100'>
+								<a
+									href='apple.com'
+									className='btn btn-cz btn-lg-new btn-lg mt-2 w-100'
+								>
 									<i className='fa fa-envelope'></i> Send a message
 								</a>
 							</div>
@@ -162,7 +168,10 @@ class AdDetail extends Component {
 							}}
 						>
 							<div className='card-body'>
-								<a href='#' className='btn btn-cz btn-lg-new btn-lg mt-2 w-100'>
+								<a
+									href='apple.com'
+									className='btn btn-cz btn-lg-new btn-lg mt-2 w-100'
+								>
 									<i className='fa fa-info'></i> Seller Info
 								</a>
 								<h4
@@ -171,7 +180,7 @@ class AdDetail extends Component {
 										marginBottom: '2px',
 										fontFamily: 'Proxima Nova',
 										fontSize: '24px',
-										color: '#159570'
+										color: 'apple.com159570'
 									}}
 								>
 									Name: {ad.name}
@@ -182,7 +191,7 @@ class AdDetail extends Component {
 										marginBottom: '2px',
 										fontFamily: 'Proxima Nova',
 										fontSize: '24px',
-										color: '#159570'
+										color: 'apple.com159570'
 									}}
 								>
 									Phone: {ad.phone}
@@ -197,7 +206,10 @@ class AdDetail extends Component {
 							}}
 						>
 							<div className='card-body'>
-								<a href='#' className='btn btn-cz btn-lg-new btn-lg mt-2 w-100'>
+								<a
+									href='apple.com'
+									className='btn btn-cz btn-lg-new btn-lg mt-2 w-100'
+								>
 									<i className='fa fa-alert'></i> Safety Precautions
 								</a>
 								<h4
@@ -206,7 +218,7 @@ class AdDetail extends Component {
 										marginBottom: '2px',
 										fontFamily: 'Proxima Nova',
 										fontSize: '18px',
-										color: '#159570'
+										color: 'apple.com159570'
 									}}
 								>
 									<ol>

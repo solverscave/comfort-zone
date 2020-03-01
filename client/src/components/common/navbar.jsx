@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { NavDropdown } from 'react-bootstrap';
 
 const Navbar = ({ user }) => {
 	return (
@@ -9,7 +10,7 @@ const Navbar = ({ user }) => {
 				<img src={require('../../assets/img/logo-01.png')} alt='' />
 			</Link>
 			<div className='collapse navbar-collapse'>
-				<div className='navbar-nav'>
+				<div className='navbar-nav ml-auto'>
 					<NavLink className='nav-item nav-link' to='/billing'>
 						Billing
 					</NavLink>
@@ -40,9 +41,7 @@ const Navbar = ({ user }) => {
 					<NavLink className='nav-item nav-link' to='/tender'>
 						Tender
 					</NavLink> */}
-					<NavLink className='nav-item nav-link' to='/dashboard'>
-						Dashboard
-					</NavLink>
+
 					{!user && (
 						<React.Fragment>
 							<NavLink className='nav-item nav-link' to='/login'>
@@ -55,12 +54,41 @@ const Navbar = ({ user }) => {
 					)}
 					{user && (
 						<React.Fragment>
-							<NavLink className='nav-item nav-link' to='/profile'>
-								{user._id}
-							</NavLink>
-							<NavLink className='nav-item nav-link' to='/logout'>
-								Logout
-							</NavLink>
+							<NavLink className='nav-item nav-link' to='/profile'></NavLink>
+
+							<NavDropdown
+								title={
+									<img
+										src='http://localhost:3000/uploads/avatar.jpg'
+										width='25'
+										height='25'
+										className='avatar d-inline-block align-top'
+										alt='React Bootstrap logo'
+									/>
+								}
+								id='basic-nav-dropdown'
+							>
+								<NavDropdown.Item href='#action/3.1'>
+									Logged in as:
+									<br />
+									{user.name}
+								</NavDropdown.Item>
+								<NavDropdown.Divider />
+
+								<NavLink
+									className='nav-item nav-link ml-3 dropdown-nav-item'
+									to='/dashboard'
+								>
+									Dashboard
+								</NavLink>
+								<NavDropdown.Divider />
+								<NavLink
+									className='nav-item nav-link ml-3 dropdown-nav-item'
+									to='/logout'
+								>
+									Logout
+								</NavLink>
+							</NavDropdown>
 						</React.Fragment>
 					)}
 				</div>

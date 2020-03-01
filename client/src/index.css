@@ -258,3 +258,31 @@ button.StripeCheckout:hover > span {
 .progress-bar {
 	background-color: #159570 !important;
 }
+
+@media (min-width: 992px) {
+	.navbar-expand-lg .navbar-collapse {
+		margin-right: 0px !important;
+		padding-left: 0 !important;
+	}
+}
+
+.dropdown-menu.show {
+	left: -30px !important;
+	transform: translate3d(-105px, 46px, 0px) !important;
+}
+
+.avatar {
+	border-radius: 50% !important;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+	background-color: #159570 !important;
+}
+
+.dropdown-nav-item {
+	color: rgba(0, 0, 0, 0.5) !important;
+}
+.dropdown-nav-item:hover {
+	color: #159570 !important;
+}
