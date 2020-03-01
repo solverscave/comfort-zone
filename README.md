@@ -6,4 +6,4 @@ Run:
 
 1. npm i
 2. cd client
-3. npm i
+3. npm start
