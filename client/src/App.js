@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './components/common/navbar';
 import Footer from './components/common/footer';
 import Home from './components/pages/home';
