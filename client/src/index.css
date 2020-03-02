@@ -220,7 +220,7 @@ button.StripeCheckout:hover > span {
 	background-image: url('./assets/img/subheaders/complaint.jpg');
 }
 .subheader-advertisement {
-	background-image: url('./assets/img/subheaders/advertisement.jpg');
+	background-image: url('./assets/img/subheaders/ad.jpg');
 }
 .btn:focus {
 	border-color: #159570 !important;
