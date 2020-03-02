@@ -35,7 +35,7 @@ class AdDetail extends Component {
 								height: '20.7rem',
 								objectFit: 'cover'
 							}}
-							src={ad.imageUrl}
+							src={ad.imageUrl1}
 							className='rounded mx-auto d-block'
 							alt='...'
 						/>
@@ -49,7 +49,7 @@ class AdDetail extends Component {
 										height: '10rem',
 										objectFit: 'cover'
 									}}
-									src={ad.imageUrl}
+									src={ad.imageUrl2}
 									className='rounded mx-auto d-block'
 									alt='...'
 								/>
@@ -63,7 +63,7 @@ class AdDetail extends Component {
 										height: '10rem',
 										objectFit: 'cover'
 									}}
-									src={ad.imageUrl}
+									src={ad.imageUrl3}
 									className='rounded mx-auto d-block'
 									alt='...'
 								/>
@@ -77,7 +77,7 @@ class AdDetail extends Component {
 										height: '10rem',
 										objectFit: 'cover'
 									}}
-									src={ad.imageUrl}
+									src={ad.imageUrl4}
 									className='rounded mx-auto d-block'
 									alt='...'
 								/>
