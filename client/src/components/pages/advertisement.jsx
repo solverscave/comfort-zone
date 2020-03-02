@@ -68,7 +68,7 @@ class Advertisement extends Component {
 									_id={ad._id}
 									title={ad.title}
 									description={ad.description}
-									imageUrl={ad.imageUrl}
+									imageUrl={ad.imageUrl1}
 									price={ad.requiredAmount}
 								/>
 							</div>
