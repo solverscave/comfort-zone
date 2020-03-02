@@ -59,7 +59,7 @@ const Navbar = ({ user }) => {
 							<NavDropdown
 								title={
 									<img
-										src='http://localhost:3000/uploads/avatar.jpg'
+										src={user.imageUrl}
 										width='25'
 										height='25'
 										className='avatar d-inline-block align-top'

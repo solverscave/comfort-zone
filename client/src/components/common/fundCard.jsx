@@ -19,7 +19,7 @@ const FundCard = ({
 	}
 	return (
 		<Card style={{ width: '17rem' }}>
-			<Link to={`/advertisement/${_id}`}>
+			<Link to={`/fundraising/${_id}`}>
 				<Card.Img variant='top' src={imgUrl} />
 			</Link>
 

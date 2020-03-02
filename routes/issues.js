@@ -34,7 +34,7 @@ router.get('/category/:category', async (req, res) => {
 });
 
 // Posting an ad
-router.post('/', auth, async (req, res) => {
+router.post('/', async (req, res) => {
 	const data = await Issues.create({ ...req.body });
 	res.json({
 		data,

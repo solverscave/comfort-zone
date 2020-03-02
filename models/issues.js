@@ -1,5 +1,5 @@
 // Importing all packages
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 // Setting mongoose schema
 const issueSchema = {
@@ -22,8 +22,20 @@ const issueSchema = {
 			type: String,
 			require: false
 		}
+	},
+	userId: {
+		type: String,
+		required: false
+	},
+	userImage: {
+		type: String,
+		required: false
+	},
+	userName: {
+		type: String,
+		required: false
 	}
 };
 
 // Exporting issues
-const Issues = (module.exports = mongoose.model("Issues", issueSchema));
+const Issues = (module.exports = mongoose.model('Issues', issueSchema));
