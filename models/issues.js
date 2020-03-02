@@ -23,6 +23,10 @@ const issueSchema = {
 			require: false
 		}
 	},
+	date: {
+		type: Date,
+		required: false
+	},
 	userId: {
 		type: String,
 		required: false

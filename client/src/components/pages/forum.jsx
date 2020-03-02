@@ -105,7 +105,8 @@ class Forum extends Form {
 			...this.state.data,
 			userId: this.state.user._id,
 			userImage: this.state.user.imageUrl,
-			userName: this.state.user.name
+			userName: this.state.user.name,
+			date: new Date()
 		});
 
 		if (result) {
@@ -184,6 +185,7 @@ class Forum extends Form {
 										_id={issue._id}
 										title={issue.title}
 										description={issue.description}
+										date={issue.date}
 										currentUserId={this.state.user._id}
 										userId={issue.userId}
 										userName={issue.userName}

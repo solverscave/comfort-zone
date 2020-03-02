@@ -11,21 +11,6 @@ const Navbar = ({ user }) => {
 			</Link>
 			<div className='collapse navbar-collapse'>
 				<div className='navbar-nav ml-auto'>
-					<NavLink className='nav-item nav-link' to='/billing'>
-						Billing
-					</NavLink>
-					<NavLink className='nav-item nav-link' to='/forum'>
-						Forum
-					</NavLink>
-					<NavLink className='nav-item nav-link' to='/complaint'>
-						Complaint
-					</NavLink>
-					<NavLink className='nav-item nav-link' to='/fundraising'>
-						Fundraising
-					</NavLink>
-					<NavLink className='nav-item nav-link' to='/advertisement'>
-						Advertisement
-					</NavLink>
 					{/* <NavLink className='nav-item nav-link' to='/facility-corner'>
 						Facility Corner
 					</NavLink>
@@ -54,6 +39,21 @@ const Navbar = ({ user }) => {
 					)}
 					{user && (
 						<React.Fragment>
+							<NavLink className='nav-item nav-link' to='/billing'>
+								Billing
+							</NavLink>
+							<NavLink className='nav-item nav-link' to='/forum'>
+								Forum
+							</NavLink>
+							<NavLink className='nav-item nav-link' to='/complaint'>
+								Complaint
+							</NavLink>
+							<NavLink className='nav-item nav-link' to='/fundraising'>
+								Fundraising
+							</NavLink>
+							<NavLink className='nav-item nav-link' to='/advertisement'>
+								Advertisement
+							</NavLink>
 							<NavLink className='nav-item nav-link' to='/profile'></NavLink>
 
 							<NavDropdown

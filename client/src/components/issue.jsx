@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
+import 'moment-timezone';
 
 const Issue = ({
 	_id,
 	currentUserId,
 	title,
 	description,
+	date,
 	userId,
 	userName,
 	userImage,
@@ -40,21 +43,27 @@ const Issue = ({
 			return null;
 		}
 	}
+	const dateToFormat = date;
 	return (
 		<div className='container mt-2'>
-			<div className='media border p-3'>
-				<img
-					src={userImage}
-					alt='John Doe'
-					className='mr-3 mt rounded-circle'
-					style={{ width: '60px' }}
-				/>
+			<div className='media border p-3 '>
+				<div className='align-self-center justify-content-center text-center'>
+					<img
+						src={userImage}
+						alt='John Doe'
+						className='mr-3 mt rounded-circle'
+						style={{ width: '60px' }}
+					/>
+				</div>
 				<div className='media-body'>
 					<h4>
 						{userName}{' '}
-						<small>
-							<i>Posted on February 19, 2016</i>
-						</small>
+						<h6>
+							Posted&nbsp;
+							<b>
+								<Moment fromNow>{dateToFormat}</Moment>
+							</b>
+						</h6>
 					</h4>
 					<Link to={`/forum/${_id}`} style={{ color: '#159570' }}>
 						{title}

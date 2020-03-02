@@ -10,7 +10,7 @@ const router = express.Router();
 
 // Getting
 router.get('/', async (req, res) => {
-	const issues = await Issues.find({});
+	const issues = await Issues.find({}).sort('-date');
 	res.json(issues);
 });
 
