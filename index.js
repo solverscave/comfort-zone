@@ -33,6 +33,7 @@ const issues = require('./routes/issues');
 const bills = require('./routes/bills');
 const users = require('./routes/users');
 const auth = require('./routes/auth');
+const pay = require('./routes/pay');
 
 // Body Parser Middleware
 app.use(express.json());
@@ -54,6 +55,7 @@ app.use('/api/issues', issues);
 app.use('/api/bills', bills);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
+app.use('/api/pay', pay);
 
 // Upload Endpoint
 app.post('/upload', (req, res) => {
