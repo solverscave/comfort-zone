@@ -150,7 +150,7 @@ class AdDetail extends Component {
 									href='apple.com'
 									className='btn btn-cz btn-lg-new btn-lg w-100'
 								>
-									<i className='fa fa-phone'></i> {ad.phone}
+									<i className='fa fa-phone'></i> {ad.userPhone}
 								</a>
 								<a
 									href='apple.com'
@@ -183,7 +183,7 @@ class AdDetail extends Component {
 										color: 'apple.com159570'
 									}}
 								>
-									Name: {ad.name}
+									Name: {ad.userName}
 								</h4>
 								<h4
 									className='card-title mt-2'
@@ -194,7 +194,7 @@ class AdDetail extends Component {
 										color: 'apple.com159570'
 									}}
 								>
-									Phone: {ad.phone}
+									Phone: {ad.userPhone}
 								</h4>
 							</div>
 						</div>
