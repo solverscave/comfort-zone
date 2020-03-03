@@ -1,5 +1,5 @@
 // Importing all packages
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 // Funds schema
 const fundSchema = mongoose.Schema({
@@ -19,7 +19,7 @@ const fundSchema = mongoose.Schema({
 		type: String,
 		require: true
 	},
-	requireAmount: {
+	requiredAmount: {
 		type: Number,
 		require: true
 	},
@@ -42,4 +42,4 @@ const fundSchema = mongoose.Schema({
 });
 
 // Exporting funds
-const Funds = (module.exports = mongoose.model("Funds", fundSchema));
+const Funds = (module.exports = mongoose.model('Funds', fundSchema));
