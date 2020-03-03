@@ -54,7 +54,12 @@ class Billing extends Component {
 	render() {
 		const { bill } = this.state;
 		const thisBill = bill[0];
-		if (bill.length === 0) return <h1>Loading...</h1>;
+		if (bill.length === 0)
+			return (
+				<div class='spinner-border text-success' role='status'>
+					<span class='sr-only'>Loading...</span>
+				</div>
+			);
 		else
 			return (
 				<div>
