@@ -138,7 +138,10 @@ class ForumIssue extends Component {
 						<div key={comment._id} className='mb-2'>
 							<div className='row'>
 								<div className='col-8'>
-									<b>{comment.userName}</b> commented&nbsp;
+									<Link className='text-dark' to={`/profile/${comment.userId}`}>
+										<b>{comment.userName}</b>
+									</Link>{' '}
+									commented&nbsp;
 									<b>
 										<Moment fromNow>{comment.date}</Moment>
 									</b>
