@@ -49,7 +49,9 @@ const Funk = props => (
 					/>
 					<rect
 						className='c'
-						width={props.raisedAmount / 100}
+						width={
+							(348 * ((props.raisedAmount / props.requiredAmount) * 100)) / 100
+						}
 						height={14}
 						transform='translate(910 194)'
 					/>
