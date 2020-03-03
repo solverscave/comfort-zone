@@ -46,6 +46,88 @@ class Fundraising extends Component {
 			);
 	}
 
+	getEducationalFunds(funds) {
+		const educationalFunds = funds.filter(f => f.category === 'Education');
+
+		return (
+			<div className='row'>
+				{educationalFunds.map(fund => (
+					<div className='col-3 my-2' key={fund.id}>
+						<FundCard
+							_id={fund._id}
+							title={fund.title}
+							description={fund.description}
+							imgUrl={fund.imageUrl}
+							requiredAmount={fund.requiredAmount}
+							raisedAmount={fund.raisedAmount}
+						/>
+					</div>
+				))}
+			</div>
+		);
+	}
+
+	getMedicalFunds(funds) {
+		const medicalFunds = funds.filter(f => f.category === 'Medical');
+
+		return (
+			<div className='row'>
+				{medicalFunds.map(fund => (
+					<div className='col-3 my-2' key={fund.id}>
+						<FundCard
+							_id={fund._id}
+							title={fund.title}
+							description={fund.description}
+							imgUrl={fund.imageUrl}
+							requiredAmount={fund.requiredAmount}
+							raisedAmount={fund.raisedAmount}
+						/>
+					</div>
+				))}
+			</div>
+		);
+	}
+	getMemorialFunds(funds) {
+		const memorialFunds = funds.filter(f => f.category === 'Memorial');
+
+		return (
+			<div className='row'>
+				{memorialFunds.map(fund => (
+					<div className='col-3 my-2' key={fund.id}>
+						<FundCard
+							_id={fund._id}
+							title={fund.title}
+							description={fund.description}
+							imgUrl={fund.imageUrl}
+							requiredAmount={fund.requiredAmount}
+							raisedAmount={fund.raisedAmount}
+						/>
+					</div>
+				))}
+			</div>
+		);
+	}
+	getPersonalFunds(funds) {
+		const personalFunds = funds.filter(f => f.category === 'Personal');
+
+		return (
+			<div className='row'>
+				{personalFunds.map(fund => (
+					<div className='col-3 my-2' key={fund.id}>
+						<FundCard
+							_id={fund._id}
+							title={fund.title}
+							description={fund.description}
+							imgUrl={fund.imageUrl}
+							requiredAmount={fund.requiredAmount}
+							raisedAmount={fund.raisedAmount}
+						/>
+					</div>
+				))}
+			</div>
+		);
+	}
+
 	render() {
 		const { funds } = this.state;
 
@@ -71,38 +153,28 @@ class Fundraising extends Component {
 							Educational
 						</h3>
 					</div>
-					<div className='row ml-3 mb-3'>
+					{this.getEducationalFunds(funds)}
+					<div className='row ml-3 mb-3 mt-3'>
 						<img src={medicalFunds} alt='' />
 						<h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
 							Medical
 						</h3>
 					</div>
-					<div className='row ml-3 mb-3'>
+					{this.getMedicalFunds(funds)}
+					<div className='row ml-3 mb-3 mt-3'>
 						<img src={memorialFunds} alt='' />
 						<h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
 							Memorial
 						</h3>
 					</div>
-					<div className='row ml-3 mb-3'>
+					{this.getMemorialFunds(funds)}
+					<div className='row ml-3 mb-3 mt-3'>
 						<img src={personalFunds} alt='' />
 						<h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
 							Personal
 						</h3>
 					</div>
-					<div className='row'>
-						{funds.map(fund => (
-							<div className='col-3 my-2' key={fund.id}>
-								<FundCard
-									_id={fund._id}
-									title={fund.title}
-									description={fund.description}
-									imgUrl={fund.imageUrl}
-									requiredAmount={fund.requiredAmount}
-									raisedAmount={fund.raisedAmount}
-								/>
-							</div>
-						))}
-					</div>
+					{this.getPersonalFunds(funds)}
 				</div>
 			</div>
 		);
