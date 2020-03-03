@@ -36,7 +36,8 @@ const GenerateBill = ({
 	graveyardCharges,
 	electricityCharges,
 	dueAmount,
-	totalAmount
+	totalAmount,
+	isPaid
 }) => (
 	<Document style={{ backgroundColor: 'blue' }}>
 		<Page size='B5' style={{ backgroundColor: '#f7f7f7' }}>
@@ -65,8 +66,10 @@ const GenerateBill = ({
 				</Text>
 				<Text style={styles.text}>Total Amount: {totalAmount}</Text>
 				<Text style={styles.text}>Due Amount: {dueAmount}</Text>
+				<Text style={styles.text}>Paid: {isPaid}</Text>
 			</View>
 		</Page>
 	</Document>
 );
+
 export default GenerateBill;
