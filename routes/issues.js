@@ -54,19 +54,19 @@ router.put('/:id', auth, async (req, res) => {
 router.put('/comment/:id', auth, async (req, res) => {
 	const data = await Issues.findOne({ _id: req.params.id });
 
-	const numberOfComments = data.comments.length;
-
-	const newComment = req.body;
-
 	const comments = data.comments;
 
-	data.comments[numberOfComments] = newComment;
-
-	data.comments = [newComment, ...comments];
+	data.comments = [req.body, ...comments];
 
 	await data.save();
 
 	res.json(newComment);
+});
+
+router.delete('/comment/:id', async (req, res) => {
+	const data = await Issues.findOne({ _id: req.params.id });
+
+	res.send(data);
 });
 
 // Deleting a issue by ID

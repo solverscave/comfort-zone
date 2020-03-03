@@ -8,5 +8,9 @@ const router = express.Router();
 // Getting all bills
 router.get('/', async (req, res) => await res.json(await Bills.find({})));
 
+router.get('/:id', async (req, res) =>
+	res.json(await Bills.find({ userId: req.params.id }))
+);
+
 // Exporting router
 module.exports = router;
