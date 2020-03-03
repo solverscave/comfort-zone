@@ -6,6 +6,7 @@
  **/
 
 import React from 'react';
+import { ProgressBar } from 'react-bootstrap';
 
 const Funk = props => (
 	<svg {...props} width={427} height={180.051} viewBox='0 0 427 180.051'>
@@ -48,14 +49,17 @@ const Funk = props => (
 					/>
 					<rect
 						className='c'
-						width={246}
+						width={props.raisedAmount / 100}
 						height={14}
 						transform='translate(910 194)'
 					/>
 				</g>
 				<text className='d' transform='translate(1090 186)'>
 					<tspan x={-160.947} y={0}>
-						{'Rs. 500 raised of Rs. 5000 '}
+						{'Rs. ' +
+							props.raisedAmount +
+							' raised of Rs. ' +
+							props.requiredAmount}
 					</tspan>
 				</text>
 				<g transform='translate(0 3)'>
@@ -70,7 +74,7 @@ const Funk = props => (
 				</g>
 				<text className='e' transform='translate(1228 243)'>
 					<tspan className='f' x={-29.962} y={0}>
-						{'4500 '}
+						{props.requiredAmount - props.raisedAmount + ' '}
 					</tspan>
 					<tspan className='c' y={0}>
 						{'left'}

@@ -41,16 +41,22 @@ class FundDetail extends Component {
 						<p>{fund.description}</p>
 					</div>
 					<div className='col-4'>
-						<Funk />
-
-						<div className='my-2 align-self-center justify-content-center text-center'>
-							<Link
-								style={{ float: 'left' }}
-								className='btn btn-lg btn-cz mb-3 '
-								to='/fundraising'
-							>
-								Donate Now
-							</Link>
+						<div className='row align-self-center justify-content-center text-center'>
+							<Funk
+								requiredAmount={fund.requiredAmount}
+								raisedAmount={fund.raisedAmount}
+							/>
+						</div>
+						<div className='row align-self-center justify-content-center text-center'>
+							<div>
+								<Link
+									style={{ float: 'left' }}
+									className='btn btn-lg btn-cz mb-3 '
+									to='/fundraising'
+								>
+									Donate Now
+								</Link>
+							</div>
 						</div>
 					</div>
 				</div>
