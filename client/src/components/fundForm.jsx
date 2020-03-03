@@ -1,5 +1,6 @@
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import auth from '../services/authService';
 import Joi from 'joi-browser';
 import Form from './common/form';
 import { Link } from 'react-router-dom';
@@ -11,14 +12,31 @@ class FundForm extends Form {
 		data: {
 			title: '',
 			description: '',
-			requiredAmount: 0,
+			requiredAmount: null,
 			raisedAmount: 0
 		},
 		errors: {},
 		filename: 'Choose File',
 		file: {},
-		setUploadedFile: {}
+		setUploadedFile: {},
+		user: {}
 	};
+
+	async componentDidMount() {
+		let user = auth.getCurrentUser();
+		if (user) {
+			const { data } = await axios.get(
+				'http://localhost:5000/api/users/' + user._id
+			);
+			user = data[0];
+			this.setState({ user });
+		} else if (!user) {
+			user = {
+				_id: null
+			};
+			this.setState({ user });
+		}
+	}
 
 	schema = {
 		title: Joi.string()
@@ -74,7 +92,11 @@ class FundForm extends Form {
 
 		const result = await axios.post(apiEndpoint, {
 			...this.state.data,
-			imageUrl: `http://localhost:3000${this.state.setUploadedFile.filePath}`
+			imageUrl: `http://localhost:3000${this.state.setUploadedFile.filePath}`,
+			userID: this.state.user._id,
+			userImage: this.state.user.imageUrl,
+			userName: this.state.user.name,
+			date: new Date()
 		});
 		if (result) {
 			toast.success('Your complain has been successfully received to us!');

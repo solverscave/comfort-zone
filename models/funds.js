@@ -11,10 +11,6 @@ const fundSchema = mongoose.Schema({
 		type: String,
 		require: true
 	},
-	date: {
-		type: Date,
-		require: true
-	},
 	category: {
 		type: String,
 		require: true
@@ -38,6 +34,22 @@ const fundSchema = mongoose.Schema({
 	isApproved: {
 		type: String,
 		require: true
+	},
+	date: {
+		type: Date,
+		required: false
+	},
+	userId: {
+		type: String,
+		required: false
+	},
+	userImage: {
+		type: String,
+		required: false
+	},
+	userName: {
+		type: String,
+		required: false
 	}
 });
 
