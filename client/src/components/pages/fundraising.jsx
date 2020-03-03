@@ -4,6 +4,7 @@ import auth from '../../services/authService';
 import FundCard from './../common/fundCard';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import educationalFunds from '../../assets/icons/educational-funds.svg';
 
 const apiEndpoint = 'http://localhost:5000/api/funds/isApproved/';
 
@@ -60,7 +61,13 @@ class Fundraising extends Component {
 					</div>
 				</div>
 
-				<div className='container my-5'>
+				<div className='container my-3'>
+					<div className='row ml-3 mb-3'>
+						<img src={educationalFunds} alt='' />
+						<h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
+							Educational
+						</h3>
+					</div>
 					<div className='row'>
 						{funds.map(fund => (
 							<div className='col-3 my-2' key={fund.id}>

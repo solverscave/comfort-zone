@@ -24,7 +24,14 @@ const FundCard = ({
 			</Link>
 
 			<Card.Body>
-				<Card.Title>
+				<Card.Title
+					style={{
+						lineHeight: '1.5em',
+						height: '3em',
+						overflow: 'hidden',
+						textOverflow: 'ellipsis'
+					}}
+				>
 					<Link to={`/fundraising/${_id}`} style={{ color: 'black' }}>
 						{title}
 					</Link>
