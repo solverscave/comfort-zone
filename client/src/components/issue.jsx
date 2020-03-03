@@ -57,7 +57,9 @@ const Issue = ({
 				</div>
 				<div className='media-body'>
 					<h4>
-						{userName}{' '}
+						<Link className='text-dark' to={`/profile/${userId}`}>
+							{userName}
+						</Link>{' '}
 						<h6>
 							Posted&nbsp;
 							<b>

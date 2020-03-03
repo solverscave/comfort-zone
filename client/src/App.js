@@ -31,6 +31,7 @@ import LoginForm from './components/loginForm';
 import Logout from './components/logout';
 import auth from './services/authService';
 import RegisterForm from './components/registerForm';
+import Profile from './components/pages/profile';
 import Dashboard from './components/admin/dashboard';
 
 class App extends Component {
@@ -77,6 +78,7 @@ class App extends Component {
 						<Route path='/security' component={Security} />
 						<Route path='/elections' component={Elections} />
 						<Route path='/tender' component={Tender} />
+						<Route path='/profile/:id' component={Profile} />
 						<Route path='/dashboard' component={Dashboard} />
 						<Route path='/not-found' component={NotFound} />
 						<Route path='/' exact component={Home} />
