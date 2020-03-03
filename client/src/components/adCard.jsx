@@ -6,7 +6,7 @@ const AdCard = ({ _id, title, description, imageUrl, price }) => {
 	return (
 		<Card style={{ width: '73rem' }}>
 			<Link to={`/advertisement/${_id}`}>
-				<Card.Img variant='top' src={imageUrl} />
+				<Card.Img style={{ height: '300px' }} variant='top' src={imageUrl} />
 
 				<Card.ImgOverlay>
 					<button className='btn btn-cz float-right'>Rs. {price}</button>
