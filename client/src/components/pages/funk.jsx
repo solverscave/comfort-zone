@@ -6,7 +6,6 @@
  **/
 
 import React from 'react';
-import { ProgressBar } from 'react-bootstrap';
 
 const Funk = props => (
 	<svg {...props} width={427} height={180.051} viewBox='0 0 427 180.051'>
