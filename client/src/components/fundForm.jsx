@@ -8,7 +8,7 @@ const apiEndpoint = 'http://localhost:5000/api/funds';
 
 class FundForm extends Form {
 	state = {
-		data: { title: '', description: '' },
+		data: { title: '', description: '', requiredAmount: '' },
 		errors: {},
 		filename: 'Choose File',
 		file: {},
@@ -25,7 +25,12 @@ class FundForm extends Form {
 			.required()
 			.min(50)
 			.label('Description'),
-		status: Joi.string().label('Status')
+		status: Joi.string().label('Status'),
+		requiredAmount: Joi.number()
+			.required()
+			.min(1)
+			.max(1000000)
+			.label('Required Amount')
 	};
 
 	onFileChange = e => {
@@ -98,6 +103,13 @@ class FundForm extends Form {
 							'text',
 							'Enter the description of the complain'
 						)}
+						{this.renderInput(
+							'requiredAmount',
+							'Required Amount',
+							'number',
+							'Enter the required amount'
+						)}
+
 						<div className='row'>
 							<div className='col-3'></div>
 						</div>
