@@ -5,6 +5,9 @@ import FundCard from './../common/fundCard';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import educationalFunds from '../../assets/icons/educational-funds.svg';
+import medicalFunds from '../../assets/icons/medical-funds.svg';
+import memorialFunds from '../../assets/icons/memorial-funds.svg';
+import personalFunds from '../../assets/icons/personal-funds.svg';
 
 const apiEndpoint = 'http://localhost:5000/api/funds/isApproved/';
 
@@ -66,6 +69,24 @@ class Fundraising extends Component {
 						<img src={educationalFunds} alt='' />
 						<h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
 							Educational
+						</h3>
+					</div>
+					<div className='row ml-3 mb-3'>
+						<img src={medicalFunds} alt='' />
+						<h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
+							Medical
+						</h3>
+					</div>
+					<div className='row ml-3 mb-3'>
+						<img src={memorialFunds} alt='' />
+						<h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
+							Memorial
+						</h3>
+					</div>
+					<div className='row ml-3 mb-3'>
+						<img src={personalFunds} alt='' />
+						<h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
+							Personal
 						</h3>
 					</div>
 					<div className='row'>
