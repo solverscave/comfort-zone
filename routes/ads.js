@@ -51,17 +51,17 @@ router.get('/condition/:condition', async (req, res) => {
 // Posting a single ad
 router.post('/', auth, async (req, res) => {
 	// Validating the ad
-	const result = validateAd(req.body);
+	// const result = validateAd(req.body);
 
-	//Checking for any validation errors
-	if (result.error) {
-		return res.status(400).send(result.error.details[0].message);
-	}
-	// If no error was found
-	else {
-		const ad = await Ads.create({ ...req.body });
-		res.send(ad);
-	}
+	// //Checking for any validation errors
+	// if (result.error) {
+	// 	return res.status(400).send(result.error.details[0].message);
+	// }
+	// // If no error was found
+	// else {
+	const ad = await Ads.create({ ...req.body });
+	res.send(ad);
+	// }
 });
 
 // Updating an ads

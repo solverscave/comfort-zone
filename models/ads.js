@@ -1,6 +1,6 @@
 // Importing all packages
-const mongoose = require("mongoose");
-const Joi = require("Joi");
+const mongoose = require('mongoose');
+const Joi = require('Joi');
 
 // Ads schema
 const adSchema = mongoose.Schema({
@@ -12,25 +12,49 @@ const adSchema = mongoose.Schema({
 		type: String,
 		require: true
 	},
-	date: {
-		type: Date,
-		require: true
-	},
 	category: {
 		type: String,
-		require: true
+		require: false
 	},
-	imageUrl: {
+	imageUrl1: {
 		type: String,
-		require: true
+		require: false
+	},
+	imageUrl2: {
+		type: String,
+		require: false
+	},
+	imageUrl3: {
+		type: String,
+		require: false
+	},
+	imageUrl4: {
+		type: String,
+		require: false
 	},
 	requiredAmount: {
 		type: Number,
-		require: true
+		require: false
 	},
 	condition: {
 		type: String,
-		require: true
+		require: false
+	},
+	date: {
+		type: Date,
+		required: false
+	},
+	userId: {
+		type: String,
+		required: false
+	},
+	userImage: {
+		type: String,
+		required: false
+	},
+	userName: {
+		type: String,
+		required: false
 	}
 });
 
@@ -52,7 +76,7 @@ function validateAd(ad) {
 }
 
 // Exporting ads
-const Ads = (module.exports = mongoose.model("Ads", adSchema));
+const Ads = (module.exports = mongoose.model('Ads', adSchema));
 
 // Exporting validation function
 module.exports.validateAd = validateAd;

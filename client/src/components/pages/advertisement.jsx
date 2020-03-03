@@ -36,7 +36,7 @@ class Advertisement extends Component {
 			);
 		else if (this.state.user)
 			return (
-				<Link className='btn btn-cz' to='/fundraising/form'>
+				<Link className='btn btn-cz' to='/advertisement/form'>
 					Post an ad
 				</Link>
 			);

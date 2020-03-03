@@ -23,6 +23,7 @@ import Security from './components/pages/security';
 import Elections from './components/pages/elections';
 import Tender from './components/pages/tender';
 import AdDetail from './components/adDetail';
+import AdForm from './components/adForm';
 import Advertisement from './components/pages/advertisement';
 import NotFound from './components/not-found';
 import Payment from './components/payment';
@@ -68,6 +69,7 @@ class App extends Component {
 						<Route path='/fundraising/form' component={FundForm} />
 						<Route path='/fundraising/:id' component={FundDetail} />
 						<Route path='/fundraising' component={Fundraising} />
+						<Route path='/advertisement/form' component={AdForm} />
 						<Route path='/advertisement/:id' component={AdDetail} />
 						<Route path='/advertisement' component={Advertisement} />
 						<Route path='/facility-corner' component={FacilityCorner} />
