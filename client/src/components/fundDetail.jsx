@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import thousandRupees from '../assets/img/PKR_Rs_1000.jpg';
-import Funk from '../../src/components/pages/funk';
+import FundDetailProgress from '../../src/components/pages/fundDetailProgress';
 
 const apiEndpoint = 'http://localhost:5000/api/funds/';
 
@@ -42,7 +42,7 @@ class FundDetail extends Component {
 					</div>
 					<div className='col-4'>
 						<div className='row align-self-center justify-content-center text-center'>
-							<Funk
+							<FundDetailProgress
 								requiredAmount={fund.requiredAmount}
 								raisedAmount={fund.raisedAmount}
 							/>

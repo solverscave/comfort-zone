@@ -7,7 +7,7 @@
 
 import React from 'react';
 
-const Funk = props => (
+const FundDetailProgress = props => (
 	<svg {...props} width={427} height={180.051} viewBox='0 0 427 180.051'>
 		<defs>
 			<style>
@@ -86,4 +86,4 @@ const Funk = props => (
 	</svg>
 );
 
-export default Funk;
+export default FundDetailProgress;
