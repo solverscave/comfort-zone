@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import auth from '../../services/authService';
 import { Link } from 'react-router-dom';
@@ -8,6 +7,7 @@ import PaidBill from './../paidBill';
 import { PDFViewer } from '@react-pdf/renderer';
 import StripeCheckout from 'react-stripe-checkout';
 import SubHeader from './../common/subHeader';
+import { ToastContainer, toast } from 'react-toastify';
 
 class Billing extends Component {
 	state = {
@@ -68,6 +68,31 @@ class Billing extends Component {
 		}
 	}
 
+	getButton() {
+		return (
+			<StripeCheckout
+				stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
+				token={this.handleToken}
+				amount={1120 * 100}
+				name='Comfort Zone'
+				image='http://localhost:3000/uploads/payment-logo.jpg'
+				label='Pay Bill Online'
+			/>
+		);
+	}
+	getButton1() {
+		return (
+			<StripeCheckout
+				stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
+				token={this.handleToken}
+				amount={1120 * 100}
+				name='Comfort Zone'
+				image='http://localhost:3000/uploads/payment-logo.jpg'
+				label='Your bill is paid!'
+			/>
+		);
+	}
+
 	render() {
 		const { bill } = this.state;
 		const thisBill = bill[0];
@@ -76,33 +101,19 @@ class Billing extends Component {
 		else if (thisBill.isPaid === false)
 			return (
 				<div>
-					<SubHeader
-						classes='subheader-billing py-5 text-white'
-						title='Billing'
-						desc='Use this forum to add issues, find issues and comment on issues.'
-						buttonTitle='Pay Bill'
-					/>
 					<ToastContainer />
-					<div className='container my-5'>
-						<div className='row mb-5'>
-							<div className='col-5 text-right'>
-								<StripeCheckout
-									stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
-									token={this.handleToken}
-									amount={5000 * 100}
-									name='Comfort Zone'
-									image='http://localhost:3000/uploads/payment-logo.jpg'
-								/>
+					<div className='subheader-fundraising py-5 text-white'>
+						<div className='align-self-center justify-content-center text-center'>
+							<div>
+								<h1>Now paying bill is easier!</h1>
 							</div>
-							<div className='col-2 text-center'>
-								<h3>OR</h3>
+							<div>
+								<p>Make your bill payment from home with the secure method.</p>
 							</div>
-							<div className='col-5 text-left'>
-								<Link to={`billing/payment`}>
-									<button className='btn btn-cz btn-lg'>Print Bill</button>
-								</Link>
-							</div>
+							{this.getButton()}
 						</div>
+					</div>
+					<div className='container my-5'>
 						<div>
 							<PDFViewer>
 								<GenerateBill
@@ -128,33 +139,19 @@ class Billing extends Component {
 		else
 			return (
 				<div>
-					<SubHeader
-						classes='subheader-billing py-5 text-white'
-						title='Billing'
-						desc='Use this forum to add issues, find issues and comment on issues.'
-						buttonTitle='Pay Bill'
-					/>
 					<ToastContainer />
-					<div className='container my-5'>
-						<div className='row mb-5'>
-							<div className='col-5 text-right'>
-								<StripeCheckout
-									stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
-									token={this.handleToken}
-									amount={this.state.product.price * 100}
-									name='Comfort Zone'
-									image='http://localhost:3000/uploads/payment-logo.jpg'
-								/>
+					<div className='subheader-fundraising py-5 text-white'>
+						<div className='align-self-center justify-content-center text-center'>
+							<div>
+								<h1>Your story starts here!</h1>
 							</div>
-							<div className='col-2 text-center'>
-								<h3>OR</h3>
+							<div>
+								<p>Find a cause you believe in and make good things happen</p>
 							</div>
-							<div className='col-5 text-left'>
-								<Link to={`billing/payment`}>
-									<button className='btn btn-cz btn-lg'>Print Bill</button>
-								</Link>
-							</div>
+							{this.getButton1()}
 						</div>
+					</div>
+					<div className='container my-5'>
 						<div>
 							<PDFViewer>
 								<PaidBill />
