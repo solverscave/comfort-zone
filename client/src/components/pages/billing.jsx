@@ -57,6 +57,10 @@ class Billing extends Component {
 		const { status } = response.data;
 		console.log('Response:', response.data);
 		if (status === 'success') {
+			await axios.put(
+				'http://localhost:5000/api/bills/5e4bfdb959f0034b4c9e4052',
+				{ isPaid: true }
+			);
 			toast('Success! Check email for details', { type: 'success' });
 		} else {
 			toast('Something went wrong', { type: 'error' });

@@ -1,5 +1,5 @@
 // Importing all packages
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 // Setting mongoose schema
 const billSchema = {
@@ -46,8 +46,12 @@ const billSchema = {
 	dueAmount: {
 		type: Number,
 		require: true
+	},
+	isPaid: {
+		type: Boolean,
+		required: true
 	}
 };
 
 // Exporting bills
-const Bills = (module.exports = mongoose.model("Bills", billSchema));
+const Bills = (module.exports = mongoose.model('Bills', billSchema));
