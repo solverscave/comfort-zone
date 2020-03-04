@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios';
 import auth from '../../services/authService';
 import { Link } from 'react-router-dom';
@@ -7,7 +8,6 @@ import PaidBill from './../paidBill';
 import { PDFViewer } from '@react-pdf/renderer';
 import StripeCheckout from 'react-stripe-checkout';
 import SubHeader from './../common/subHeader';
-import { ToastContainer, toast } from 'react-toastify';
 
 class Billing extends Component {
 	state = {
@@ -62,6 +62,7 @@ class Billing extends Component {
 				{ isPaid: true }
 			);
 			toast('Success! Check email for details', { type: 'success' });
+			window.location.reload();
 		} else {
 			toast('Something went wrong', { type: 'error' });
 		}
