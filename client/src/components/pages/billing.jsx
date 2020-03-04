@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import auth from '../../services/authService';
-import { Link } from 'react-router-dom';
 import GenerateBill from './../generateBill';
 import PaidBill from './../paidBill';
 import { PDFViewer } from '@react-pdf/renderer';
 import StripeCheckout from 'react-stripe-checkout';
-import SubHeader from './../common/subHeader';
 import { ToastContainer, toast } from 'react-toastify';
 
 class Billing extends Component {
@@ -73,7 +71,7 @@ class Billing extends Component {
 			<StripeCheckout
 				stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
 				token={this.handleToken}
-				amount={1120 * 100}
+				amount={(1120 / 154) * 100}
 				name='Comfort Zone'
 				image='http://localhost:3000/uploads/payment-logo.jpg'
 				label='Pay Bill Online'
@@ -102,7 +100,7 @@ class Billing extends Component {
 			return (
 				<div>
 					<ToastContainer />
-					<div className='subheader-fundraising py-5 text-white'>
+					<div className='subheader-billing py-5 text-white'>
 						<div className='align-self-center justify-content-center text-center'>
 							<div>
 								<h1>Now paying bill is easier!</h1>

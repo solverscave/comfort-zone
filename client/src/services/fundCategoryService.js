@@ -1,10 +1,10 @@
-export const categories = [
-	{ _id: '5b21ca3eeb7f6fbccd471818', name: 'Educational' },
-	{ _id: '5b21ca3eeb7f6fbccd471814', name: 'Medical' },
-	{ _id: '5b21ca3eeb7f6fbccd471820', name: 'Memorial' },
-	{ _id: '5b21ca3eeb7f6fbccd471821', name: 'Personal' }
+export const category = [
+	{ name: 'Education', _id: 'Education' },
+	{ name: 'Medical', _id: 'Medical' },
+	{ name: 'Personal', _id: 'Personal' },
+	{ name: 'Memorial', _id: 'Memorial' }
 ];
 
-export function getCategories() {
-	return categories.filter(c => c);
+export function getCategory() {
+	return category.filter(c => c);
 }

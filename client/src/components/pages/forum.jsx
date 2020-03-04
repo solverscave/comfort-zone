@@ -142,7 +142,7 @@ class Forum extends Form {
 							</p>
 						</div>
 						<Popup
-							trigger={<button className='btn btn-czo'> Add an issue</button>}
+							trigger={<button className='btn btn-cz'> Add an issue</button>}
 							position='right center'
 						>
 							<form onSubmit={this.handleSubmit}>

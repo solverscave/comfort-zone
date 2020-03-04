@@ -1,42 +1,23 @@
 import React from 'react';
+import { getCategory } from '../services/fundCategoryService';
 import { ToastContainer, toast } from 'react-toastify';
-import auth from '../services/authService';
 import Joi from 'joi-browser';
 import Form from './common/form';
+
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+
 const apiEndpoint = 'http://localhost:5000/api/funds';
 
 class FundForm extends Form {
 	state = {
-		data: {
-			title: '',
-			description: '',
-			requiredAmount: null,
-			raisedAmount: 0
-		},
+		data: { title: '', description: '', category: '' },
 		errors: {},
 		filename: 'Choose File',
 		file: {},
 		setUploadedFile: {},
-		user: {}
+		category: []
 	};
-
-	async componentDidMount() {
-		let user = auth.getCurrentUser();
-		if (user) {
-			const { data } = await axios.get(
-				'http://localhost:5000/api/users/' + user._id
-			);
-			user = data[0];
-			this.setState({ user });
-		} else if (!user) {
-			user = {
-				_id: null
-			};
-			this.setState({ user });
-		}
-	}
 
 	schema = {
 		title: Joi.string()
@@ -49,13 +30,14 @@ class FundForm extends Form {
 			.min(50)
 			.label('Description'),
 		status: Joi.string().label('Status'),
-		requiredAmount: Joi.number()
+		category: Joi.string()
 			.required()
-			.min(1)
-			.max(1000000)
-			.label('Required Amount'),
-		raisedAmount: Joi.number()
+			.label('category')
 	};
+	componentDidMount() {
+		const category = getCategory();
+		this.setState({ category });
+	}
 
 	onFileChange = e => {
 		const file = e.target.files[0];
@@ -92,11 +74,7 @@ class FundForm extends Form {
 
 		const result = await axios.post(apiEndpoint, {
 			...this.state.data,
-			imageUrl: `http://localhost:3000${this.state.setUploadedFile.filePath}`,
-			userID: this.state.user._id,
-			userImage: this.state.user.imageUrl,
-			userName: this.state.user.name,
-			date: new Date()
+			imageUrl: `http://localhost:3000${this.state.setUploadedFile.filePath}`
 		});
 		if (result) {
 			toast.success('Your complain has been successfully received to us!');
@@ -131,16 +109,10 @@ class FundForm extends Form {
 							'text',
 							'Enter the description of the complain'
 						)}
-						{this.renderInput(
-							'requiredAmount',
-							'Required Amount',
-							'number',
-							'Enter the required amount'
-						)}
-
 						<div className='row'>
 							<div className='col-3'></div>
 						</div>
+						{this.renderSelect('category', 'Category', this.state.category)}
 
 						<div className='custom-file mb-3'>
 							<input
@@ -153,6 +125,7 @@ class FundForm extends Form {
 								{this.state.filename}
 							</label>
 						</div>
+
 						{this.renderButton('Submit')}
 					</form>
 				</div>
