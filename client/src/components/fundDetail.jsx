@@ -48,6 +48,7 @@ class FundDetail extends Component {
 		});
 		const { status } = response.data;
 		console.log('Response:', response.data);
+
 		if (status === 'success') {
 			toast('Success! Check email for details', { type: 'success' });
 		} else {
