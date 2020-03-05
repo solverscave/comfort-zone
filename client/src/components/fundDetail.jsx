@@ -41,9 +41,9 @@ class FundDetail extends Component {
 		const response = await axios.post('http://localhost:5000/api/pay/', {
 			token,
 			product: {
-				name: 'Bill',
-				price: 24234,
-				description: 'Bill payment'
+				name: 'Fund',
+				price: 1,
+				description: 'Fund Payment'
 			}
 		});
 		const { status } = response.data;

@@ -48,7 +48,7 @@ class Billing extends Component {
 			token,
 			product: {
 				name: 'Bill',
-				price: 24234,
+				price: 7.24,
 				description: 'Bill payment'
 			}
 		});
