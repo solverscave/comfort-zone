@@ -138,13 +138,13 @@ class Billing extends Component {
 			return (
 				<div>
 					<ToastContainer />
-					<div className='subheader-fundraising py-5 text-white'>
+					<div className='subheader-billing py-5 text-white'>
 						<div className='align-self-center justify-content-center text-center'>
 							<div>
-								<h1>Your story starts here!</h1>
+								<h1>Now paying bill is easier!</h1>
 							</div>
 							<div>
-								<p>Find a cause you believe in and make good things happen</p>
+								<p>Make your bill payment from home with the secure method.</p>
 							</div>
 							{this.getButton1()}
 						</div>
