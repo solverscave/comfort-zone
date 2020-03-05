@@ -1,6 +1,7 @@
 import React from 'react';
 import { getCategory } from '../services/fundCategoryService';
 import { ToastContainer, toast } from 'react-toastify';
+import auth from '../services/authService';
 import Joi from 'joi-browser';
 import Form from './common/form';
 
@@ -22,7 +23,8 @@ class FundForm extends Form {
 		filename: 'Choose File',
 		file: {},
 		setUploadedFile: {},
-		category: []
+		category: [],
+		user: {}
 	};
 
 	schema = {
@@ -38,11 +40,27 @@ class FundForm extends Form {
 		status: Joi.string().label('Status'),
 		category: Joi.string()
 			.required()
-			.label('category')
+			.label('category'),
+		requiredAmount: Joi.number().required(),
+		raisedAmount: Joi.number().required()
 	};
-	componentDidMount() {
+	async componentDidMount() {
 		const category = getCategory();
 		this.setState({ category });
+
+		let user = auth.getCurrentUser();
+		if (user) {
+			const { data } = await axios.get(
+				'http://localhost:5000/api/users/' + user._id
+			);
+			user = data[0];
+			this.setState({ user });
+		} else if (!user) {
+			user = {
+				_id: null
+			};
+			this.setState({ user });
+		}
 	}
 
 	onFileChange = e => {
@@ -80,6 +98,9 @@ class FundForm extends Form {
 
 		const result = await axios.post(apiEndpoint, {
 			...this.state.data,
+			userId: this.state.user._id,
+			userImage: this.state.user.imageUrl,
+			userName: this.state.user.name,
 			imageUrl: `http://localhost:3000${this.state.setUploadedFile.filePath}`
 		});
 		if (result) {
