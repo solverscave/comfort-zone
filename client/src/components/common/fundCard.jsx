@@ -57,7 +57,11 @@ const FundCard = ({
 				>
 					<b>Rs. {raisedAmount} Raised</b> of Rs. {requiredAmount}
 				</Card.Text>
-				<Link className='btn btn-cz' to='/funding' variant='primary'>
+				<Link
+					className='btn btn-cz'
+					to={`/fundraising/${_id}`}
+					variant='primary'
+				>
 					Donate
 				</Link>
 				<Link

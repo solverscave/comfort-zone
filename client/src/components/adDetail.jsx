@@ -147,13 +147,13 @@ class AdDetail extends Component {
 						>
 							<div className='card-body'>
 								<a
-									href='apple.com'
+									href='tel:03073794329'
 									className='btn btn-cz btn-lg-new btn-lg w-100'
 								>
 									<i className='fa fa-phone'></i> {ad.userPhone}
 								</a>
 								<a
-									href='apple.com'
+									href='mailto:harismehmood@comfortzone.pk'
 									className='btn btn-cz btn-lg-new btn-lg mt-2 w-100'
 								>
 									<i className='fa fa-envelope'></i> Send a message

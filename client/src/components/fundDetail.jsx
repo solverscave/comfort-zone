@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import thousandRupees from '../assets/img/PKR_Rs_1000.jpg';
 import FundDetailProgress from '../../src/components/pages/fundDetailProgress';
+import StripeCheckout from 'react-stripe-checkout';
+import { ToastContainer, toast } from 'react-toastify';
 
 const apiEndpoint = 'http://localhost:5000/api/funds/';
 
@@ -35,6 +37,23 @@ class FundDetail extends Component {
 				</h3>
 			);
 	};
+	async handleToken(token) {
+		const response = await axios.post('http://localhost:5000/api/pay/', {
+			token,
+			product: {
+				name: 'Bill',
+				price: 24234,
+				description: 'Bill payment'
+			}
+		});
+		const { status } = response.data;
+		console.log('Response:', response.data);
+		if (status === 'success') {
+			toast('Success! Check email for details', { type: 'success' });
+		} else {
+			toast('Something went wrong', { type: 'error' });
+		}
+	}
 	render() {
 		const { fund } = this.state;
 		return (
@@ -100,16 +119,18 @@ class FundDetail extends Component {
 						</div>
 						<div className='row align-self-center justify-content-center text-center'>
 							<div>
-								<Link
+								<StripeCheckout
 									style={{ float: 'left' }}
-									className='btn btn-lg btn-cz mb-3 '
-									to='/fundraising'
-								>
-									Donate Now
-								</Link>
+									stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
+									token={this.handleToken}
+									amount={1 * 100}
+									name='Comfort Zone'
+									image='http://localhost:3000/uploads/payment-logo.jpg'
+									label='Donate'
+								/>
 							</div>
 						</div>
-
+						<ToastContainer />
 						<div className='row align-self-center justify-content-center text-center w-0'>
 							<div
 								className='card text-left mt-4 pt-5 pb-5'
