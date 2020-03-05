@@ -11,7 +11,13 @@ const apiEndpoint = 'http://localhost:5000/api/funds';
 
 class FundForm extends Form {
 	state = {
-		data: { title: '', description: '', category: '' },
+		data: {
+			title: '',
+			description: '',
+			category: '',
+			requiredAmount: null,
+			raisedAmount: 0
+		},
 		errors: {},
 		filename: 'Choose File',
 		file: {},
@@ -77,7 +83,7 @@ class FundForm extends Form {
 			imageUrl: `http://localhost:3000${this.state.setUploadedFile.filePath}`
 		});
 		if (result) {
-			toast.success('Your complain has been successfully received to us!');
+			toast.success('Your fund has been successfully received to us!');
 		} else {
 			toast.error('Oh something went wrong');
 		}
@@ -93,7 +99,7 @@ class FundForm extends Form {
 				<Link className='btn btn-cz mb-3' to='/fundraising'>
 					Go Back
 				</Link>
-				<h1>Form</h1>
+				<h1>Create a fund campaign</h1>
 				<ToastContainer />
 				<div className='container'>
 					<form onSubmit={this.handleSubmit}>
@@ -101,13 +107,19 @@ class FundForm extends Form {
 							'title',
 							'Title',
 							'text',
-							'Enter the title of the complain'
+							'Enter the title of the fund'
 						)}
 						{this.renderTextArea(
 							'description',
 							'Description',
 							'text',
-							'Enter the description of the complain'
+							'Enter the description of the fund'
+						)}
+						{this.renderInput(
+							'requiredAmount',
+							'Required Amount',
+							'number',
+							'Enter the required amount'
 						)}
 						<div className='row'>
 							<div className='col-3'></div>

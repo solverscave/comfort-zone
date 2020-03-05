@@ -122,13 +122,13 @@ class AdForm extends Form {
 							'title',
 							'Title',
 							'text',
-							'Enter the title of the complain'
+							'Enter the title of your Ad'
 						)}
 						{this.renderTextArea(
 							'description',
 							'Description',
 							'text',
-							'Enter the description of the complain'
+							'Enter the description of the Ad'
 						)}
 						{this.renderInput(
 							'requiredAmount',
