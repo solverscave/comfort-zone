@@ -51,6 +51,11 @@ class FundDetail extends Component {
 
 		if (status === 'success') {
 			toast('Success! Check email for details', { type: 'success' });
+			await axios.put(
+				'http://localhost:5000/api/funds/5e5975b0e3137d315c64418a',
+				{ raisedAmount: 154, donations: 1 }
+			);
+			window.location.reload();
 		} else {
 			toast('Something went wrong', { type: 'error' });
 		}
@@ -116,6 +121,7 @@ class FundDetail extends Component {
 							<FundDetailProgress
 								requiredAmount={fund.requiredAmount}
 								raisedAmount={fund.raisedAmount}
+								donations={fund.donations}
 							/>
 						</div>
 						<div className='row align-self-center justify-content-center text-center'>

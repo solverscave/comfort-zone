@@ -50,6 +50,10 @@ const fundSchema = mongoose.Schema({
 	userName: {
 		type: String,
 		required: false
+	},
+	donations: {
+		type: Number,
+		required: false
 	}
 });
 

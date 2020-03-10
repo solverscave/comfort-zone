@@ -66,7 +66,7 @@ const FundDetailProgress = props => (
 				<g transform='translate(0 3)'>
 					<text className='e' transform='translate(952 243)'>
 						<tspan className='f' x={-41.557} y={0}>
-							{'10'}
+							{props.donations}
 						</tspan>
 						<tspan className='c' y={0} xmlSpace='preserve'>
 							{' donations'}

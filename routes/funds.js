@@ -12,6 +12,16 @@ router.get('/:id', async (req, res) =>
 	res.json(await Funds.find({ _id: req.params.id }))
 );
 
+// Updating an ads
+router.put('/:id', async (req, res) => {
+	const data = await Funds.findByIdAndUpdate(req.params.id, {
+		$set: { ...req.body }
+	});
+	res.json({
+		message: data ? 'Successfully updated!' : "Wasn't able to update!"
+	});
+});
+
 router.get('/category/:category', async (req, res) => {
 	const fund = await Funds.find({ category: req.params.category });
 
