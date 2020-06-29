@@ -1,0 +1,12 @@
+@host=http://localhost:5000
+
+### POSTTING A USER
+POST {{host}}/users http/1.1
+content-type: application/json
+
+{
+    "email": "imasdajsd@asdfas.com",
+    "name": "asdasdas",
+    "password": "asdasddasddsad",
+    "role": "admin"
+}
