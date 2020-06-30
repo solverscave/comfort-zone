@@ -9,5 +9,6 @@ export function register(user) {
     password: user.password,
     name: user.name,
     role: user.role,
+    imageUrl: 'http://localhost:3000/uploads/avatar.jpg',
   });
 }

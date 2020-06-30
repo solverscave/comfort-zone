@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
   },
+  imageUrl: {
+    type: String,
+    default: 'http://localhost:3000/uploads/avatar.jpg',
+  },
   isAdmin: Boolean,
 });
 
@@ -48,6 +52,7 @@ function validateUser(user) {
     email: Joi.string().min(5).max(255).required().email(),
     password: Joi.string().min(5).max(255).required(),
     role: Joi.string().required(),
+    imageUrl: Joi.string().required(),
   };
   return Joi.validate(user, schema);
 }
