@@ -26,7 +26,7 @@ import auth from './services/authService';
 import Profile from './components/pages/profile';
 import Dashboard from './components/admin/dashboard';
 
-class App extends Component {
+export default class Client extends Component {
   state = {};
 
   async componentDidMount() {
@@ -74,5 +74,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
