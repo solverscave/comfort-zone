@@ -1,33 +1,33 @@
-import React from "react";
-import axios from "axios";
-import auth from "../../services/authService";
-import "react-toastify/dist/ReactToastify.css";
-import { getCategory } from "../../services/issueCategoryService";
-import { ToastContainer, toast } from "react-toastify";
-import { paginate } from "../../utils/paginate";
-import Popup from "reactjs-popup";
-import Joi from "joi-browser";
-import Form from "../common/form";
-import Issue from "./../issue";
-import Pagination from "../common/pagination";
-import ListGroup from "../common/listGroups";
-const apiEndpoint = "http://localhost:5000/api/issues";
+import React from 'react';
+import axios from 'axios';
+import auth from '../../services/authService';
+import 'react-toastify/dist/ReactToastify.css';
+import { getCategory } from '../../services/issueCategoryService';
+import { ToastContainer, toast } from 'react-toastify';
+import { paginate } from '../../utils/paginate';
+import Popup from 'reactjs-popup';
+import Joi from 'joi-browser';
+import Form from '../common/form';
+import Issue from './../issue';
+import Pagination from '../common/pagination';
+import ListGroup from '../common/listGroups';
+const apiEndpoint = 'http://localhost:5000/api/issues';
 
 class Forum extends Form {
   state = {
     issues: [],
     categories: [
-      { name: "All" },
-      { _id: 1, name: "Problems" },
-      { _id: 2, name: "Suggestions" },
-      { _id: 3, name: "Emergencies" },
+      { name: 'All' },
+      { _id: 1, name: 'Problems' },
+      { _id: 2, name: 'Suggestions' },
+      { _id: 3, name: 'Emergencies' },
     ],
     pageSize: 5,
     currentPage: 1,
     user: {},
     data: {
-      title: "",
-      description: "",
+      title: '',
+      description: '',
       comments: [],
     },
     errors: {},
@@ -35,10 +35,10 @@ class Forum extends Form {
   };
 
   schema = {
-    title: Joi.string().required().min(10).label("Title"),
-    description: Joi.string().required().min(20).label("Description"),
-    comments: Joi.label("Comments"),
-    category: Joi.string().required().label("category"),
+    title: Joi.string().required().min(10).label('Title'),
+    description: Joi.string().required().min(20).label('Description'),
+    comments: Joi.label('Comments'),
+    category: Joi.string().required().label('category'),
   };
 
   async componentDidMount() {
@@ -51,7 +51,7 @@ class Forum extends Form {
     let user = auth.getCurrentUser();
     if (user) {
       const { data } = await axios.get(
-        "http://localhost:5000/api/users/" + user._id
+        'http://localhost:5000/api/users/' + user._id
       );
       user = data[0];
       this.setState({ user });
@@ -83,10 +83,10 @@ class Forum extends Form {
     this.setState({ issues });
 
     try {
-      await axios.delete(apiEndpoint + "/" + issue._id);
-      toast.success("Your issue was successfully deleted!");
+      await axios.delete(apiEndpoint + '/' + issue._id);
+      toast.success('Your issue was successfully deleted!');
     } catch (ex) {
-      toast.error("Failed to delete the complain!");
+      toast.error('Failed to delete the complain!');
       this.setState({ issues: originalIssues });
     }
   };
@@ -110,14 +110,17 @@ class Forum extends Form {
     });
 
     if (result) {
-      toast.success("Your issue has been successfully added to list!");
+      toast.success('Your issue has been successfully added to list!');
     } else {
-      toast.error("Oh something went wrong");
+      toast.error('Oh something went wrong');
     }
     const issue = result.data.data;
 
     const issues = [issue, ...this.state.issues];
     this.setState({ issues });
+
+    const data = { title: '', description: '' };
+    this.setState({ data });
   };
 
   render() {
@@ -149,22 +152,22 @@ class Forum extends Form {
             >
               <form onSubmit={this.handleSubmit}>
                 {this.renderInput(
-                  "title",
-                  "Title",
-                  "text",
-                  "Enter the title of the issue"
+                  'title',
+                  'Title',
+                  'text',
+                  'Enter the title of the issue'
                 )}
                 {this.renderTextArea(
-                  "description",
-                  "Description",
-                  "text",
-                  "Enter the description of the issue"
+                  'description',
+                  'Description',
+                  'text',
+                  'Enter the description of the issue'
                 )}
-                {this.renderSelect("category", "Category", this.state.category)}
+                {this.renderSelect('category', 'Category', this.state.category)}
                 <div className='row'>
                   <div className='col-3'></div>
                 </div>
-                {this.renderButton("Submit")}
+                {this.renderButton('Submit')}
               </form>
             </Popup>
           </div>
