@@ -28,7 +28,6 @@ class DashboardDesc extends Component {
   }
 
   render() {
-    console.log(this.state.user);
     if (this.state.user.role === 'Admin') {
       return (
         <div className='my-5 text-center'>

@@ -18,7 +18,7 @@ const Navbar = ({ user }) => {
               </NavLink>
             </React.Fragment>
           )}
-          {user && (
+          {user && user.role === 'Member' && (
             <React.Fragment>
               <NavLink className='nav-item nav-link' to='/billing'>
                 Billing
@@ -36,7 +36,6 @@ const Navbar = ({ user }) => {
                 Advertisement
               </NavLink>
               <NavLink className='nav-item nav-link' to='/profile'></NavLink>
-
               <NavDropdown
                 title={
                   <img
@@ -70,6 +69,16 @@ const Navbar = ({ user }) => {
                   Logout
                 </NavLink>
               </NavDropdown>
+            </React.Fragment>
+          )}{' '}
+          {user && user.role === 'Admin' && (
+            <React.Fragment>
+              <NavLink
+                className='nav-item nav-link ml-3 dropdown-nav-item'
+                to='/logout'
+              >
+                Logout
+              </NavLink>
             </React.Fragment>
           )}
         </div>
