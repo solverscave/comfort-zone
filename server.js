@@ -25,14 +25,14 @@ let db = mongoose.connection;
 db.once('open', () => console.log('Connected to DB!'));
 db.on('errors', (err) => console.log(err));
 
-const ads = require('./routes/ads');
-const complains = require('./routes/complains');
-const funds = require('./routes/funds');
-const issues = require('./routes/issues');
-const bills = require('./routes/bills');
-const users = require('./routes/users');
-const auth = require('./routes/auth');
-const pay = require('./routes/pay');
+const ads = require('./routes/ads.routes');
+const complains = require('./routes/complains.routes');
+const funds = require('./routes/funds.routes');
+const issues = require('./routes/issues.routes');
+const bills = require('./routes/bills.routes');
+const users = require('./routes/users.routes');
+const auth = require('./routes/auth.routes');
+const pay = require('./routes/pay.routes');
 
 server.use(express.json());
 
