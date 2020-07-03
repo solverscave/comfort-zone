@@ -7,8 +7,6 @@ import Footer from './components/common/footer';
 import Home from './components/pages/home';
 import UserForm from './components/userForm';
 import Users from './components/users';
-import MovieForm from './components/movieForm';
-import Movies from './components/movies';
 import Billing from './components/pages/billing';
 import Forum from './components/pages/forum';
 import ForumIssue from './components/forumIssue';
@@ -51,8 +49,6 @@ class App extends Component {
           <Switch>
             <Route path='/users/:id' component={UserForm} />
             <Route path='/users' component={Users} />
-            <Route path='/movies/:id' component={MovieForm} />
-            <Route path='/movies' component={Movies} />
             <Route path='/register' component={RegisterForm} />
             <Route path='/login' component={LoginForm} />
             <Route path='/logout' component={Logout} />
