@@ -26,6 +26,7 @@ class Billing extends Component {
         _id: null,
       };
       this.setState({ user });
+      console.log(user);
     }
 
     const { data } = await axios.get(
