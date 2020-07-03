@@ -23,7 +23,6 @@ import Payment from './components/payment';
 import LoginForm from './components/loginForm';
 import Logout from './components/logout';
 import auth from './services/authService';
-import RegisterForm from './components/registerForm';
 import Profile from './components/pages/profile';
 import Dashboard from './components/admin/dashboard';
 
@@ -49,7 +48,6 @@ class App extends Component {
           <Switch>
             <Route path='/users/:id' component={UserForm} />
             <Route path='/users' component={Users} />
-            <Route path='/register' component={RegisterForm} />
             <Route path='/login' component={LoginForm} />
             <Route path='/logout' component={Logout} />
             <Route path='/billing/payment' component={Payment} />
