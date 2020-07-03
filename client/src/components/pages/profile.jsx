@@ -9,7 +9,7 @@ class Profile extends Component {
 
   async componentDidMount() {
     const { data } = await axios.get(
-      'http://localhost:5000/api/users/' + '/' + this.props.match.params.id
+      apiUrl + '/users/' + '/' + this.props.match.params.id
     );
     const user = data[0];
     console.log(user);
