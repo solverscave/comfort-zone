@@ -1,7 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const Footer = () => {
+export default function Footer() {
   return (
     <footer className='p-5 bg-cz text-white'>
       <div className='row'>
@@ -21,6 +20,4 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}
