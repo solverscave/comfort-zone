@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
+import { apiUrl } from '../../config.json';
 
 class Profile extends Component {
   state = {
@@ -8,7 +9,7 @@ class Profile extends Component {
 
   async componentDidMount() {
     const { data } = await axios.get(
-      "http://localhost:5000/api/users/" + "/" + this.props.match.params.id
+      'http://localhost:5000/api/users/' + '/' + this.props.match.params.id
     );
     const user = data[0];
     console.log(user);
@@ -23,28 +24,28 @@ class Profile extends Component {
           <div
             className='card text-left mt-4 pt-5 pb-5'
             style={{
-              boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.16)",
-              border: "0px",
+              boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.16)',
+              border: '0px',
             }}
           >
-            <div className='card-body' style={{ width: "500px" }}>
+            <div className='card-body' style={{ width: '500px' }}>
               <h4
                 className='card-title'
                 style={{
-                  marginBottom: "2px",
-                  fontFamily: "Proxima Nova",
-                  fontSize: "30px",
-                  color: "#159570",
+                  marginBottom: '2px',
+                  fontFamily: 'Proxima Nova',
+                  fontSize: '30px',
+                  color: '#159570',
                 }}
               >
                 <img
                   style={{
-                    boxShadow: "0px 0px 7px rgba(0, 0, 0, 0.16)",
+                    boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.16)',
                     // border: '0px',
                     // width: '100%',
-                    height: "10rem",
-                    objectFit: "cover",
-                    borderRadius: "50%",
+                    height: '10rem',
+                    objectFit: 'cover',
+                    borderRadius: '50%',
                   }}
                   src={this.state.user.imageUrl}
                   className='mx-auto d-block'
@@ -56,10 +57,10 @@ class Profile extends Component {
                   <p
                     className='card-text text-right'
                     style={{
-                      marginBottom: "2px",
-                      fontFamily: "Proxima Nova",
-                      fontSize: "24px",
-                      color: "#343434",
+                      marginBottom: '2px',
+                      fontFamily: 'Proxima Nova',
+                      fontSize: '24px',
+                      color: '#343434',
                     }}
                   >
                     Name:
@@ -69,10 +70,10 @@ class Profile extends Component {
                   <p
                     className='card-text text-left'
                     style={{
-                      marginBottom: "2px",
-                      fontFamily: "Proxima Nova",
-                      fontSize: "24px",
-                      color: "#159570",
+                      marginBottom: '2px',
+                      fontFamily: 'Proxima Nova',
+                      fontSize: '24px',
+                      color: '#159570',
                     }}
                   >
                     {this.state.user.name}
@@ -84,10 +85,10 @@ class Profile extends Component {
                   <p
                     className='card-text text-right'
                     style={{
-                      marginBottom: "2px",
-                      fontFamily: "Proxima Nova",
-                      fontSize: "24px",
-                      color: "#343434",
+                      marginBottom: '2px',
+                      fontFamily: 'Proxima Nova',
+                      fontSize: '24px',
+                      color: '#343434',
                     }}
                   >
                     Phone:
@@ -97,10 +98,10 @@ class Profile extends Component {
                   <p
                     className='card-text text-left'
                     style={{
-                      marginBottom: "2px",
-                      fontFamily: "Proxima Nova",
-                      fontSize: "24px",
-                      color: "#159570",
+                      marginBottom: '2px',
+                      fontFamily: 'Proxima Nova',
+                      fontSize: '24px',
+                      color: '#159570',
                     }}
                   >
                     {this.state.user.phone}
@@ -112,10 +113,10 @@ class Profile extends Component {
                   <p
                     className='card-text text-right'
                     style={{
-                      marginBottom: "2px",
-                      fontFamily: "Proxima Nova",
-                      fontSize: "24px",
-                      color: "#343434",
+                      marginBottom: '2px',
+                      fontFamily: 'Proxima Nova',
+                      fontSize: '24px',
+                      color: '#343434',
                     }}
                   >
                     Sector:
@@ -125,10 +126,10 @@ class Profile extends Component {
                   <p
                     className='card-text text-left'
                     style={{
-                      marginBottom: "2px",
-                      fontFamily: "Proxima Nova",
-                      fontSize: "24px",
-                      color: "#159570",
+                      marginBottom: '2px',
+                      fontFamily: 'Proxima Nova',
+                      fontSize: '24px',
+                      color: '#159570',
                     }}
                   >
                     {this.state.user.sector}
@@ -140,10 +141,10 @@ class Profile extends Component {
                   <p
                     className='card-text text-right'
                     style={{
-                      marginBottom: "2px",
-                      fontFamily: "Proxima Nova",
-                      fontSize: "24px",
-                      color: "#343434",
+                      marginBottom: '2px',
+                      fontFamily: 'Proxima Nova',
+                      fontSize: '24px',
+                      color: '#343434',
                     }}
                   >
                     Address:
@@ -153,10 +154,10 @@ class Profile extends Component {
                   <p
                     className='card-text text-left'
                     style={{
-                      marginBottom: "2px",
-                      fontFamily: "Proxima Nova",
-                      fontSize: "16px",
-                      color: "#159570",
+                      marginBottom: '2px',
+                      fontFamily: 'Proxima Nova',
+                      fontSize: '16px',
+                      color: '#159570',
                     }}
                   >
                     {this.state.user.address}

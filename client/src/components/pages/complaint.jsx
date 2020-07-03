@@ -5,7 +5,8 @@ import Joi from 'joi-browser';
 import Form from '../common/form';
 import Popup from 'reactjs-popup';
 import axios from 'axios';
-const apiEndpoint = 'http://localhost:5000/api/complains';
+import { apiUrl } from '../../config.json';
+const apiEndpoint = apiUrl + '/complains';
 
 class Complaint extends Form {
   state = {

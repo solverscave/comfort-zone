@@ -4,8 +4,9 @@ import auth from '../../services/authService';
 import AdCard from '../adCard';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { apiUrl } from '../../config.json';
 
-const apiEndpoint = 'http://localhost:5000/api/ads';
+const apiEndpoint = apiUrl + '/ads';
 
 class Advertisement extends Component {
   state = {

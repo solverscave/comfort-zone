@@ -11,6 +11,7 @@ import Form from '../common/form';
 import Issue from './../issue';
 import Pagination from '../common/pagination';
 import ListGroup from '../common/listGroups';
+import { apiUrl } from '../../config.json';
 const apiEndpoint = 'http://localhost:5000/api/issues';
 
 class Forum extends Form {
