@@ -7,6 +7,10 @@ import Complains from '../complains';
 import ComplainDetail from '../complainDetail';
 import Ads from './ads';
 import Funds from './funds';
+import AdsMembers from './members/ads.members';
+import BillsMembers from './members/bills.members';
+import ComplainsMembers from './members/ads.members';
+import FundsMembers from './members/funds.members';
 import auth from '../../services/authService';
 import axios from 'axios';
 
@@ -42,6 +46,13 @@ export default class Dashboard extends Component {
         <Route path='/dashboard/complains' component={Complains} />
         <Route path='/dashboard/ads' component={Ads} />
         <Route path='/dashboard/funds' component={Funds} />
+        <Route path='/dashboard/billsmembers' component={BillsMembers} />
+        <Route path='/dashboard/adsmembers' component={AdsMembers} />
+        <Route
+          path='/dashboard/complainsmembers'
+          component={ComplainsMembers}
+        />
+        <Route path='/dashboard/fundsmembers' component={FundsMembers} />
         <Redirect from='/dashboard' to='/dashboard/desc' />
       </div>
     );

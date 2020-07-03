@@ -29,7 +29,33 @@ const SideBar = ({ user }) => {
     );
   }
   if (user.role === 'Member') {
-    return <div>Haris</div>;
+    return (
+      // <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+      <nav className='navbar navbar-expand-lg navbar-cz'>
+        <Link to='/dashboard/desc' className='navbar-brand'>
+          Dashboard
+        </Link>
+        <div className='collapse navbar-collapse'>
+          <div className='navbar-nav'>
+            <NavLink className='nav-item nav-link' to='/dashboard/adsmembers'>
+              Your Ads
+            </NavLink>
+            <NavLink className='nav-item nav-link' to='/dashboard/billsmembers'>
+              Your Bills
+            </NavLink>
+            <NavLink
+              className='nav-item nav-link'
+              to='/dashboard/complainsmembers'
+            >
+              Your Complains
+            </NavLink>
+            <NavLink className='nav-item nav-link' to='/dashboard/fundsmembers'>
+              Your Funds
+            </NavLink>
+          </div>
+        </div>
+      </nav>
+    );
   } else {
     return <div></div>;
   }

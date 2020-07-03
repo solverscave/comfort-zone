@@ -120,6 +120,78 @@ class DashboardDesc extends Component {
           </div>
         </div>
       );
+    }
+    if (this.state.user.role === 'Member') {
+      return (
+        <div className='my-5 text-center'>
+          <h1>Welcome! Member</h1>
+          <p>
+            We are glad that you are here. Lets manage your ads, bills and other
+            stuff. Are you ready?
+          </p>
+          <div className='row my-5'>
+            <div className='col-3'>
+              <Card style={{ width: '17rem' }}>
+                <Link to='/dashboard/complainsmembers'>
+                  <Card.Img variant='top' src={complainImg} />
+                </Link>
+
+                <Card.Body>
+                  <Card.Title>Your Complains</Card.Title>
+                  <Card.Text>
+                    Manage all your complains from the dashboard.
+                  </Card.Text>
+                  <Link
+                    className='btn btn-cz'
+                    to='/dashboard/complainsmembers'
+                    variant='primary'
+                  >
+                    Manage now
+                  </Link>
+                </Card.Body>
+              </Card>
+            </div>
+            <div className='col-3'>
+              <Card style={{ width: '17rem' }}>
+                <Link to='/dashboard/fundsmembers'>
+                  <Card.Img variant='top' src={fundImg} />
+                </Link>
+                <Card.Body>
+                  <Card.Title>Your Funds</Card.Title>
+                  <Card.Text>
+                    Manage all your funds from the dashboard.
+                  </Card.Text>
+                  <Link
+                    className='btn btn-cz'
+                    to='/dashboard/fundsmembers'
+                    variant='primary'
+                  >
+                    Manage now
+                  </Link>
+                </Card.Body>
+              </Card>
+            </div>
+            <div className='col-3'>
+              <Card style={{ width: '17rem' }}>
+                <Link to='/dashboard/adsmembers'>
+                  <Card.Img variant='top' src={adImg} />
+                </Link>
+                <Card.Body>
+                  <Card.Title>Your Ads</Card.Title>
+                  <Card.Text>Manage all your ads from the dashboard.</Card.Text>
+                  <Link
+                    className='btn btn-cz'
+                    to='/dashboard/adsmembers'
+                    variant='primary'
+                  >
+                    Manage now
+                  </Link>
+                </Card.Body>
+              </Card>
+            </div>
+          </div>
+        </div>
+      );
     } else {
       return <div>Loading Dashboard...</div>;
     }
