@@ -9,7 +9,7 @@ import Ads from './ads';
 import Funds from './funds';
 import AdsMembers from './members/ads.members';
 import BillsMembers from './members/bills.members';
-import ComplainsMembers from './members/ads.members';
+import ComplainsMembers from './members/complains.members';
 import FundsMembers from './members/funds.members';
 import auth from '../../services/authService';
 import axios from 'axios';

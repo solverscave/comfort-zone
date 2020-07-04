@@ -30,7 +30,7 @@ export default class Home extends Component {
     if (this.state.user.role === 'Admin') {
       return <Dashboard />;
     }
-    if (this.state.user.role === 'None')
+    if (this.state.user.role === 'None' || this.state.user.role === 'Member')
       return (
         <div>
           <Carousels />
