@@ -6,12 +6,11 @@ import Dashboard from '../admin/dashboard';
 
 export default class Home extends Component {
   state = {
-    user: {
-      role: 'None',
-    },
+    user: { role: 'None' },
+    loading: true,
   };
 
-  async componentDidMount() {
+  async componentWillMount() {
     let user = auth.getCurrentUser();
     if (user) {
       const { data } = await axios.get(
@@ -23,14 +22,15 @@ export default class Home extends Component {
       user = { role: 'None' };
       this.setState({ user });
     }
-    this.setState({ user });
+    this.setState({ user, loading: false });
   }
 
   render() {
-    if (this.state.user.role === 'Admin') {
+    const { user, loading } = this.state;
+    if (user.role === 'Admin' && !loading) {
       return <Dashboard />;
     }
-    if (this.state.user.role === 'None' || this.state.user.role === 'Member')
+    if ((user.role === 'None' || user.role === 'Member') && !loading)
       return (
         <div>
           <Carousels />
@@ -290,5 +290,15 @@ export default class Home extends Component {
           </div>
         </div>
       );
+    if (loading) {
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
+    }
   }
 }
