@@ -11,7 +11,7 @@ export default class Home extends Component {
     },
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     let user = auth.getCurrentUser();
     if (user) {
       const { data } = await axios.get(
@@ -29,7 +29,8 @@ export default class Home extends Component {
   render() {
     if (this.state.user.role === 'Admin') {
       return <Dashboard />;
-    } else {
+    }
+    if (this.state.user.role === 'None')
       return (
         <div>
           <Carousels />
@@ -289,6 +290,5 @@ export default class Home extends Component {
           </div>
         </div>
       );
-    }
   }
 }
