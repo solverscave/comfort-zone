@@ -1,12 +1,4 @@
-@host=http://localhost:5000
+@host=http://localhost:5000/api/bills
 
 ### POSTTING A USER
-POST {{host}}/users http/1.1
-content-type: application/json
-
-{
-    "email": "imasdajsd@asdfas.com",
-    "name": "asdasdas",
-    "password": "asdasddasddsad",
-    "role": "admin"
-}
+GET http://localhost:5000/api/bills http/1.1

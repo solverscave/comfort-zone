@@ -1,57 +1,58 @@
-// Importing all packages
 const mongoose = require('mongoose');
 
-// Setting mongoose schema
-const billSchema = {
-	dateOfIssue: {
-		type: Date,
-		require: true
-	},
-	dueDate: {
-		type: Date,
-		require: true
-	},
-	arrearAmount: {
-		type: Number,
-		require: true
-	},
-	waterCharges: {
-		type: Number,
-		require: true
-	},
-	conservancyCharges: {
-		type: Number,
-		require: true
-	},
-	streetLightCharges: {
-		type: Number,
-		require: true
-	},
-	roadMaintenanceCharges: {
-		type: Number,
-		require: true
-	},
-	graveyardCharges: {
-		type: Number,
-		require: true
-	},
-	electricityCharges: {
-		type: Number,
-		require: true
-	},
-	totalAmount: {
-		type: Number,
-		require: true
-	},
-	dueAmount: {
-		type: Number,
-		require: true
-	},
-	isPaid: {
-		type: Boolean,
-		required: true
-	}
-};
+const billSchema = mongoose.Schema({
+  dateOfIssue: {
+    type: Date,
+    required: true,
+  },
+  dueDate: {
+    type: Date,
+    required: true,
+  },
+  arrearAmount: {
+    type: Number,
+    required: true,
+  },
+  waterCharges: {
+    type: Number,
+    required: true,
+  },
+  conservancyCharges: {
+    type: Number,
+    required: true,
+  },
+  streetLightCharges: {
+    type: Number,
+    required: true,
+  },
+  roadMaintenanceCharges: {
+    type: Number,
+    required: true,
+  },
+  graveyardCharges: {
+    type: Number,
+    required: true,
+  },
+  electricityCharges: {
+    type: Number,
+    required: true,
+  },
+  previousBill: {
+    type: Number,
+    required: true,
+  },
+  totalAmount: {
+    type: Number,
+    required: true,
+  },
+  dueAmount: {
+    type: Number,
+    required: true,
+  },
+  isPaid: {
+    type: Boolean,
+    required: true,
+  },
+});
 
-// Exporting bills
-const Bills = (module.exports = mongoose.model('Bills', billSchema));
+module.exports = mongoose.model('Bills', billSchema);

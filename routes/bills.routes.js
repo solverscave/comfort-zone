@@ -1,18 +1,49 @@
-// Importing all packages
 const express = require('express');
 const Bills = require('../models/bills.models');
 
-// Setting the router
 const router = express.Router();
 
-// Getting all bills
-router.get('/', async (req, res) => await res.json(await Bills.find({})));
+//ADMIN GETS ALL BILLS
+router.get('/', async (req, res) => await res.json(await Bills.find()));
 
+//MEMBER GETS HIS BILL
 router.get('/:id', async (req, res) =>
   res.json(await Bills.find({ userId: req.params.id }))
 );
 
-// Updating an ads
+//POSTING A BILL
+router.post('/', async (req, res) => {
+  const bill = new Bills({
+    dateOfIssue: req.body.dateOfIssue,
+    dueDate: req.body.dueDate,
+    arrearAmount: req.body.arrearAmount,
+    waterCharges: req.body.waterCharges,
+    conservancyCharges: req.body.conservancyCharges,
+    streetLightCharges: req.body.streetLightCharges,
+    roadMaintenanceCharges: req.body.roadMaintenanceCharges,
+    graveyardCharges: req.body.graveyardCharges,
+    electricityCharges: req.body.electricityCharges,
+    previousBill: req.body.previousBill,
+    totalAmount: req.body.totalAmount,
+    dueAmount: req.body.dueAmount,
+    isPaid: req.body.isPaid,
+  });
+  try {
+    const savedBill = bill.save();
+    res.json(savedBill);
+  } catch (error) {
+    res.json({ message: error });
+  }
+});
+
+//GETTING THE DUE DATE BILLS
+router.get('/isPaid/:isPaid', async (req, res) => {
+  const bills = await Bills.find({ isPaid: req.params.isPaid });
+  if (!bills.length) res.send('No such bill found!');
+  else res.json(bills);
+});
+
+//ADMIN UPDATES THE BILL
 router.put('/:id', async (req, res) => {
   const data = await Bills.findByIdAndUpdate(req.params.id, {
     $set: { ...req.body },
@@ -21,6 +52,8 @@ router.put('/:id', async (req, res) => {
     message: data ? 'Successfully updated!' : "Wasn't able to update!",
   });
 });
+
+//
 
 // Exporting router
 module.exports = router;
