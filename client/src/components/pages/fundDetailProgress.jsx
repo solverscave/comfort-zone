@@ -1,5 +1,4 @@
 import React from 'react';
-import { apiUrl } from '../../config.json';
 
 const FundDetailProgress = (props) => (
   <svg {...props} width={427} height={180.051} viewBox='0 0 427 180.051'>
