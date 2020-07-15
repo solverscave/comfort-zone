@@ -1,20 +1,22 @@
-import React, { Component } from 'react';
-import { paginate } from '../../../utils/paginate';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
-import Pagination from './../../common/pagination';
-import ListGroup from './../../common/listGroup';
-const apiEndpoint = 'http://localhost:5000/api/bills';
+import React, { Component } from "react";
+import * as moment from "moment";
+import { paginate } from "../../../utils/paginate";
+import axios from "axios";
+
+import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import Pagination from "./../../common/pagination";
+import ListGroup from "./../../common/listGroup";
+const apiEndpoint = "http://localhost:5000/api/bills";
 
 class BillsMembers extends Component {
   state = {
     bills: [],
     condition: [
-      { _id: 0, name: 'All' },
-      { _id: 1, name: 'new' },
-      { _id: 2, name: 'used' },
+      { _id: 0, name: "All" },
+      { _id: 1, name: "new" },
+      { _id: 2, name: "used" },
     ],
     pageSize: 5,
     currentPage: 1,
@@ -51,9 +53,9 @@ class BillsMembers extends Component {
 
   handlePaid(paid) {
     if (paid === true) {
-      return 'Paid';
+      return "Paid";
     } else {
-      return 'Not Paid';
+      return "Not Paid";
     }
   }
 
@@ -71,9 +73,9 @@ class BillsMembers extends Component {
 
     return (
       <React.Fragment>
-        <div className='row'>
+        <div className="row">
           <ToastContainer />
-          <div className='col-3'>
+          <div className="col-3">
             {
               <ListGroup
                 items={this.state.condition}
@@ -82,22 +84,24 @@ class BillsMembers extends Component {
               />
             }
           </div>
-          <div className='col-9'>
-            <table className='table'>
+          <div className="col-9">
+            <table className="table">
               <thead>
                 <tr>
-                  <th scope='col'>#</th>
-                  <th scope='col'>Bills</th>
-                  <th scope='col'>Paid/NotPaid</th>
+                  <th scope="col">#</th>
+                  <th scope="col">Bills</th>
+                  <th scope="col">Paid/NotPaid</th>
                   {/* <th scope='col'>Delete</th> */}
                 </tr>
               </thead>
               <tbody>
                 {bills.map((bill) => (
                   <tr key={bill._id}>
-                    <th scope='row'>{bills.indexOf(bill)}</th>
+                    <th scope="row">{bills.indexOf(bill)}</th>
                     <td>
-                      <Link to={`ad/${bill._id}`}>{bill.dateOfIssue}</Link>
+                      <Link to={`bill/${bill._id}`}>
+                        {moment(bills.dateOfIssue).format("DD-MM-YYYY")}
+                      </Link>
                     </td>
                     <td>{bill.isPaid}</td>
                     {/* <td>
