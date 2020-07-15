@@ -9,6 +9,10 @@ import ListGroup from './../../common/listGroup';
 const apiEndpoint = 'http://localhost:5000/api/bills';
 
 class BillsMembers extends Component {
+  constructor(props) {
+    super(props);
+    this.handlePaid = this.handlePaid.bind(this);
+  }
   state = {
     bills: [],
     condition: [
@@ -99,7 +103,7 @@ class BillsMembers extends Component {
                     <td>
                       <Link to={`ad/${bill._id}`}>{bill.dateOfIssue}</Link>
                     </td>
-                    <td>{bill.isPaid}</td>
+                    <td>{this.handlePaid(bill.isPaid)}</td>
                     {/* <td>
                       <button
                         className='btn btn-danger'
