@@ -7,10 +7,12 @@ export default function Footer() {
         <div className='col-4 '>
           <h3>About</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            sollicitudin ante nisl, in feugiat odio rutrum at. Duis et lacus sit
-            amet risus sollicitudin tristique sed vitae metus. Vestibulum
-            ultricies ligula vitae porta blandit.
+            Comfort Zone is a facilitating system, specifically designed for the
+            Airport Housing Society, Rawalpindi. Using this system. Admin can
+            add users, get their complains, keep an eye on the bill payments,
+            accept or reject their funding compaigns etc. Similarly, society
+            members can print their bills, submit complains, use forum to
+            discuss issues, post an ad or a funding compain.
           </p>
         </div>
         <div className='col-4'>

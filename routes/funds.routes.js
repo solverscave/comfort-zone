@@ -37,6 +37,13 @@ router.get('/isApproved/:isApproved', async (req, res) => {
   else res.json(fund);
 });
 
+router.get('/user/:userId', async (req, res) => {
+  const fund = await Funds.find({ userId: req.params.userId });
+
+  if (!fund.length) res.send('Alas! Complain with the given id was not found!');
+  else res.json(fund);
+});
+
 router.post('/', auth, async (req, res) => {
   const fund = await Funds.create({ ...req.body, isApproved: 'Pending' });
   res.send(fund);

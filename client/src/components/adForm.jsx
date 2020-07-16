@@ -3,7 +3,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import auth from '../services/authService';
 import Joi from 'joi-browser';
 import Form from './common/form';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 const apiEndpoint = 'http://localhost:5000/api/ads';
 
