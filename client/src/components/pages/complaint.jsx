@@ -1,6 +1,7 @@
 import React from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import auth from '../.././services/authService';
 import Joi from 'joi-browser';
 import Form from '../common/form';
 import Popup from 'reactjs-popup';
@@ -10,6 +11,7 @@ const apiEndpoint = apiUrl + '/complains';
 
 class Complaint extends Form {
   state = {
+    user: {},
     data: { title: '', description: '', status: 'Pending...' },
     errors: {},
     categories: [
@@ -17,6 +19,23 @@ class Complaint extends Form {
       { id: 1, name: 'Suggestions' },
     ],
   };
+
+  async componentDidMount() {
+    let user = auth.getCurrentUser();
+    if (user) {
+      const { data } = await axios.get(
+        'http://localhost:5000/api/users/' + user._id
+      );
+      user = data[0];
+      this.setState({ user });
+    } else if (!user) {
+      user = {
+        _id: null,
+      };
+      this.setState({ user });
+    }
+    console.log(this.state.user);
+  }
 
   schema = {
     title: Joi.string().required().min(15).label('Title'),
@@ -27,6 +46,10 @@ class Complaint extends Form {
   doSubmit = async () => {
     const result = await axios.post(apiEndpoint, {
       ...this.state.data,
+      userId: this.state.user._id,
+      userName: this.state.user.name,
+      userImage: this.state.user.imageUrl,
+      date: new Date(),
     });
     if (result) {
       toast.success('Your complain has been successfully received to us!');
