@@ -19,6 +19,12 @@ class Profile extends Component {
   render() {
     return (
       <div className='container my-5'>
+        <button
+          onClick={() => this.props.history.goBack()}
+          className='btn btn-cz'
+        >
+          Back
+        </button>
         <h1>Profile</h1>
         <div className='row align-self-center justify-content-center text-center w-0'>
           <div

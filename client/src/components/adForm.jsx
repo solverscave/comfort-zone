@@ -104,9 +104,12 @@ class AdForm extends Form {
   render() {
     return (
       <div className='container my-5'>
-        <Link className='btn btn-cz mb-3' to='/fundraising'>
+        <button
+          onClick={() => this.props.history.goBack()}
+          className='btn btn-cz'
+        >
           Go Back
-        </Link>
+        </button>
         <h1>Post an Ad</h1>
         <ToastContainer />
         <div className='container'>
