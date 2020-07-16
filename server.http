@@ -1,4 +1,4 @@
 @host=http://localhost:5000/api/bills
 
 ### POSTTING A USER
-GET http://localhost:5000/api/bills http/1.1
+GET http://localhost:5000/api/funds/5e5975b0e3137d315c64418a http/1.1

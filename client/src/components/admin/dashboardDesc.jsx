@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import userImg from '../../assets/img/dashboard/users.jpg';
 import complainImg from '../../assets/img/dashboard/complains.jpg';
 import fundImg from '../../assets/img/dashboard/funds.jpg';
+import billImg from '../../assets/img/dashboard/billing-100.jpg';
 import adImg from '../../assets/img/dashboard/ads.jpg';
 import auth from '../../services/authService';
 import axios from 'axios';
@@ -129,6 +130,25 @@ class DashboardDesc extends Component {
             stuff. Are you ready?
           </p>
           <div className='row my-5'>
+            <div className='col-3'>
+              <Card style={{ width: '17rem' }}>
+                <Link to='/dashboard/billsmembers'>
+                  <Card.Img variant='top' src={billImg} />
+                </Link>
+
+                <Card.Body>
+                  <Card.Title>Your Bills</Card.Title>
+                  <Card.Text>View all your view from the dashboard.</Card.Text>
+                  <Link
+                    className='btn btn-cz'
+                    to='/dashboard/billsmembers'
+                    variant='primary'
+                  >
+                    View now
+                  </Link>
+                </Card.Body>
+              </Card>
+            </div>
             <div className='col-3'>
               <Card style={{ width: '17rem' }}>
                 <Link to='/dashboard/complainsmembers'>
