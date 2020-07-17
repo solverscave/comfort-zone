@@ -3,6 +3,7 @@ import Joi from 'joi-browser';
 import Form from './common/form';
 import * as userService from '../services/userService';
 import auth from '../services/authService';
+import { min } from 'lodash';
 
 export default class UserForm extends Form {
   state = {
@@ -12,6 +13,7 @@ export default class UserForm extends Form {
       name: '',
       phone: '',
       sector: '',
+      address: '',
       role: '',
     },
     errors: {},
@@ -21,8 +23,9 @@ export default class UserForm extends Form {
     email: Joi.string().required().email().label('Email'),
     password: Joi.string().required().min(5).label('Password'),
     name: Joi.string().required().label('Name'),
-    phone: Joi.string().required().label('Phone Number'),
+    phone: Joi.string().required().min(11).label('Phone'),
     sector: Joi.string().required().label('Sector'),
+    address: Joi.string().required().label('Address'),
     role: Joi.string().required().label('Role'),
   };
 
@@ -53,13 +56,9 @@ export default class UserForm extends Form {
             'Enter user password'
           )}
           {this.renderInput('name', 'Name', 'text', 'Enter user name')}
-          {this.renderInput(
-            'phone',
-            'Phone Number',
-            'number',
-            'Enter user phone number'
-          )}
+          {this.renderInput('phone', 'Phone', 'text', 'Enter user phone')}
           {this.renderInput('sector', 'Sector', 'text', 'Enter user sector')}
+          {this.renderInput('address', 'Address', 'text', 'Enter user address')}
           {this.renderSelect('role', 'Role', [
             { name: 'Admin', _id: 'Admin' },
             { name: 'Member', _id: 'Member' },

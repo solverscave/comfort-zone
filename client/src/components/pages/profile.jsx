@@ -162,7 +162,7 @@ export default class Profile extends Component {
                     style={{
                       marginBottom: '2px',
                       fontFamily: 'Proxima Nova',
-                      fontSize: '16px',
+                      fontSize: '20px',
                       color: '#159570',
                     }}
                   >

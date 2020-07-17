@@ -8,6 +8,9 @@ export function register(user) {
     email: user.email,
     password: user.password,
     name: user.name,
+    phone: user.phone,
+    sector: user.sector,
+    address: user.address,
     role: user.role,
     imageUrl: 'http://localhost:3000/uploads/avatar.jpg',
   });
