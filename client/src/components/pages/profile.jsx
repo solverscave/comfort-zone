@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { apiUrl } from '../../config.json';
 
-class Profile extends Component {
+export default class Profile extends Component {
   state = {
     user: {},
   };
 
   async componentDidMount() {
     const { data } = await axios.get(
-      apiUrl + '/users/' + '/' + this.props.match.params.id
+      apiUrl + '/users/' + this.props.match.params.id
     );
     const user = data[0];
     console.log(user);
@@ -177,5 +177,3 @@ class Profile extends Component {
     );
   }
 }
-
-export default Profile;

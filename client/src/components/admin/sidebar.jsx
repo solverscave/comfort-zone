@@ -37,9 +37,6 @@ const SideBar = ({ user }) => {
         </Link>
         <div className='collapse navbar-collapse'>
           <div className='navbar-nav'>
-            <NavLink className='nav-item nav-link' to='/dashboard/adsmembers'>
-              Your Ads
-            </NavLink>
             <NavLink className='nav-item nav-link' to='/dashboard/billsmembers'>
               Your Bills
             </NavLink>
@@ -51,6 +48,9 @@ const SideBar = ({ user }) => {
             </NavLink>
             <NavLink className='nav-item nav-link' to='/dashboard/fundsmembers'>
               Your Funds
+            </NavLink>
+            <NavLink className='nav-item nav-link' to='/dashboard/adsmembers'>
+              Your Ads
             </NavLink>
           </div>
         </div>

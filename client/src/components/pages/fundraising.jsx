@@ -10,7 +10,7 @@ import memorialFunds from '../../assets/icons/memorial-funds.svg';
 import personalFunds from '../../assets/icons/personal-funds.svg';
 import { apiUrl } from '../../config.json';
 
-const apiEndpoint = 'http://localhost:5000/api/funds/isApproved/';
+const apiEndpoint = apiUrl + '/funds/isApproved/';
 
 class Fundraising extends Component {
   state = {

@@ -12,9 +12,9 @@ import Issue from './../issue';
 import Pagination from '../common/pagination';
 import ListGroup from '../common/listGroups';
 import { apiUrl } from '../../config.json';
-const apiEndpoint = 'http://localhost:5000/api/issues';
+const apiEndpoint = apiUrl + '/issues';
 
-class Forum extends Form {
+export default class Forum extends Form {
   state = {
     issues: [],
     categories: [
@@ -63,10 +63,6 @@ class Forum extends Form {
       this.setState({ user });
     }
   }
-
-  // handleSubmit = () => {
-  // 	console.log("Aoo");
-  // };
 
   handleAdd = () => {
     return (
@@ -217,5 +213,3 @@ class Forum extends Form {
     );
   }
 }
-
-export default Forum;
