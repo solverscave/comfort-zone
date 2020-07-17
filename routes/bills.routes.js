@@ -23,9 +23,9 @@ router.post('/', async (req, res) => {
     roadMaintenanceCharges: req.body.roadMaintenanceCharges,
     graveyardCharges: req.body.graveyardCharges,
     electricityCharges: req.body.electricityCharges,
-    previousBill: req.body.previousBill,
     totalAmount: req.body.totalAmount,
     dueAmount: req.body.dueAmount,
+    userId: req.body.userId,
     isPaid: req.body.isPaid,
   });
   try {

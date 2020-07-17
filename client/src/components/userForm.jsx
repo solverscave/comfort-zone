@@ -1,7 +1,10 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import Joi from 'joi-browser';
 import Form from './common/form';
 import * as userService from '../services/userService';
+import { apiUrl } from '../config.json';
+import axios from 'axios';
 import auth from '../services/authService';
 import { min } from 'lodash';
 
@@ -30,20 +33,63 @@ export default class UserForm extends Form {
   doSubmit = async () => {
     try {
       const response = await userService.register(this.state.data);
-      auth.loginWithJwt(response.headers['x-auth-token']);
-      window.location = '/';
+      let newUser = response.data;
+
+      if (response) {
+        toast.success('User has been successfully added!');
+        console.log(newUser);
+        this.addNewBill(newUser);
+      }
+      // const data = {
+      //   email: '',
+      //   password: '',
+      //   name: '',
+      //   phone: '',
+      //   address: '',
+      //   role: '',
+      // };
+
+      // this.setState({ data });
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
         errors.email = ex.response.data;
         this.setState({ errors });
+        toast.error('Oh something went wrong');
       }
     }
+  };
+
+  addNewBill = async (newUser) => {
+    console.log(newUser._id);
+    const newBill = await axios.post(apiUrl + '/bills/', {
+      dateOfIssue: new Date(),
+      dueDate: new Date(),
+      arrearAmount: 0,
+      waterCharges: 0,
+      conservancyCharges: 300,
+      streetLightCharges: 300,
+      roadMaintenanceCharges: 300,
+      graveyardCharges: 0,
+      electricityCharges: 1120,
+      totalAmount: 1890,
+      dueAmount: 3000,
+      userId: newUser._id,
+      isPaid: 'false',
+    });
+    console.log(newBill);
   };
 
   render() {
     return (
       <div className='container my-5'>
+        <ToastContainer />
+        <button
+          onClick={() => this.props.history.goBack()}
+          className='btn btn-cz'
+        >
+          Go Back
+        </button>
         <h1>New User</h1>
         <form onSubmit={this.handleSubmit}>
           {this.renderInput('email', 'Email', 'text', 'Enter your email')}

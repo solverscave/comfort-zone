@@ -37,10 +37,6 @@ const billSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  previousBill: {
-    type: Number,
-    required: true,
-  },
   totalAmount: {
     type: Number,
     required: true,
@@ -49,8 +45,12 @@ const billSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  userId: {
+    type: String,
+    required: true,
+  },
   isPaid: {
-    type: Boolean,
+    type: String,
     required: true,
   },
 });

@@ -1,4 +1,21 @@
 @host=http://localhost:5000/api/bills
 
 ### POSTTING A USER
-GET http://localhost:5000/api/funds/5e5975b0e3137d315c64418a http/1.1
+POST http://localhost:5000/api/bills http/1.1
+Content-Type: application/json
+
+{
+      "dateOfIssue": "2010-01-01",
+      "dueDate": "2010-01-01",
+      "arrearAmount": 0,
+      "waterCharges": 0,
+      "conservancyCharges": 300,
+      "streetLightCharges": 300,
+      "roadMaintenanceCharges": 300,
+      "graveyardCharges": 0,
+      "electricityCharges": 1120,
+      "totalAmount": 1890,
+      "dueAmount": 3000,
+      "userId": "1234",
+      "isPaid": false
+}

@@ -40,7 +40,7 @@ class Billing extends Component {
   updateBill() {
     const bill = this.state.bill;
     console.log(bill);
-    bill[0].isPaid = true;
+    bill[0].isPaid = 'true';
     this.setState({ bill });
   }
   async handleToken(token) {
@@ -56,8 +56,8 @@ class Billing extends Component {
     console.log('Response:', response.data);
     if (status === 'success') {
       await axios.put(
-        'http://localhost:5000/api/bills/5e4bfdb959f0034b4c9e4052',
-        { isPaid: true }
+        'http://localhost:5000/api/bills/5f1180ff2ed042af01b1f945',
+        { isPaid: 'true' }
       );
       toast('Success! Check email for details', { type: 'success' });
       window.location.reload();
@@ -96,7 +96,7 @@ class Billing extends Component {
     const thisBill = bill[0];
     console.log(thisBill);
     if (bill.length === 0) return null;
-    else if (thisBill.isPaid === false)
+    else if (thisBill.isPaid === 'false')
       return (
         <div>
           <ToastContainer />
