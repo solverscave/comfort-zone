@@ -6,7 +6,14 @@ import auth from '../services/authService';
 
 export default class UserForm extends Form {
   state = {
-    data: { email: '', password: '', name: '', role: '' },
+    data: {
+      email: '',
+      password: '',
+      name: '',
+      phone: '',
+      sector: '',
+      role: '',
+    },
     errors: {},
   };
 
@@ -14,11 +21,12 @@ export default class UserForm extends Form {
     email: Joi.string().required().email().label('Email'),
     password: Joi.string().required().min(5).label('Password'),
     name: Joi.string().required().label('Name'),
+    phone: Joi.string().required().label('Phone Number'),
+    sector: Joi.string().required().label('Sector'),
     role: Joi.string().required().label('Role'),
   };
 
   doSubmit = async () => {
-    // Call the server
     try {
       const response = await userService.register(this.state.data);
       auth.loginWithJwt(response.headers['x-auth-token']);
@@ -42,9 +50,16 @@ export default class UserForm extends Form {
             'password',
             'Password',
             'password',
-            'Enter your password'
+            'Enter user password'
           )}
-          {this.renderInput('name', 'Name', 'text', 'Enter your name')}
+          {this.renderInput('name', 'Name', 'text', 'Enter user name')}
+          {this.renderInput(
+            'phone',
+            'Phone Number',
+            'number',
+            'Enter user phone number'
+          )}
+          {this.renderInput('sector', 'Sector', 'text', 'Enter user sector')}
           {this.renderSelect('role', 'Role', [
             { name: 'Admin', _id: 'Admin' },
             { name: 'Member', _id: 'Member' },

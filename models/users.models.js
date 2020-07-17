@@ -1,6 +1,6 @@
 // Importing all packages
-const mongoose = require("mongoose");
-const Joi = require("Joi");
+const mongoose = require('mongoose');
+const Joi = require('Joi');
 
 // Users schema
 const userSchema = mongoose.Schema({
@@ -8,63 +8,41 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  cnic: {
-    type: String,
-    require: true,
-  },
-  dob: {
-    type: Date,
-    require: true,
-  },
   email: {
     type: String,
-    require: true,
+    required: true,
   },
   password: {
     type: String,
-    require: true,
+    required: true,
   },
-  houseID: {
+  phone: {
     type: String,
-    require: true,
-  },
-  membershipID: {
-    type: String,
-    require: true,
+    required: true,
   },
   sector: {
     type: String,
-    require: true,
+    required: true,
   },
   role: {
     type: String,
-    require: true,
+    required: true,
   },
 });
 
 function validateUser(user) {
-  // Designing schema for the user
   const schema = {
     name: Joi.string().min(3).required(),
-    // cnic: Joi.string()
-    // 	.min(11)
-    // 	.required(),
-    // dob: Joi.date().required(),
     email: Joi.string().required(),
     password: Joi.string().min(8).required(),
-    // houseID: Joi.string().required(),
-    // membershipID: Joi.string().required(),
-    // sector: Joi.string()
-    // 	.max(1)
-    // 	.required(),
+    phone: Joi.number().min(11).max(11).required(),
+    sector: Joi.string().required(),
     role: Joi.string().required(),
   };
-  // Validating Schema using Joi
+
   return Joi.validate(user, schema);
 }
 
-// Exporting users
-const Users = (module.exports = mongoose.model("Users", userSchema));
+const Users = (module.exports = mongoose.model('Users', userSchema));
 
-// Exporting validation function
 module.exports.validateUser = validateUser;
