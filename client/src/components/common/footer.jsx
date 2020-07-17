@@ -15,45 +15,9 @@ export default function Footer() {
             discuss issues, post an ad or a funding compain.
           </p>
         </div>
-        <div className='col-3 pl-5' style={{ textAlign: 'left' }}>
+        <div className='col-4'>
           <h3>Contact us</h3>
-          <p>
-            <i class='fa fa-home'></i>{' '}
-            <a href='#' style={{ color: 'white' }}>
-              {' '}
-              Comfort Zone PK
-            </a>
-            <br />
-            <i class='fa fa-envelope-o'></i>{' '}
-            <a href='#' style={{ color: 'white' }}>
-              {' '}
-              admin@comfortzone.pk
-            </a>
-            <br />
-            <i class='fa fa-mobile'></i>
-            <a href='#' style={{ color: 'white' }}>
-              {' '}
-              +920000000000
-            </a>
-            <br />
-            <i class='fa fa-map-marker'></i> Airport Housing Society, Rawalpindi
-          </p>
-        </div>
-        <div className='col-3 pl-5' style={{ textAlign: 'left' }}>
-          <h3>Live Location</h3>
-
-          <div>
-            <iframe
-              src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26588.23371162599!2d73.11005456305617!3d33.5915708158957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfec88546ee3e5%3A0x665cba7f5f2f0b08!2sAirport%20Housing%20Society%2C%20Rawalpindi%2C%20Punjab%2C%20Pakistan!5e0!3m2!1sen!2s!4v1594907315523!5m2!1sen!2s'
-              width='380'
-              height='150'
-              frameborder='0'
-              style={{ border: 0 }}
-              allowfullscreen=''
-              aria-hidden='false'
-              tabindex='0'
-            ></iframe>
-          </div>
+          <p>Address: Housing Society, Rawalpindi</p>
         </div>
       </div>
     </footer>
