@@ -30,6 +30,17 @@ router.get('/id/:id', async (req, res) => {
   else res.json(complain);
 });
 
+// Finding a complain with id
+router.get('/user/:userId', async (req, res) => {
+  // Getting a complain with the provided id
+  const complain = await Complains.find({ userId: req.params.userId });
+  // Checking if complain with provided id exists
+  if (!complain.length)
+    res.send('Alas! Complain with the given id was not found!');
+  // Sending the complain to the client
+  else res.json(complain);
+});
+
 // Posting a single user
 router.post('/', auth, async (req, res) => {
   // Validating the complain

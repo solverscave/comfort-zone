@@ -4,24 +4,20 @@ import axios from 'axios';
 import auth from './../../../services/authService';
 import moment from 'moment';
 import { apiUrl } from '../../../config.json';
-import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import Pagination from './../../common/pagination';
 import ListGroup from './../../common/listGroup';
+const apiEndpoint = apiUrl + '/complains';
 
 class ComplainsMembers extends Component {
-  constructor(props) {
-    super(props);
-    this.handlePaid = this.handlePaid.bind(this);
-  }
   state = {
     user: {},
-    bills: [],
-    isPaid: [
+    complains: [],
+    status: [
       { _id: 0, name: 'All' },
-      { _id: 1, name: 'Paid' },
-      { _id: 2, name: 'Not Paid' },
+      { _id: 1, name: 'Pending...' },
+      { _id: 2, name: 'Resolved!' },
     ],
     pageSize: 5,
     currentPage: 1,
@@ -40,53 +36,49 @@ class ComplainsMembers extends Component {
       this.setState({ user });
       console.log(user);
     }
-    const { data: bills } = await axios.get(
-      'http://localhost:5000/api/bills/' + this.state.user._id
+    const { data: complains } = await axios.get(
+      'http://localhost:5000/api/complains/user/' + this.state.user._id
     );
-    this.setState({ bills });
+    this.setState({ complains });
   }
 
-  // handleDelete = async (ad) => {
-  //   const originalAds = this.state.ads;
-  //   const ads = this.state.ads.filter((a) => a._id !== ad._id);
+  handleDelete = async (complain) => {
+    const originalComplains = this.state.complains;
+    const complains = this.state.complains.filter(
+      (c) => c._id !== complain._id
+    );
 
-  //   this.setState({ ads });
+    this.setState({ complains });
 
-  //   try {
-  //     await axios.delete(apiEndpoint + '/' + ad._id);
-  //     toast.success('The complain was successfully deleted!');
-  //   } catch (ex) {
-  //     toast.error('Failed to delete the complain!');
-  //     this.setState({ ads: originalAds });
-  //   }
-  // };
+    try {
+      await axios.delete(apiEndpoint + '/' + complain._id);
+      toast.success('The complain was successfully deleted!');
+    } catch (ex) {
+      toast.error('Failed to delete the complain!');
+      this.setState({ complains: originalComplains });
+    }
+  };
 
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
   };
 
-  handleisPaidSelect = (isPaid) => {
-    this.setState({ selectedisPaid: isPaid, currentPage: 1 });
-    console.log(this.state.selectedisPaid);
+  handlestatusSelect = (status) => {
+    this.setState({ selectedstatus: status, currentPage: 1 });
+    console.log(this.state.selectedstatus);
   };
 
-  handlePaid(paid) {
-    if (paid === true) {
-      return 'Paid';
-    } else {
-      return 'Not Paid';
-    }
-  }
-
   render() {
-    const { bills: allBills, pageSize, currentPage } = this.state;
+    const { complains: allComplains, pageSize, currentPage } = this.state;
 
     const filtered =
-      this.state.selectedisPaid && this.state.selectedisPaid._id
-        ? allBills.filter((i) => i.isPaid === this.state.selectedisPaid.isPaid)
-        : allBills;
+      this.state.selectedstatus && this.state.selectedstatus._id
+        ? allComplains.filter(
+            (i) => i.status === this.state.selectedstatus.status
+          )
+        : allComplains;
 
-    const bills = paginate(filtered, currentPage, pageSize);
+    const complains = paginate(filtered, currentPage, pageSize);
 
     return (
       <React.Fragment>
@@ -95,9 +87,9 @@ class ComplainsMembers extends Component {
           <div className='col-3'>
             {
               <ListGroup
-                items={this.state.isPaid}
-                onItemSelect={this.handleisPaidSelect}
-                selectedItem={this.state.selectedisPaid}
+                items={this.state.status}
+                onItemSelect={this.handlestatusSelect}
+                selectedItem={this.state.selectedstatus}
               />
             }
           </div>
@@ -106,31 +98,30 @@ class ComplainsMembers extends Component {
               <thead>
                 <tr>
                   <th scope='col'>#</th>
-                  <th scope='col'>Bills</th>
-                  <th scope='col'>Paid/NotPaid</th>
-                  <th scope='col'>Total Amount</th>
-                  {/* <th scope='col'>Delete</th> */}
+                  <th scope='col'>Title</th>
+                  <th scope='col'>Status</th>
+
+                  <th scope='col'>Delete</th>
                 </tr>
               </thead>
               <tbody>
-                {bills.map((bill) => (
-                  <tr key={bill._id}>
-                    <th scope='row'>{bills.indexOf(bill)}</th>
+                {complains.map((complain) => (
+                  <tr key={complain._id}>
+                    <th scope='row'>{complains.indexOf(complain)}</th>
                     <td>
                       {/* <Link to={`ad/${bill._id}`}> */}
-                      {moment(bill.dateOfIssue).format('MMM YYYY')}
+                      {complain.title}
                       {/* </Link> */}
                     </td>
-                    <td>{this.handlePaid(bill.isPaid)}</td>
-                    <td>{bill.totalAmount}</td>
-                    {/* <td>
+                    <td>{complain.status}</td>
+                    <td>
                       <button
                         className='btn btn-danger'
-                        onClick={() => this.handleDelete(bill)}
+                        onClick={() => this.handleDelete(complain)}
                       >
                         Delete
                       </button>
-                    </td> */}
+                    </td>
                   </tr>
                 ))}
               </tbody>
