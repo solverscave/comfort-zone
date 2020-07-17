@@ -19,15 +19,7 @@ router.post('/', async (req, res) => {
 
   //PICKING USER PROPERTIES FROM THE FORM
   user = new User(
-    _.pick(req.body, [
-      'name',
-      'email',
-      'password',
-      'phone',
-      'sector',
-      'address',
-      'role',
-    ])
+    _.pick(req.body, ['name', 'email', 'password', 'phone', 'address', 'role'])
   );
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);

@@ -27,10 +27,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  sector: {
-    type: String,
-    required: false,
-  },
   address: {
     type: String,
     required: false,
@@ -65,7 +61,6 @@ function validateUser(user) {
     email: Joi.string().min(5).max(255).required().email(),
     password: Joi.string().min(5).max(255).required(),
     phone: Joi.string().min(11).required(),
-    sector: Joi.string().required(),
     address: Joi.string().required(),
     role: Joi.string().required(),
     imageUrl: Joi.string().required(),
