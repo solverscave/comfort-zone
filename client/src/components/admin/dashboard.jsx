@@ -5,6 +5,7 @@ import Users from './../users';
 import DashboardDesc from './dashboardDesc';
 import Complains from '../complains';
 import ComplainDetail from '../complainDetail';
+import Bills from './bills';
 import Ads from './ads';
 import Funds from './funds';
 import AdsMembers from './members/ads.members';
@@ -43,6 +44,7 @@ export default class Dashboard extends Component {
           path='/dashboard/complain/:id'
           component={ComplainDetail}
         />
+        <Route path='/dashboard/bills' component={Bills} />
         <Route path='/dashboard/complains' component={Complains} />
         <Route path='/dashboard/ads' component={Ads} />
         <Route path='/dashboard/funds' component={Funds} />
