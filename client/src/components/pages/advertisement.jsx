@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import auth from '../../services/authService';
-import AdCard from '../adCard';
-import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import { apiUrl } from '../../config.json';
+import React, { Component } from "react";
+import axios from "axios";
+import auth from "../../services/authService";
+import AdCard from "../adCard";
+import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import { apiUrl } from "../../config.json";
+import SearchFunction from "../../components/common/searchFunction";
 
-const apiEndpoint = apiUrl + '/ads';
+const apiEndpoint = apiUrl + "/ads";
 
 class Advertisement extends Component {
   state = {
@@ -25,19 +26,19 @@ class Advertisement extends Component {
   }
 
   handleGetFund() {
-    toast.error('Kindly login to add your ad!');
+    toast.error("Kindly login to add your ad!");
   }
 
   getButton() {
     if (!this.state.user)
       return (
-        <button className='btn btn-cz' onClick={() => this.handleGetFund()}>
+        <button className="btn btn-cz" onClick={() => this.handleGetFund()}>
           Post an ad
         </button>
       );
     else if (this.state.user)
       return (
-        <Link className='btn btn-cz' to='/advertisement/form'>
+        <Link className="btn btn-cz" to="/advertisement/form">
           Post an ad
         </Link>
       );
@@ -49,8 +50,8 @@ class Advertisement extends Component {
     return (
       <div>
         <ToastContainer />
-        <div className='subheader-advertisement py-5 text-white'>
-          <div className='align-self-center justify-content-center text-center'>
+        <div className="subheader-advertisement py-5 text-white">
+          <div className="align-self-center justify-content-center text-center">
             <div>
               <h1>Sell anything with ease!</h1>
             </div>
@@ -60,11 +61,14 @@ class Advertisement extends Component {
             {this.getButton()}
           </div>
         </div>
+        <div className="container px-5" style={{ marginTop: "25px" }}>
+          <SearchFunction />
+        </div>
 
-        <div className='container my-5'>
-          <div className='row'>
+        <div className="container ">
+          <div className="row">
             {ads.map((ad) => (
-              <div className='my-2' key={ad.id}>
+              <div className="my-2" key={ad.id}>
                 <AdCard
                   _id={ad._id}
                   title={ad.title}
