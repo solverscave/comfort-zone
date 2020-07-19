@@ -20,8 +20,8 @@ class BillsMembers extends Component {
     bills: [],
     isPaid: [
       { _id: 0, name: 'All', isPaid: null },
-      { _id: 1, name: 'Paid', isPaid: true },
-      { _id: 2, name: 'Not Paid', isPaid: false },
+      { _id: 1, name: 'Paid', isPaid: 'true' },
+      { _id: 2, name: 'Not Paid', isPaid: 'false' },
     ],
     pageSize: 5,
     currentPage: 1,
@@ -71,7 +71,7 @@ class BillsMembers extends Component {
   };
 
   handlePaid(paid) {
-    if (paid === true) {
+    if (paid === 'true') {
       return 'Paid';
     } else {
       return 'Not Paid';

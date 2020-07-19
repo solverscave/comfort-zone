@@ -67,53 +67,56 @@ class FundsMembers extends Component {
   };
 
   render() {
-    const { funds: allFunds, pageSize, currentPage } = this.state;
+    if (!this.state.funds.length) return <div></div>;
+    if (this.state.funds.length === 47) return <div>No funds found</div>;
+    else {
+      console.log(this.state.funds.length);
+      const { funds: allFunds, pageSize, currentPage } = this.state;
+      const filtered =
+        this.state.selectedisApproved && this.state.selectedisApproved._id
+          ? allFunds.filter(
+              (i) => i.isApproved === this.state.selectedisApproved.name
+            )
+          : allFunds;
 
-    const filtered =
-      this.state.selectedisApproved && this.state.selectedisApproved._id
-        ? allFunds.filter(
-            (i) => i.isApproved === this.state.selectedisApproved.name
-          )
-        : allFunds;
+      const funds = paginate(filtered, currentPage, pageSize);
 
-    const funds = paginate(filtered, currentPage, pageSize);
-
-    return (
-      <React.Fragment>
-        <div className='row'>
-          <ToastContainer />
-          <div className='col-3'>
-            {
-              <ListGroup
-                items={this.state.isApproved}
-                onItemSelect={this.handleisApprovedSelect}
-                selectedItem={this.state.selectedisApproved}
-              />
-            }
-          </div>
-          <div className='col-9'>
-            <table className='table'>
-              <thead>
-                <tr>
-                  <th scope='col'>#</th>
-                  <th scope='col'>title</th>
-                  <th scope='col'>Raised so Far</th>
-                  <th scope='col'>Delete</th>
-                  {/* <th scope='col'>Delete</th> */}
-                </tr>
-              </thead>
-              <tbody>
-                {funds.map((fund) => (
-                  <tr key={fund._id}>
-                    <th scope='row'>{funds.indexOf(fund)}</th>
-                    <td>
-                      {/* <Link to={`ad/${bill._id}`}> */}
-                      {fund.title}
-                      {/* </Link> */}
-                    </td>
-                    <td>{fund.raisedAmount}</td>
-                    <td>{}</td>
-                    {/* <td>
+      return (
+        <React.Fragment>
+          <div className='row'>
+            <ToastContainer />
+            <div className='col-3'>
+              {
+                <ListGroup
+                  items={this.state.isApproved}
+                  onItemSelect={this.handleisApprovedSelect}
+                  selectedItem={this.state.selectedisApproved}
+                />
+              }
+            </div>
+            <div className='col-9'>
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>Title</th>
+                    <th scope='col'>Raised so Far</th>
+                    <th scope='col'>Delete</th>
+                    {/* <th scope='col'>Delete</th> */}
+                  </tr>
+                </thead>
+                <tbody>
+                  {funds.map((fund) => (
+                    <tr key={fund._id}>
+                      <th scope='row'>{funds.indexOf(fund)}</th>
+                      <td>
+                        {/* <Link to={`ad/${bill._id}`}> */}
+                        {fund.title}
+                        {/* </Link> */}
+                      </td>
+                      <td>{fund.raisedAmount}</td>
+                      <td>{}</td>
+                      {/* <td>
                       <button
                         className='btn btn-danger'
                         onClick={() => this.handleDelete(bill)}
@@ -121,20 +124,21 @@ class FundsMembers extends Component {
                         Delete
                       </button>
                     </td> */}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <Pagination
-              itemsCount={filtered.length}
-              pageSize={pageSize}
-              currentPage={currentPage}
-              onPageChange={this.handlePageChange}
-            />
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <Pagination
+                itemsCount={filtered.length}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={this.handlePageChange}
+              />
+            </div>
           </div>
-        </div>
-      </React.Fragment>
-    );
+        </React.Fragment>
+      );
+    }
   }
 }
 

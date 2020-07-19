@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import { paginate } from '../../../utils/paginate';
 import axios from 'axios';
 import auth from './../../../services/authService';
-import moment from 'moment';
 import { apiUrl } from '../../../config.json';
+import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Pagination from './../../common/pagination';
 import ListGroup from './../../common/listGroup';
-const apiEndpoint = apiUrl + '/complains';
 
-class ComplainsMembers extends Component {
+export default class ComplainsMembers extends Component {
   state = {
     user: {},
     complains: [],
@@ -47,11 +46,10 @@ class ComplainsMembers extends Component {
     const complains = this.state.complains.filter(
       (c) => c._id !== complain._id
     );
-
     this.setState({ complains });
 
     try {
-      await axios.delete(apiEndpoint + '/' + complain._id);
+      await axios.delete(apiUrl + '/complains/' + complain._id);
       toast.success('The complain was successfully deleted!');
     } catch (ex) {
       toast.error('Failed to delete the complain!');
@@ -63,80 +61,79 @@ class ComplainsMembers extends Component {
     this.setState({ currentPage: page });
   };
 
-  handlestatusSelect = (status) => {
-    this.setState({ selectedstatus: status, currentPage: 1 });
-    console.log(this.state.selectedstatus);
+  handleStatusSelect = (status) => {
+    this.setState({ selectedStatus: status, currentPage: 1 });
   };
 
   render() {
-    const { complains: allComplains, pageSize, currentPage } = this.state;
+    if (!this.state.complains.length) return <div></div>;
+    if (this.state.complains.length === 47)
+      return <div>No complains found</div>;
+    else {
+      const { complains: allComplains, pageSize, currentPage } = this.state;
+      const filtered =
+        this.state.selectedStatus && this.state.selectedStatus._id
+          ? allComplains.filter(
+              (i) => i.status === this.state.selectedStatus.name
+            )
+          : allComplains;
 
-    const filtered =
-      this.state.selectedstatus && this.state.selectedstatus._id
-        ? allComplains.filter(
-            (i) => i.status === this.state.selectedstatus.status
-          )
-        : allComplains;
-
-    const complains = paginate(filtered, currentPage, pageSize);
-
-    return (
-      <React.Fragment>
-        <div className='row'>
-          <ToastContainer />
-          <div className='col-3'>
-            {
-              <ListGroup
-                items={this.state.status}
-                onItemSelect={this.handlestatusSelect}
-                selectedItem={this.state.selectedstatus}
-              />
-            }
-          </div>
-          <div className='col-9'>
-            <table className='table'>
-              <thead>
-                <tr>
-                  <th scope='col'>#</th>
-                  <th scope='col'>Title</th>
-                  <th scope='col'>Status</th>
-
-                  <th scope='col'>Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                {complains.map((complain) => (
-                  <tr key={complain._id}>
-                    <th scope='row'>{complains.indexOf(complain)}</th>
-                    <td>
-                      {/* <Link to={`ad/${bill._id}`}> */}
-                      {complain.title}
-                      {/* </Link> */}
-                    </td>
-                    <td>{complain.status}</td>
-                    <td>
-                      <button
-                        className='btn btn-danger'
-                        onClick={() => this.handleDelete(complain)}
-                      >
-                        Delete
-                      </button>
-                    </td>
+      const complains = paginate(filtered, currentPage, pageSize);
+      return (
+        <React.Fragment>
+          <div className='row'>
+            <ToastContainer />
+            <div className='col-3'>
+              {
+                <ListGroup
+                  items={this.state.status}
+                  onItemSelect={this.handleStatusSelect}
+                  selectedItem={this.state.selectedStatus}
+                />
+              }
+            </div>
+            <div className='col-9'>
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>Title</th>
+                    <th scope='col'>Status</th>
+                    <th scope='col'>Delete</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <Pagination
-              itemsCount={filtered.length}
-              pageSize={pageSize}
-              currentPage={currentPage}
-              onPageChange={this.handlePageChange}
-            />
+                </thead>
+                <tbody>
+                  {complains.map((complain) => (
+                    <tr key={complain._id}>
+                      <th scope='row'>{complains.indexOf(complain)}</th>
+                      <td>
+                        {/* <Link to={`ad/${bill._id}`}> */}
+                        {complain.title}
+                        {/* </Link> */}
+                      </td>
+                      <td>{complain.status}</td>
+                      <td>
+                        <button
+                          className='btn btn-danger'
+                          onClick={() => this.handleDelete(complain)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <Pagination
+                itemsCount={filtered.length}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={this.handlePageChange}
+              />
+            </div>
           </div>
-        </div>
-      </React.Fragment>
-    );
+        </React.Fragment>
+      );
+    }
   }
 }
-
-export default ComplainsMembers;

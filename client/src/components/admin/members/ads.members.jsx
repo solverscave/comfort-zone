@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { paginate } from '../../../utils/paginate';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import apiUrl from '../../../config.json';
 import 'react-toastify/dist/ReactToastify.css';
+import auth from '../../../services/authService';
 import { ToastContainer, toast } from 'react-toastify';
 import Pagination from './../../common/pagination';
 import ListGroup from './../../common/listGroup';
-const apiEndpoint = 'http://localhost:5000/api/ads';
+const apiEndpoint = apiUrl + '/ads';
 
 class AdsMembers extends Component {
   state = {
@@ -21,7 +23,20 @@ class AdsMembers extends Component {
   };
 
   async componentDidMount() {
-    const { data: ads } = await axios.get(apiEndpoint);
+    let user = auth.getCurrentUser();
+    if (user) {
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
+      user = data[0];
+      this.setState({ user });
+    } else if (!user) {
+      user = {
+        _id: null,
+      };
+      this.setState({ user });
+      console.log(user);
+    }
+
+    const { data: ads } = await axios.get(apiEndpoint + '/' + user._id);
     this.setState({ ads });
   }
 
