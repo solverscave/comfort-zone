@@ -6,9 +6,11 @@ import moment from 'moment';
 import { apiUrl } from '../../config.json';
 import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import Pagination from '../common/pagination';
 import ListGroup from '../common/listGroup';
+import { update } from 'lodash';
+const apiEndpoint = apiUrl + '/bills';
 
 export default class Bills extends Component {
   constructor(props) {
@@ -23,7 +25,7 @@ export default class Bills extends Component {
       { _id: 1, name: 'Paid', isPaid: 'true' },
       { _id: 2, name: 'Not Paid', isPaid: 'false' },
     ],
-    pageSize: 5,
+    pageSize: 10,
     currentPage: 1,
   };
 
@@ -40,24 +42,60 @@ export default class Bills extends Component {
       this.setState({ user });
       console.log(user);
     }
-    const { data: bills } = await axios.get('http://localhost:5000/api/bills/');
+    const { data: bills } = await axios.get(apiEndpoint);
     this.setState({ bills });
   }
+  renderButton(bill) {
+    if (bill.isPaid === 'true') {
+      return (
+        <button
+          className='btn btn-danger'
+          onClick={() => this.handleUpdate(bill)}
+        >
+          Update
+        </button>
+      );
+    } else {
+      return (
+        <button
+          className='btn btn-success'
+          onClick={() => this.handleUpdate(bill)}
+        >
+          Update
+        </button>
+      );
+    }
+  }
 
-  //   handleUpdate = async (bill) => {
-  //     const originalBills = this.state.bills;
-  //     const bills = this.state.bills.filter((b) => b._id !== bill._id);
+  handleUpdate = async (bill) => {
+    const bills = [...this.state.bills];
+    const index = bills.indexOf(bill);
 
-  //     this.setState({ bills });
+    if (bill.isPaid === 'false') {
+      bill.isPaid = 'true';
 
-  //     try {
-  //       await axios.delete(apiEndpoint + '/' + ad._id);
-  //       toast.success('The complain was successfully deleted!');
-  //     } catch (ex) {
-  //       toast.error('Failed to delete the complain!');
-  //       this.setState({ ads: originalAds });
-  //     }
-  //   };
+      await axios.put(apiEndpoint + '/' + bill._id, {
+        isPaid: 'true',
+      });
+
+      toast.success('This bills is successfully paid now');
+    } else {
+      bill.isPaid = 'false';
+
+      await axios.put(apiEndpoint + '/' + bill._id, {
+        isPaid: 'false',
+      });
+
+      toast.error('This bill is now unpaid');
+    }
+    // const { data } = await axios.get(apiEndpoint + '/id/' + bill._id);
+
+    bills[index] = bill;
+
+    console.log(bills[index]);
+
+    this.setState({ bills });
+  };
 
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
@@ -104,7 +142,7 @@ export default class Bills extends Component {
               <thead>
                 <tr>
                   <th scope='col'>#</th>
-                  <th scope='col'>Bills Id</th>
+                  <th scope='col'>Member Name</th>
                   <th scope='col'>Bill Date</th>
                   <th scope='col'>Paid/NotPaid</th>
                   <th scope='col'>Update</th>
@@ -115,21 +153,12 @@ export default class Bills extends Component {
                 {bills.map((bill) => (
                   <tr key={bill._id}>
                     <th scope='row'>{bills.indexOf(bill)}</th>
-                    <td>{bill._id}</td>
                     <td>
-                      {/* <Link to={`ad/${bill._id}`}> */}
-                      {moment(bill.dateOfIssue).format('MMM YYYY')}
-                      {/* </Link> */}
+                      <Link to={`/profile/${bill.userId}`}>{bill.userId}</Link>
                     </td>
+                    <td>{moment(bill.dateOfIssue).format('MMM YYYY')}</td>
                     <td>{this.handlePaid(bill.isPaid)}</td>
-                    <td>
-                      <button
-                        className='btn btn-success'
-                        onClick={() => this.handleUpdate(bill)}
-                      >
-                        Update
-                      </button>
-                    </td>
+                    <td>{this.renderButton(bill)}</td>
                   </tr>
                 ))}
               </tbody>

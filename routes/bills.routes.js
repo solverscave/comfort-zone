@@ -11,6 +11,10 @@ router.get('/:id', async (req, res) =>
   res.json(await Bills.find({ userId: req.params.id }))
 );
 
+router.get('/id/:id', async (req, res) =>
+  res.json(await Bills.find({ _id: req.params.id }))
+);
+
 //POSTING A BILL
 router.post('/', async (req, res) => {
   const bill = new Bills({
