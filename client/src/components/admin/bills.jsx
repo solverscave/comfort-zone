@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Pagination from '../common/pagination';
 import ListGroup from '../common/listGroup';
 import { update } from 'lodash';
+import _ from 'lodash';
 const apiEndpoint = apiUrl + '/bills';
 
 export default class Bills extends Component {

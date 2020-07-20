@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import apiUrl from '../../config.json';
 import ApprovalCard from '../approvalCard';
 import axios from 'axios';
-import apiUrl from '../../config.json';
-const apiEndpoint = apiUrl + '/funds';
+const apiEndpoint = 'http://localhost:5000/api/funds';
 
 class Funds extends Component {
   state = {
