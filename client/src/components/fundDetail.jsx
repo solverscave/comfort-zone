@@ -226,6 +226,7 @@ class FundDetail extends Component {
                       </p>
                     </div>
                   </div>
+
                   <div className='row mt-1 ml-2'>
                     <div className='col-5'>
                       <p
@@ -234,34 +235,6 @@ class FundDetail extends Component {
                           marginBottom: '2px',
                           fontFamily: 'Proxima Nova',
                           fontSize: '20px',
-                          color: '#343434',
-                        }}
-                      >
-                        Sector:
-                      </p>
-                    </div>
-                    <div className='col-6'>
-                      <p
-                        className='card-text text-left'
-                        style={{
-                          marginBottom: '2px',
-                          fontFamily: 'Proxima Nova',
-                          fontSize: '20px',
-                          color: '#159570',
-                        }}
-                      >
-                        {this.state.user.sector}
-                      </p>
-                    </div>
-                  </div>
-                  <div className='row mt-1 ml-2'>
-                    <div className='col-5'>
-                      <p
-                        className='card-text text-right'
-                        style={{
-                          marginBottom: '2px',
-                          fontFamily: 'Proxima Nova',
-                          fontSize: '24px',
                           color: '#343434',
                         }}
                       >
@@ -274,7 +247,7 @@ class FundDetail extends Component {
                         style={{
                           marginBottom: '2px',
                           fontFamily: 'Proxima Nova',
-                          fontSize: '16px',
+                          fontSize: '20px',
                           color: '#159570',
                         }}
                       >

@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Pagination from '../common/pagination';
 import ListGroup from '../common/listGroup';
 import { apiUrl } from '../../config.json';
-const apiEndpoint = apiEndpoint + '/ads';
+const apiEndpoint = apiUrl + '/ads';
 
 class Ads extends Component {
   state = {

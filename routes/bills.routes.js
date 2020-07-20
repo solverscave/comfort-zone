@@ -30,6 +30,8 @@ router.post('/', async (req, res) => {
     totalAmount: req.body.totalAmount,
     dueAmount: req.body.dueAmount,
     userId: req.body.userId,
+    userImage: req.body.userImage,
+    userName: req.body.userName,
     isPaid: req.body.isPaid,
   });
   try {

@@ -30,6 +30,7 @@ export default class UserForm extends Form {
     role: Joi.string().required().label('Role'),
   };
 
+  //SUBMITTING A NEW USER
   doSubmit = async () => {
     try {
       const response = await userService.register(this.state.data);
@@ -40,16 +41,18 @@ export default class UserForm extends Form {
         console.log(newUser);
         this.addNewBill(newUser);
       }
-      // const data = {
-      //   email: '',
-      //   password: '',
-      //   name: '',
-      //   phone: '',
-      //   address: '',
-      //   role: '',
-      // };
 
-      // this.setState({ data });
+      //RESET FORM AFTER SUBMISSION
+      const data = {
+        email: '',
+        password: '',
+        name: '',
+        phone: '',
+        address: '',
+        role: '',
+      };
+
+      this.setState({ data });
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -75,6 +78,8 @@ export default class UserForm extends Form {
       totalAmount: 1890,
       dueAmount: 3000,
       userId: newUser._id,
+      userImage: newUser.imageUrl,
+      userName: newUser.name,
       isPaid: 'false',
     });
     console.log(newBill);

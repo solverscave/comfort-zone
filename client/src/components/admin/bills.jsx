@@ -142,7 +142,7 @@ export default class Bills extends Component {
               <thead>
                 <tr>
                   <th scope='col'>#</th>
-                  <th scope='col'>Member Name</th>
+                  <th scope='col'>Member</th>
                   <th scope='col'>Bill Date</th>
                   <th scope='col'>Paid/NotPaid</th>
                   <th scope='col'>Update</th>
@@ -154,7 +154,21 @@ export default class Bills extends Component {
                   <tr key={bill._id}>
                     <th scope='row'>{bills.indexOf(bill)}</th>
                     <td>
-                      <Link to={`/profile/${bill.userId}`}>{bill.userId}</Link>
+                      <img
+                        src={bill.userImage}
+                        width='25'
+                        height='25'
+                        className='avatar d-inline-block align-top'
+                        alt='React Bootstrap logo'
+                      />
+                      <span style={{ paddingLeft: '10px' }}>
+                        <Link
+                          className='text-dark'
+                          to={`/profile/${bill.userId}`}
+                        >
+                          {bill.userName}
+                        </Link>{' '}
+                      </span>
                     </td>
                     <td>{moment(bill.dateOfIssue).format('MMM YYYY')}</td>
                     <td>{this.handlePaid(bill.isPaid)}</td>
