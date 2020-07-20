@@ -5,7 +5,6 @@ import AdCard from "../adCard";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { apiUrl } from "../../config.json";
-import SearchFunction from "../../components/common/searchFunction";
 
 const apiEndpoint = apiUrl + "/ads";
 
@@ -61,11 +60,8 @@ class Advertisement extends Component {
             {this.getButton()}
           </div>
         </div>
-        <div className="container px-5" style={{ marginTop: "25px" }}>
-          <SearchFunction />
-        </div>
 
-        <div className="container ">
+        <div className="container my-5">
           <div className="row">
             {ads.map((ad) => (
               <div className="my-2" key={ad.id}>
