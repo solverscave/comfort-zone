@@ -6,7 +6,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Pagination from '../common/pagination';
 import ListGroup from '../common/listGroup';
-const apiEndpoint = 'http://localhost:5000/api/ads';
+import { apiUrl } from '../../config.json';
+const apiEndpoint = apiEndpoint + '/ads';
 
 class Ads extends Component {
   state = {

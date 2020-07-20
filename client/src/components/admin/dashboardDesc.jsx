@@ -11,6 +11,7 @@ import guardImg from '../../assets/img/dashboard/guards.jpg';
 import workerImg from '../../assets/img/dashboard/workers.jpg';
 import auth from '../../services/authService';
 import axios from 'axios';
+import { apiUrl } from '../../config.json';
 
 class DashboardDesc extends Component {
   state = {
@@ -22,9 +23,7 @@ class DashboardDesc extends Component {
   async componentWillMount() {
     let user = auth.getCurrentUser();
     if (user) {
-      const { data } = await axios.get(
-        'http://localhost:5000/api/users/' + user._id
-      );
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
       user = data[0];
     }
     this.setState({ user });

@@ -51,9 +51,7 @@ export default class Forum extends Form {
 
     let user = auth.getCurrentUser();
     if (user) {
-      const { data } = await axios.get(
-        'http://localhost:5000/api/users/' + user._id
-      );
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
       user = data[0];
       this.setState({ user });
     } else if (!user) {

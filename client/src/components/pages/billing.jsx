@@ -7,6 +7,7 @@ import { PDFViewer } from '@react-pdf/renderer';
 import StripeCheckout from 'react-stripe-checkout';
 import { ToastContainer, toast } from 'react-toastify';
 import { apiUrl } from '../../config.json';
+const apiEndpoint = apiUrl + '/bills';
 
 class Billing extends Component {
   state = {
@@ -29,11 +30,10 @@ class Billing extends Component {
       console.log(user);
     }
 
-    const { data } = await axios.get(
-      'http://localhost:5000/api/bills/' + this.state.user._id
-    );
+    const { data } = await axios.get(apiEndpoint + '/' + this.state.user._id);
     const bill = data;
     this.setState({ bill });
+
     document.getElementsByTagName('iframe')[0].style.width = '100%';
     document.getElementsByTagName('iframe')[0].style.height = '720px';
   }
@@ -44,7 +44,7 @@ class Billing extends Component {
     this.setState({ bill });
   }
   async handleToken(token) {
-    const response = await axios.post('http://localhost:5000/api/pay/', {
+    const response = await axios.post(apiUrl + '/pay/', {
       token,
       product: {
         name: 'Bill',
@@ -55,10 +55,9 @@ class Billing extends Component {
     const { status } = response.data;
     console.log('Response:', response.data);
     if (status === 'success') {
-      await axios.put(
-        'http://localhost:5000/api/bills/5f1180ff2ed042af01b1f945',
-        { isPaid: 'true' }
-      );
+      await axios.put(apiEndpoint + '/5f1180ff2ed042af01b1f945', {
+        isPaid: 'true',
+      });
       toast('Success! Check email for details', { type: 'success' });
       window.location.reload();
     } else {

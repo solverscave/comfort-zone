@@ -14,6 +14,7 @@ import ComplainsMembers from './members/complains.members';
 import FundsMembers from './members/funds.members';
 import auth from '../../services/authService';
 import axios from 'axios';
+import { apiUrl } from '../../config.json';
 
 export default class Dashboard extends Component {
   state = {
@@ -23,9 +24,7 @@ export default class Dashboard extends Component {
   async componentDidMount() {
     let user = auth.getCurrentUser();
     if (user) {
-      const { data } = await axios.get(
-        'http://localhost:5000/api/users/' + user._id
-      );
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
       user = data[0];
     }
     this.setState({ user });

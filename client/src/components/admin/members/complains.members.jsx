@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Pagination from './../../common/pagination';
 import ListGroup from './../../common/listGroup';
+const apiEndpoint = apiUrl + '/complains';
 
 export default class ComplainsMembers extends Component {
   state = {
@@ -36,7 +37,7 @@ export default class ComplainsMembers extends Component {
       console.log(user);
     }
     const { data: complains } = await axios.get(
-      'http://localhost:5000/api/complains/user/' + this.state.user._id
+      apiEndpoint + '/user/' + this.state.user._id
     );
     this.setState({ complains });
   }

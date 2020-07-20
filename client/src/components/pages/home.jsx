@@ -3,6 +3,7 @@ import Carousels from './../common/carousels';
 import auth from '../../services/authService';
 import axios from 'axios';
 import Dashboard from '../admin/dashboard';
+import { apiUrl } from '../../config.json';
 
 export default class Home extends Component {
   state = {
@@ -13,9 +14,7 @@ export default class Home extends Component {
   async componentWillMount() {
     let user = auth.getCurrentUser();
     if (user) {
-      const { data } = await axios.get(
-        'http://localhost:5000/api/users/' + user._id
-      );
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
       user = data[0];
     }
     if (!user) {

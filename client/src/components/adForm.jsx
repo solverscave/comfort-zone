@@ -4,9 +4,10 @@ import auth from '../services/authService';
 import Joi from 'joi-browser';
 import Form from './common/form';
 import axios from 'axios';
-const apiEndpoint = 'http://localhost:5000/api/ads';
+import { apiUrl } from '../config.json';
+const apiEndpoint = apiUrl + '/ads';
 
-class AdForm extends Form {
+export default class AdForm extends Form {
   state = {
     data: {
       title: '',
@@ -23,9 +24,7 @@ class AdForm extends Form {
   async componentDidMount() {
     let user = auth.getCurrentUser();
     if (user) {
-      const { data } = await axios.get(
-        'http://localhost:5000/api/users/' + user._id
-      );
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
       user = data[0];
       this.setState({ user });
     } else if (!user) {
@@ -156,5 +155,3 @@ class AdForm extends Form {
     );
   }
 }
-
-export default AdForm;

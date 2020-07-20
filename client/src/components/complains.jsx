@@ -6,9 +6,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Pagination from './common/pagination';
 import ListGroup from './common/listGroup';
-const apiEndpoint = 'http://localhost:5000/api/complains';
+import { apiUrl } from '../config.json';
+const apiEndpoint = apiUrl + '/complains';
 
-class Complains extends Component {
+export default class Complains extends Component {
   state = {
     complains: [],
     status: [
@@ -138,5 +139,3 @@ class Complains extends Component {
     );
   }
 }
-
-export default Complains;

@@ -5,8 +5,8 @@ import thousandRupees from '../assets/img/PKR_Rs_1000.jpg';
 import FundDetailProgress from '../../src/components/pages/fundDetailProgress';
 import StripeCheckout from 'react-stripe-checkout';
 import { ToastContainer, toast } from 'react-toastify';
-
-const apiEndpoint = 'http://localhost:5000/api/funds/';
+import { apiUrl } from '../config.json';
+const apiEndpoint = apiUrl + '/funds/';
 
 class FundDetail extends Component {
   state = {
@@ -23,7 +23,7 @@ class FundDetail extends Component {
     this.setState({ fund });
 
     const { data } = await axios.get(
-      `http://localhost:5000/api/users/${this.state.fund.userId}`
+      `${apiUrl}/users/${this.state.fund.userId}`
     );
     const user = data[0];
     console.log(user);
@@ -38,7 +38,7 @@ class FundDetail extends Component {
       );
   };
   async handleToken(token) {
-    const response = await axios.post('http://localhost:5000/api/pay/', {
+    const response = await axios.post(apiUrl + '/pay/', {
       token,
       product: {
         name: 'Fund',
@@ -51,10 +51,10 @@ class FundDetail extends Component {
 
     if (status === 'success') {
       toast('Success! Check email for details', { type: 'success' });
-      await axios.put(
-        'http://localhost:5000/api/funds/5e5975b0e3137d315c64418a',
-        { raisedAmount: 154, donations: 1 }
-      );
+      await axios.put(apiUrl + '/funds/5e5975b0e3137d315c64418a', {
+        raisedAmount: 154,
+        donations: 1,
+      });
       window.location.reload();
     } else {
       toast('Something went wrong', { type: 'error' });

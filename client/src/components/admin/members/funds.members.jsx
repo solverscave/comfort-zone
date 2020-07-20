@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Pagination from './../../common/pagination';
 import ListGroup from './../../common/listGroup';
+const apiEndpoint = apiUrl + '/funds';
 
 class FundsMembers extends Component {
   state = {
@@ -37,7 +38,7 @@ class FundsMembers extends Component {
       console.log(user);
     }
     const { data: funds } = await axios.get(
-      'http://localhost:5000/api/funds/user/' + this.state.user._id
+      apiEndpoint + '/user/' + this.state.user._id
     );
     this.setState({ funds });
   }
