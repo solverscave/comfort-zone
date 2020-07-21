@@ -23,6 +23,7 @@ class Ads extends Component {
 
   async componentDidMount() {
     const { data: ads } = await axios.get(apiEndpoint);
+    console.log(ads);
     this.setState({ ads });
   }
 
@@ -60,72 +61,83 @@ class Ads extends Component {
           <img src={require('../../assets/icons/loading.gif')} alt='' />
         </div>
       );
-    const { ads: allAds, pageSize, currentPage } = this.state;
+    if (this.state.ads === 'No ad was found in the database!')
+      return (
+        <h1
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          No ad was found!
+        </h1>
+      );
+    else {
+      const { ads: allAds, pageSize, currentPage } = this.state;
 
-    const filtered =
-      this.state.selectedCondition && this.state.selectedCondition._id
-        ? allAds.filter(
-            (i) => i.condition === this.state.selectedCondition.name
-          )
-        : allAds;
+      const filtered =
+        this.state.selectedCondition && this.state.selectedCondition._id
+          ? allAds.filter(
+              (i) => i.condition === this.state.selectedCondition.name
+            )
+          : allAds;
 
-    const ads = paginate(filtered, currentPage, pageSize);
+      const ads = paginate(filtered, currentPage, pageSize);
 
-    return (
-      <React.Fragment>
-        <div className='row'>
-          <ToastContainer />
-          <div className='col-3'>
-            {
-              <ListGroup
-                items={this.state.condition}
-                onItemSelect={this.handleConditionSelect}
-                selectedItem={this.state.selectedCondition}
-              />
-            }
-          </div>
-          <div className='col-9'>
-            <table className='table'>
-              <thead>
-                <tr>
-                  <th scope='col'>#</th>
-                  <th scope='col'>Ads</th>
-                  <th scope='col'>Posted by</th>
-                  <th scope='col'>Condition</th>
-                  <th scope='col'>Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ads.map((ad) => (
-                  <tr key={ad._id}>
-                    <th scope='row'>{ads.indexOf(ad)}</th>
-                    <td>
-                      <Link to={`ad/${ad._id}`}>{ad.title}</Link>
-                    </td>
-                    <td>{ad.userName}</td>
-                    <td>{ad.condition}</td>
-                    <td>
-                      <button
-                        className='btn btn-danger'
-                        onClick={() => this.handleDelete(ad)}
-                      >
-                        Delete
-                      </button>
-                    </td>
+      return (
+        <React.Fragment>
+          <div className='row'>
+            <ToastContainer />
+            <div className='col-3'>
+              {
+                <ListGroup
+                  items={this.state.condition}
+                  onItemSelect={this.handleConditionSelect}
+                  selectedItem={this.state.selectedCondition}
+                />
+              }
+            </div>
+            <div className='col-9'>
+              <table className='table'>
+                <thead>
+                  <tr>
+                    <th scope='col'>#</th>
+                    <th scope='col'>Ads</th>
+                    <th scope='col'>Posted by</th>
+                    <th scope='col'>Condition</th>
+                    <th scope='col'>Delete</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <Pagination
-              itemsCount={filtered.length}
-              pageSize={pageSize}
-              currentPage={currentPage}
-              onPageChange={this.handlePageChange}
-            />
+                </thead>
+                <tbody>
+                  {ads.map((ad) => (
+                    <tr key={ad._id}>
+                      <th scope='row'>{ads.indexOf(ad)}</th>
+                      <td>
+                        <Link to={`ad/${ad._id}`}>{ad.title}</Link>
+                      </td>
+                      <td>{ad.userName}</td>
+                      <td>{ad.condition}</td>
+                      <td>
+                        <button
+                          className='btn btn-danger'
+                          onClick={() => this.handleDelete(ad)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <Pagination
+                itemsCount={filtered.length}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={this.handlePageChange}
+              />
+            </div>
           </div>
-        </div>
-      </React.Fragment>
-    );
+        </React.Fragment>
+      );
+    }
   }
 }
 

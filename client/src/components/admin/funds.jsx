@@ -52,7 +52,14 @@ class Funds extends Component {
         </div>
       );
     if (this.state.funds === 'Alas! Complain with the given id was not found!')
-      return <h1>No funds found for the approval!</h1>;
+      return (
+        <h1
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          No funds found for the approval!
+        </h1>
+      );
     return (
       <React.Fragment>
         <div className='containers'>

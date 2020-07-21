@@ -64,7 +64,14 @@ export default class Complains extends Component {
         </div>
       );
     if (this.state.complains === 'No complain was found')
-      return <h1>No complain was found!</h1>;
+      return (
+        <h1
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          No complain was found!
+        </h1>
+      );
 
     const { complains: allComplains, pageSize, currentPage } = this.state;
 

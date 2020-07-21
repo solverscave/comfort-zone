@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
   // Getting all ads
   const ads = await Ads.find({});
   // Checking if no user exists
-  if (!ads.length) res.status(400).send('No user was found in the database!');
+  if (!ads.length) res.send('No ad was found in the database!');
   // If ads exit, sending that ads
   else res.json(ads);
 });
