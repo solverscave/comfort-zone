@@ -4,7 +4,11 @@ const Bills = require('../models/bills.models');
 const router = express.Router();
 
 //ADMIN GETS ALL BILLS
-router.get('/', async (req, res) => await res.json(await Bills.find()));
+router.get('/', async (req, res) => {
+  const bills = await Bills.find();
+  if (!bills.length) res.json('No bill found!');
+  else res.json(bills);
+});
 
 //MEMBER GETS HIS BILL
 router.get('/:id', async (req, res) =>

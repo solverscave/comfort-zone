@@ -120,10 +120,19 @@ export default class Bills extends Component {
       return (
         <div
           className='align-self-center justify-content-center text-center'
-          style={{ padding: '150px' }}
+          style={{ padding: '100px' }}
         >
           <img src={require('../../assets/icons/loading.gif')} alt='' />
         </div>
+      );
+    if (this.state.bills === 'No bill found!')
+      return (
+        <h1
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '100px' }}
+        >
+          No bill was found!
+        </h1>
       );
     const { bills: allBills, pageSize, currentPage } = this.state;
 
