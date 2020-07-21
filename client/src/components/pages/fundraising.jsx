@@ -142,12 +142,25 @@ class Fundraising extends Component {
       );
     else if (funds.length === 47)
       return (
-        <h1
-          className='align-self-center justify-content-center text-center'
-          style={{ padding: '150px' }}
-        >
-          No fund found
-        </h1>
+        <div>
+          <div className='subheader-fundraising py-5 text-white'>
+            <div className='align-self-center justify-content-center text-center'>
+              <div>
+                <h1>Your story starts here!</h1>
+              </div>
+              <div>
+                <p>Find a cause you believe in and make good things happen</p>
+              </div>
+              {this.getButton()}
+            </div>
+          </div>
+          <h1
+            className='align-self-center justify-content-center text-center'
+            style={{ padding: '150px' }}
+          >
+            No fund found
+          </h1>
+        </div>
       );
     else
       return (

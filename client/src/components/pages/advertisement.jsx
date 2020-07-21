@@ -54,38 +54,61 @@ class Advertisement extends Component {
           <img src={require('../../assets/icons/loading.gif')} alt='' />
         </div>
       );
-    return (
-      <div>
-        <ToastContainer />
-        <div className='subheader-advertisement py-5 text-white'>
-          <div className='align-self-center justify-content-center text-center'>
-            <div>
-              <h1>Sell anything with ease!</h1>
-            </div>
-            <div>
-              <p>Find a cause you believe in and make good things happen</p>
-            </div>
-            {this.getButton()}
-          </div>
-        </div>
-
-        <div className='container my-5'>
-          <div className='row'>
-            {ads.map((ad) => (
-              <div className='my-2' key={ad.id}>
-                <AdCard
-                  _id={ad._id}
-                  title={ad.title}
-                  description={ad.description}
-                  imageUrl={ad.imageUrl}
-                  price={ad.requiredAmount}
-                />
+    else if (this.state.ads === 'No ad was found in the database!')
+      return (
+        <div>
+          <div className='subheader-advertisement py-5 text-white'>
+            <div className='align-self-center justify-content-center text-center'>
+              <div>
+                <h1>Sell anything with ease!</h1>
               </div>
-            ))}
+              <div>
+                <p>Find a cause you believe in and make good things happen</p>
+              </div>
+              {this.getButton()}
+            </div>
+          </div>
+          <h1
+            className='align-self-center justify-content-center text-center'
+            style={{ padding: '150px' }}
+          >
+            No ad was found!
+          </h1>
+        </div>
+      );
+    else
+      return (
+        <div>
+          <ToastContainer />
+          <div className='subheader-advertisement py-5 text-white'>
+            <div className='align-self-center justify-content-center text-center'>
+              <div>
+                <h1>Sell anything with ease!</h1>
+              </div>
+              <div>
+                <p>Find a cause you believe in and make good things happen</p>
+              </div>
+              {this.getButton()}
+            </div>
+          </div>
+
+          <div className='container my-5'>
+            <div className='row'>
+              {ads.map((ad) => (
+                <div className='my-2' key={ad.id}>
+                  <AdCard
+                    _id={ad._id}
+                    title={ad.title}
+                    description={ad.description}
+                    imageUrl={ad.imageUrl}
+                    price={ad.requiredAmount}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
   }
 }
 
