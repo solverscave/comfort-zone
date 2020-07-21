@@ -27,7 +27,6 @@ class DashboardDesc extends Component {
       user = data[0];
     }
     this.setState({ user });
-    console.log(user);
   }
 
   render() {

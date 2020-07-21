@@ -65,6 +65,28 @@ export default class AdsMembers extends Component {
   };
 
   render() {
+    console.log(this.state.ads);
+    if (!this.state.ads.length)
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '100px' }}
+        >
+          <img src={require('../../../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
+    if (this.state.ads === 'No ad was found in the database under this user!')
+      return (
+        <h1
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '100px' }}
+        >
+          You haven't posted any ad! <br />
+          <Link to='/advertisement/form' className='btn btn-cz'>
+            Post an ad
+          </Link>
+        </h1>
+      );
     const { ads: allAds, pageSize, currentPage } = this.state;
 
     const filtered =

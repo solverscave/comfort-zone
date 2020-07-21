@@ -80,6 +80,15 @@ class BillsMembers extends Component {
   }
 
   render() {
+    if (!this.state.bills.length)
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../../../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
     const { bills: allBills, pageSize, currentPage } = this.state;
 
     const filtered =

@@ -11,7 +11,7 @@ import { min } from 'lodash';
 export default class UserForm extends Form {
   state = {
     data: {
-      email: '',
+      membershipNumber: '',
       password: '',
       name: '',
       phone: '',
@@ -22,7 +22,7 @@ export default class UserForm extends Form {
   };
 
   schema = {
-    email: Joi.string().required().email().label('Email'),
+    membershipNumber: Joi.string().required().label('Membership Number'),
     password: Joi.string().required().min(5).label('Password'),
     name: Joi.string().required().label('Name'),
     phone: Joi.string().required().min(11).label('Phone'),
@@ -44,7 +44,7 @@ export default class UserForm extends Form {
 
       //RESET FORM AFTER SUBMISSION
       const data = {
-        email: '',
+        membershipNumber: '',
         password: '',
         name: '',
         phone: '',
@@ -56,9 +56,14 @@ export default class UserForm extends Form {
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
-        errors.email = ex.response.data;
+        errors.membershipNumber = ex.response.data;
+
         this.setState({ errors });
-        toast.error('Oh something went wrong');
+        if (errors.membershipNumber === 'Already used membership number!')
+          toast.error(
+            'Member with this Membership Number is already registered!'
+          );
+        else toast.error('Oh something went wrong');
       }
     }
   };
@@ -97,7 +102,12 @@ export default class UserForm extends Form {
         </button>
         <h1>New User</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderInput('email', 'Email', 'text', 'Enter your email')}
+          {this.renderInput(
+            'membershipNumber',
+            'Membership Number',
+            'text',
+            'Enter user membershipNumber'
+          )}
           {this.renderInput(
             'password',
             'Password',

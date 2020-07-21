@@ -68,8 +68,28 @@ class FundsMembers extends Component {
   };
 
   render() {
-    if (!this.state.funds.length) return <div></div>;
-    if (this.state.funds.length === 47) return <div>No funds found</div>;
+    if (!this.state.funds.length)
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '100px' }}
+        >
+          <img src={require('../../../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
+    if (this.state.funds.length === 47)
+      return (
+        <h1
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '100px' }}
+        >
+          You haven't posted any funds!
+          <br />
+          <Link to='/fundraising/form' className='btn btn-cz'>
+            Post a fund
+          </Link>
+        </h1>
+      );
     else {
       console.log(this.state.funds.length);
       const { funds: allFunds, pageSize, currentPage } = this.state;

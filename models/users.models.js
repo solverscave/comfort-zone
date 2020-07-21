@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
+  membershipNumber: {
     type: String,
     required: true,
   },
@@ -33,7 +33,7 @@ const userSchema = mongoose.Schema({
 function validateUser(user) {
   const schema = {
     name: Joi.string().min(3).required(),
-    email: Joi.string().required(),
+    membershipNumber: Joi.string().required(),
     password: Joi.string().min(8).required(),
     phone: Joi.number().min(11).max(11).required(),
     sector: Joi.string().required(),

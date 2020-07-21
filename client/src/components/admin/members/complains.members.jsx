@@ -34,7 +34,6 @@ export default class ComplainsMembers extends Component {
         _id: null,
       };
       this.setState({ user });
-      console.log(user);
     }
     const { data: complains } = await axios.get(
       apiEndpoint + '/user/' + this.state.user._id
@@ -67,9 +66,24 @@ export default class ComplainsMembers extends Component {
   };
 
   render() {
-    if (!this.state.complains.length) return <div></div>;
+    if (!this.state.complains.length)
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '100px' }}
+        >
+          <img src={require('../../../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
     if (this.state.complains.length === 47)
-      return <div>No complains found</div>;
+      return (
+        <h1
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '100px' }}
+        >
+          You haven't posted any complains yet.
+        </h1>
+      );
     else {
       const { complains: allComplains, pageSize, currentPage } = this.state;
       const filtered =
