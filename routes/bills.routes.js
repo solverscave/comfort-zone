@@ -5,7 +5,7 @@ const router = express.Router();
 
 //ADMIN GETS ALL BILLS
 router.get('/', async (req, res) => {
-  const bills = await Bills.find();
+  const bills = await Bills.find().sort('-dateOfIssue');
   if (!bills.length) res.json('No bill found!');
   else res.json(bills);
 });

@@ -161,7 +161,8 @@ export default class Bills extends Component {
               <thead>
                 <tr>
                   <th scope='col'>#</th>
-                  <th scope='col'>Membership Number</th>
+                  <th scope='col'>Name</th>
+                  <th scope='col'>Mem#</th>
                   <th scope='col'>Bill Date</th>
                   <th scope='col'>Paid/NotPaid</th>
                   <th scope='col'>Update</th>
@@ -190,10 +191,11 @@ export default class Bills extends Component {
                           className='text-dark'
                           to={`/profile/${bill.userId}`}
                         >
-                          {bill.userMembershipNumber}
+                          {bill.userName}
                         </Link>{' '}
                       </span>
                     </td>
+                    <td>{bill.userMembershipNumber}</td>
                     <td>{moment(bill.dateOfIssue).format('MMM YYYY')}</td>
                     <td>{this.handlePaid(bill.isPaid)}</td>
                     <td>{this.renderButton(bill)}</td>

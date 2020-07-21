@@ -61,8 +61,8 @@ export default class Dashboard extends Component {
             component={ComplainsMembers}
           />
           <Route path='/dashboard/fundsmembers' component={FundsMembers} />
-          <Redirect from='/dashboard' to='/dashboard/desc' />
         </Switch>
+        <Redirect from='/dashboard' to='/dashboard/desc' />
       </div>
     );
   }

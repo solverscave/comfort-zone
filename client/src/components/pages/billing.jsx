@@ -54,11 +54,18 @@ class Billing extends Component {
     });
     const { status } = response.data;
     console.log('Response:', response.data);
+    let user = auth.getCurrentUser();
+    console.log(user._id);
+
+    const { data } = await axios.get(apiEndpoint + '/' + user._id);
+    const bill = data[0];
+    console.log(bill);
+
     if (status === 'success') {
-      await axios.put(apiEndpoint + '/5f1180ff2ed042af01b1f945', {
+      await axios.put(apiEndpoint + '/' + bill._id, {
         isPaid: 'true',
       });
-      toast('Success! Check email for details', { type: 'success' });
+      toast('Your bill has been successfully paid!', { type: 'success' });
       window.location.reload();
     } else {
       toast('Something went wrong', { type: 'error' });
@@ -123,8 +130,8 @@ class Billing extends Component {
             <div>
               <PDFViewer>
                 <GenerateBill
-                  userName={thisBill.userName}
-                  userMembershipNumber={thisBill.userMembershipNumber}
+                  userName={this.state.user.name}
+                  userMembershipNumber={this.state.user.membershipNumber}
                   id={thisBill._id}
                   dateOfIssue={thisBill.dateOfIssue}
                   dueDate={thisBill.dueDate}
