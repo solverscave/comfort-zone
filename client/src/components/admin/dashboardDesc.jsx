@@ -39,7 +39,7 @@ class DashboardDesc extends Component {
             We are glad that you are here. Lets manage some people, events and
             other stuff. Are you ready?
           </p>
-          <div className='row my-5'>
+          <div className='row mt-5'>
             <div className='col-3'>
               <Card style={{ width: '17rem' }}>
                 <Link to='/dashboard/bills'>
@@ -120,6 +120,8 @@ class DashboardDesc extends Component {
                 </Card.Body>
               </Card>
             </div>
+          </div>
+          <div className='row mt-3'>
             <div className='col-3'>
               <Card style={{ width: '17rem' }}>
                 <Link to='/dashboard/users'>
