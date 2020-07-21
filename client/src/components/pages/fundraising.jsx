@@ -131,54 +131,61 @@ class Fundraising extends Component {
 
   render() {
     const { funds } = this.state;
+    if (funds.length === 0)
+      return (
+        <div className='align-self-center justify-content-center text-center'>
+          No fund found
+        </div>
+      );
+    else if (funds.length === 47) return <div>No fund found</div>;
+    else
+      return (
+        <div>
+          <ToastContainer />
+          <div className='subheader-fundraising py-5 text-white'>
+            <div className='align-self-center justify-content-center text-center'>
+              <div>
+                <h1>Your story starts here!</h1>
+              </div>
+              <div>
+                <p>Find a cause you believe in and make good things happen</p>
+              </div>
+              {this.getButton()}
+            </div>
+          </div>
 
-    return (
-      <div>
-        <ToastContainer />
-        <div className='subheader-fundraising py-5 text-white'>
-          <div className='align-self-center justify-content-center text-center'>
-            <div>
-              <h1>Your story starts here!</h1>
+          <div className='container my-3'>
+            <div className='row ml-3 mb-3'>
+              <img src={educationalFunds} alt='' />
+              <h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
+                Educational
+              </h3>
             </div>
-            <div>
-              <p>Find a cause you believe in and make good things happen</p>
+            {this.getEducationalFunds(funds)}
+            <div className='row ml-3 mb-3 mt-3'>
+              <img src={medicalFunds} alt='' />
+              <h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
+                Medical
+              </h3>
             </div>
-            {this.getButton()}
+            {this.getMedicalFunds(funds)}
+            <div className='row ml-3 mb-3 mt-3'>
+              <img src={memorialFunds} alt='' />
+              <h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
+                Memorial
+              </h3>
+            </div>
+            {this.getMemorialFunds(funds)}
+            <div className='row ml-3 mb-3 mt-3'>
+              <img src={personalFunds} alt='' />
+              <h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
+                Personal
+              </h3>
+            </div>
+            {this.getPersonalFunds(funds)}
           </div>
         </div>
-
-        <div className='container my-3'>
-          <div className='row ml-3 mb-3'>
-            <img src={educationalFunds} alt='' />
-            <h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
-              Educational
-            </h3>
-          </div>
-          {this.getEducationalFunds(funds)}
-          <div className='row ml-3 mb-3 mt-3'>
-            <img src={medicalFunds} alt='' />
-            <h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
-              Medical
-            </h3>
-          </div>
-          {this.getMedicalFunds(funds)}
-          <div className='row ml-3 mb-3 mt-3'>
-            <img src={memorialFunds} alt='' />
-            <h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
-              Memorial
-            </h3>
-          </div>
-          {this.getMemorialFunds(funds)}
-          <div className='row ml-3 mb-3 mt-3'>
-            <img src={personalFunds} alt='' />
-            <h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>
-              Personal
-            </h3>
-          </div>
-          {this.getPersonalFunds(funds)}
-        </div>
-      </div>
-    );
+      );
   }
 }
 
