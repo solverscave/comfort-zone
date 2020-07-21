@@ -5,7 +5,7 @@ const apiEndpoint = apiUrl + '/users';
 
 export function register(user) {
   return http.post(apiEndpoint, {
-    email: user.email,
+    membershipNumber: user.membershipNumber,
     password: user.password,
     name: user.name,
     phone: user.phone,
