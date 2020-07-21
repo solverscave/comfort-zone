@@ -35,7 +35,7 @@ class AdDetail extends Component {
                 height: '20.7rem',
                 objectFit: 'cover',
               }}
-              src={ad.imageUrl1}
+              src={ad.imageUrl}
               className='rounded mx-auto d-block'
               alt='...'
             />

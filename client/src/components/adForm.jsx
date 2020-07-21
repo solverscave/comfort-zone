@@ -45,6 +45,7 @@ export default class AdForm extends Form {
       .max(1000000)
       .label('Required Amount'),
     raisedAmount: Joi.number(),
+    imgUrl1: Joi.string(),
   };
 
   onFileChange = (e) => {
@@ -82,10 +83,11 @@ export default class AdForm extends Form {
 
     const result = await axios.post(apiEndpoint, {
       ...this.state.data,
-      imageUrl1: `http://localhost:3000${this.state.setUploadedFile.filePath}`,
+      imageUrl: `http://localhost:3000${this.state.setUploadedFile.filePath}`,
       userID: this.state.user._id,
       userImage: this.state.user.imageUrl,
       userName: this.state.user.name,
+      userPhone: this.state.user.phone,
       date: new Date(),
     });
     if (result) {
