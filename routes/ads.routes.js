@@ -10,7 +10,7 @@ const router = express.Router();
 // Finding all ads
 router.get('/', async (req, res) => {
   // Getting all ads
-  const ads = await Ads.find({});
+  const ads = await Ads.find({}).sort('-date');
   // Checking if no user exists
   if (!ads.length) res.send('No ad was found in the database!');
   // If ads exit, sending that ads

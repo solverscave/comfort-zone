@@ -53,7 +53,7 @@ router.get('/isPaid/:isPaid', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const data = await Bills.findByIdAndUpdate(req.params.id, {
     $set: { ...req.body },
-  });
+  }).sort('-date');
   res.json({
     message: data ? 'Successfully updated!' : "Wasn't able to update!",
   });
