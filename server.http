@@ -19,3 +19,6 @@ Content-Type: application/json
       "userId": "1234",
       "isPaid": false
 }
+
+### DELETING A USER
+DELETE http://localhost:5000/api/drivers/5f170ea058bf1504dd932216 http/1.1

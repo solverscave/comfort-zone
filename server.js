@@ -31,6 +31,9 @@ const funds = require('./routes/funds.routes');
 const issues = require('./routes/issues.routes');
 const bills = require('./routes/bills.routes');
 const users = require('./routes/users.routes');
+const drivers = require('./routes/drivers.routes');
+const guards = require('./routes/guards.routes');
+const workers = require('./routes/workers.routes');
 const auth = require('./routes/auth.routes');
 const pay = require('./routes/pay.routes');
 
@@ -49,6 +52,9 @@ server.use('/api/funds', funds);
 server.use('/api/issues', issues);
 server.use('/api/bills', bills);
 server.use('/api/users', users);
+server.use('/api/drivers', drivers);
+server.use('/api/guards', guards);
+server.use('/api/workers', workers);
 server.use('/api/auth', auth);
 server.use('/api/pay', pay);
 

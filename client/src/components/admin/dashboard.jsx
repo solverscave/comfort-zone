@@ -8,6 +8,9 @@ import ComplainDetail from '../complainDetail';
 import Bills from './bills';
 import Ads from './ads';
 import Funds from './funds';
+import Drivers from './drivers';
+import Guards from './guards';
+import Workers from './workers';
 import AdsMembers from './members/ads.members';
 import BillsMembers from './members/bills.members';
 import ComplainsMembers from './members/complains.members';
@@ -38,6 +41,9 @@ export default class Dashboard extends Component {
         </div>
         <Route exact path='/dashboard/desc' component={DashboardDesc} />
         <Route exact path='/dashboard/users' component={Users} />
+        <Route exact path='/dashboard/drivers' component={Drivers} />
+        <Route exact path='/dashboard/guards' component={Guards} />
+        <Route exact path='/dashboard/workers' component={Workers} />
         <Route
           exact
           path='/dashboard/complain/:id'
