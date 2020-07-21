@@ -1,14 +1,14 @@
-import React from 'react';
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-import 'moment-timezone';
+import React from "react";
+import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import "moment-timezone";
 
 // Create styles
 const styles = StyleSheet.create({
   page: {
-    flexDirection: 'row',
-    backgroundColor: '#E4E4E4',
-    padding: '10px',
-    border: '1px solid red',
+    flexDirection: "row",
+    backgroundColor: "#E4E4E4",
+    padding: "10px",
+    border: "1px solid red",
   },
   section: {
     margin: 10,
@@ -39,10 +39,10 @@ const GenerateBill = ({
   dueAmount,
   totalAmount,
 }) => (
-  <Document style={{ backgroundColor: 'blue' }}>
-    <Page size='B5' style={{ backgroundColor: '#f7f7f7' }}>
+  <Document style={{ backgroundColor: "blue" }}>
+    <Page size="B5" style={{ backgroundColor: "#f7f7f7" }}>
       <View style={styles.section}>
-        <Text style={{ fontSize: 20, textAlign: 'center', marginTop: 10 }}>
+        <Text style={{ fontSize: 20, textAlign: "center", marginTop: 10 }}>
           Airport Housing Society Bill
         </Text>
         <Text style={styles.text}>Name: {userName}</Text>
