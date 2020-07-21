@@ -57,6 +57,10 @@ const billSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  userMembershipNumber: {
+    type: String,
+    required: true,
+  },
   isPaid: {
     type: String,
     required: true,

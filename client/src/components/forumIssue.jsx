@@ -109,10 +109,10 @@ export default class ForumIssue extends Component {
         <div className='forum-comments mt-5'>
           <div className='mb-2'>
             <form onSubmit={this.handleSubmit} className='mb-2'>
-              <div class='form-group'>
+              <div classname='form-group'>
                 <label for='exampleFormControlTextarea1'>Write a comment</label>
                 <textarea
-                  class='form-control'
+                  classname='form-control'
                   id='exampleFormControlTextarea1'
                   name='newComment'
                   value={newComment}

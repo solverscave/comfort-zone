@@ -123,7 +123,8 @@ class Billing extends Component {
             <div>
               <PDFViewer>
                 <GenerateBill
-                  userName={this.state.user.name}
+                  userName={thisBill.userName}
+                  userMembershipNumber={thisBill.userMembershipNumber}
                   id={thisBill._id}
                   dateOfIssue={thisBill.dateOfIssue}
                   dueDate={thisBill.dueDate}

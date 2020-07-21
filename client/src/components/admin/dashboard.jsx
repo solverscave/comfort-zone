@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SideBar from './sidebar';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import Users from './../users';
 import DashboardDesc from './dashboardDesc';
 import Complains from '../complains';
@@ -39,28 +39,30 @@ export default class Dashboard extends Component {
         <div className='mb-5'>
           <SideBar user={this.state.user} />
         </div>
-        <Route exact path='/dashboard/desc' component={DashboardDesc} />
-        <Route exact path='/dashboard/users' component={Users} />
-        <Route exact path='/dashboard/drivers' component={Drivers} />
-        <Route exact path='/dashboard/guards' component={Guards} />
-        <Route exact path='/dashboard/workers' component={Workers} />
-        <Route
-          exact
-          path='/dashboard/complain/:id'
-          component={ComplainDetail}
-        />
-        <Route path='/dashboard/bills' component={Bills} />
-        <Route path='/dashboard/complains' component={Complains} />
-        <Route path='/dashboard/ads' component={Ads} />
-        <Route path='/dashboard/funds' component={Funds} />
-        <Route path='/dashboard/billsmembers' component={BillsMembers} />
-        <Route path='/dashboard/adsmembers' component={AdsMembers} />
-        <Route
-          path='/dashboard/complainsmembers'
-          component={ComplainsMembers}
-        />
-        <Route path='/dashboard/fundsmembers' component={FundsMembers} />
-        <Redirect from='/dashboard' to='/dashboard/desc' />
+        <Switch>
+          <Route exact path='/dashboard/desc' component={DashboardDesc} />
+          <Route exact path='/dashboard/users' component={Users} />
+          <Route exact path='/dashboard/drivers' component={Drivers} />
+          <Route exact path='/dashboard/guards' component={Guards} />
+          <Route exact path='/dashboard/workers' component={Workers} />
+          <Route
+            exact
+            path='/dashboard/complain/:id'
+            component={ComplainDetail}
+          />
+          <Route path='/dashboard/bills' component={Bills} />
+          <Route path='/dashboard/complains' component={Complains} />
+          <Route path='/dashboard/ads' component={Ads} />
+          <Route path='/dashboard/funds' component={Funds} />
+          <Route path='/dashboard/billsmembers' component={BillsMembers} />
+          <Route path='/dashboard/adsmembers' component={AdsMembers} />
+          <Route
+            path='/dashboard/complainsmembers'
+            component={ComplainsMembers}
+          />
+          <Route path='/dashboard/fundsmembers' component={FundsMembers} />
+          <Redirect from='/dashboard' to='/dashboard/desc' />
+        </Switch>
       </div>
     );
   }

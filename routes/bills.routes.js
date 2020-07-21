@@ -36,6 +36,7 @@ router.post('/', async (req, res) => {
     userId: req.body.userId,
     userImage: req.body.userImage,
     userName: req.body.userName,
+    userMembershipNumber: req.body.userMembershipNumber,
     isPaid: req.body.isPaid,
   });
   try {

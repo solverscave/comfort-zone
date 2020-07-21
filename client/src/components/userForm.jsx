@@ -85,6 +85,7 @@ export default class UserForm extends Form {
       userId: newUser._id,
       userImage: newUser.imageUrl,
       userName: newUser.name,
+      userMembershipNumber: newUser.membershipNumber,
       isPaid: 'false',
     });
     console.log(newBill);
