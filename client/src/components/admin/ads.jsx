@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { paginate } from '../../utils/paginate';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
-import Pagination from '../common/pagination';
-import ListGroup from '../common/listGroup';
-import { apiUrl } from '../../config.json';
-const apiEndpoint = apiUrl + '/ads';
+import React, { Component } from "react";
+import { paginate } from "../../utils/paginate";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import Pagination from "../common/pagination";
+import ListGroup from "../common/listGroup";
+import { apiUrl } from "../../config.json";
+const apiEndpoint = apiUrl + "/ads";
 
 class Ads extends Component {
   state = {
     ads: [],
     condition: [
-      { _id: 0, name: 'All' },
-      { _id: 1, name: 'new' },
-      { _id: 2, name: 'used' },
+      { _id: 0, name: "All" },
+      { _id: 1, name: "new" },
+      { _id: 2, name: "used" },
     ],
     pageSize: 5,
     currentPage: 1,
@@ -34,10 +34,10 @@ class Ads extends Component {
     this.setState({ ads });
 
     try {
-      await axios.delete(apiEndpoint + '/' + ad._id);
-      toast.success('The complain was successfully deleted!');
+      await axios.delete(apiEndpoint + "/" + ad._id);
+      toast.success("The complain was successfully deleted!");
     } catch (ex) {
-      toast.error('Failed to delete the complain!');
+      toast.error("Failed to delete the complain!");
       this.setState({ ads: originalAds });
     }
   };
@@ -55,17 +55,17 @@ class Ads extends Component {
     if (!this.state.ads.length)
       return (
         <div
-          className='align-self-center justify-content-center text-center'
-          style={{ padding: '150px' }}
+          className="align-self-center justify-content-center text-center"
+          style={{ padding: "150px" }}
         >
-          <img src={require('../../assets/icons/loading.gif')} alt='' />
+          <img src={require("../../assets/icons/loading.gif")} alt="" />
         </div>
       );
-    if (this.state.ads === 'No ad was found in the database!')
+    if (this.state.ads === "No ad was found in the database!")
       return (
         <h1
-          className='align-self-center justify-content-center text-center'
-          style={{ padding: '150px' }}
+          className="align-self-center justify-content-center text-center"
+          style={{ padding: "150px" }}
         >
           No ad was found!
         </h1>
@@ -84,9 +84,9 @@ class Ads extends Component {
 
       return (
         <React.Fragment>
-          <div className='row'>
+          <div className="row">
             <ToastContainer />
-            <div className='col-3'>
+            <div className="col-3">
               {
                 <ListGroup
                   items={this.state.condition}
@@ -95,21 +95,21 @@ class Ads extends Component {
                 />
               }
             </div>
-            <div className='col-9'>
-              <table className='table'>
-                <thead>
+            <div className="col-9">
+              <table className="table">
+                <thead style={{ color: "#fff", backgroundColor: " #159570" }}>
                   <tr>
-                    <th scope='col'>#</th>
-                    <th scope='col'>Ads</th>
-                    <th scope='col'>Posted by</th>
-                    <th scope='col'>Condition</th>
-                    <th scope='col'>Delete</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Ads</th>
+                    <th scope="col">Posted by</th>
+                    <th scope="col">Condition</th>
+                    <th scope="col">Delete</th>
                   </tr>
                 </thead>
                 <tbody>
                   {ads.map((ad) => (
                     <tr key={ad._id}>
-                      <th scope='row'>{ads.indexOf(ad)}</th>
+                      <th scope="row">{ads.indexOf(ad)}</th>
                       <td>
                         <Link to={`ad/${ad._id}`}>{ad.title}</Link>
                       </td>
@@ -117,7 +117,7 @@ class Ads extends Component {
                       <td>{ad.condition}</td>
                       <td>
                         <button
-                          className='btn btn-danger'
+                          className="btn btn-danger"
                           onClick={() => this.handleDelete(ad)}
                         >
                           Delete
