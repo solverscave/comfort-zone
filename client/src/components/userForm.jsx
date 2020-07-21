@@ -58,7 +58,11 @@ export default class UserForm extends Form {
         const errors = { ...this.state.errors };
         errors.membershipNumber = ex.response.data;
         this.setState({ errors });
-        toast.error('Oh something went wrong');
+        if (errors.membershipNumber === 'User already registered') {
+          toast.error(
+            'Sorry, user with this membership Id has already registered!'
+          );
+        } else toast.error('Oh something went wrong');
       }
     }
   };
