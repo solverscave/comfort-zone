@@ -119,6 +119,15 @@ export default class Forum extends Form {
   };
 
   render() {
+    if (!this.state.issues.length)
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
     const { issues: allIssues, pageSize, currentPage } = this.state;
 
     const filtered =

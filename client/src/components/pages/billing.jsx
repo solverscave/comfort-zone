@@ -91,6 +91,15 @@ class Billing extends Component {
   }
 
   render() {
+    if (!this.state.bill.length)
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
     const { bill } = this.state;
     const thisBill = bill[0];
     console.log(thisBill);

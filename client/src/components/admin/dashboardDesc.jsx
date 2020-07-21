@@ -42,7 +42,7 @@ class DashboardDesc extends Component {
           <div className='row my-5'>
             <div className='col-3'>
               <Card style={{ width: '17rem' }}>
-                <Link to='/dashboard/complains'>
+                <Link to='/dashboard/bills'>
                   <Card.Img variant='top' src={billImg} />
                 </Link>
 
