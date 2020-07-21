@@ -45,7 +45,15 @@ class Advertisement extends Component {
 
   render() {
     const { ads } = this.state;
-
+    if (!this.state.ads.length)
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
     return (
       <div>
         <ToastContainer />

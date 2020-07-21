@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { paginate } from '../../../utils/paginate';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import apiUrl from '../../../config.json';
 import 'react-toastify/dist/ReactToastify.css';
-import auth from '../../../services/authService';
 import { ToastContainer, toast } from 'react-toastify';
-import Pagination from './../../common/pagination';
-import ListGroup from './../../common/listGroup';
+import Pagination from '../../common/pagination';
+import ListGroup from '../../common/listGroup';
+import auth from '../../../services/authService';
+import { apiUrl } from '../../../config.json';
 const apiEndpoint = apiUrl + '/ads';
 
-class AdsMembers extends Component {
+export default class AdsMembers extends Component {
   state = {
     ads: [],
     condition: [
@@ -36,7 +36,7 @@ class AdsMembers extends Component {
       console.log(user);
     }
 
-    const { data: ads } = await axios.get(apiEndpoint + '/' + user._id);
+    const { data: ads } = await axios.get(apiEndpoint + '/user/' + user._id);
     this.setState({ ads });
   }
 
@@ -48,7 +48,7 @@ class AdsMembers extends Component {
 
     try {
       await axios.delete(apiEndpoint + '/' + ad._id);
-      toast.success('The complain was successfully deleted!');
+      toast.success('You ad is successfully deleted!');
     } catch (ex) {
       toast.error('Failed to delete the complain!');
       this.setState({ ads: originalAds });
@@ -95,6 +95,7 @@ class AdsMembers extends Component {
                 <tr>
                   <th scope='col'>#</th>
                   <th scope='col'>Ads</th>
+                  <th scope='col'>Posted by</th>
                   <th scope='col'>Condition</th>
                   <th scope='col'>Delete</th>
                 </tr>
@@ -104,8 +105,9 @@ class AdsMembers extends Component {
                   <tr key={ad._id}>
                     <th scope='row'>{ads.indexOf(ad)}</th>
                     <td>
-                      <Link to={`ad/${ad._id}`}>{ad.title}</Link>
+                      <Link to={`/advertisement/${ad._id}`}>{ad.title}</Link>
                     </td>
+                    <td>{ad.userName}</td>
                     <td>{ad.condition}</td>
                     <td>
                       <button
@@ -131,5 +133,3 @@ class AdsMembers extends Component {
     );
   }
 }
-
-export default AdsMembers;

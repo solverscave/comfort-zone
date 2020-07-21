@@ -295,7 +295,14 @@ class DashboardDesc extends Component {
         </div>
       );
     } else {
-      return <div>Loading Dashboard...</div>;
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
     }
   }
 }

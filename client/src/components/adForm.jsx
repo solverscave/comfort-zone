@@ -84,7 +84,7 @@ export default class AdForm extends Form {
     const result = await axios.post(apiEndpoint, {
       ...this.state.data,
       imageUrl: `http://localhost:3000${this.state.setUploadedFile.filePath}`,
-      userID: this.state.user._id,
+      userId: this.state.user._id,
       userImage: this.state.user.imageUrl,
       userName: this.state.user.name,
       userPhone: this.state.user.phone,

@@ -22,6 +22,17 @@ router.get('/:id', async (req, res) => {
   res.json(await Ads.find({ _id: req.params.id }));
 });
 
+// Finding ad by id
+router.get('/user/:userId', async (req, res) => {
+  // Getting all ads
+  const ads = await Ads.find({ userId: req.params.userId });
+  // Checking if no ad exists
+  if (!ads.length)
+    res.status(400).send('No ad was found in the database under this user!');
+  // If ads exit, sending that ads
+  else res.json(ads);
+});
+
 // Finding ad by category
 router.get('/category/:category', async (req, res) => {
   // Declaring a category variable

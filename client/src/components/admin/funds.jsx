@@ -42,6 +42,15 @@ class Funds extends Component {
     toast.error('The fund is successfully rejected!');
   };
   render() {
+    if (!this.state.funds.length)
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
     if (this.state.funds === 'Alas! Complain with the given id was not found!')
       return <h1>No funds found for the approval!</h1>;
     return (

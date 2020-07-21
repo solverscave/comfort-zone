@@ -6,7 +6,9 @@ const apiEndpoint = apiUrl + '/ads/';
 
 class AdDetail extends Component {
   state = {
-    ad: {},
+    ad: {
+      title: '',
+    },
   };
 
   async componentDidMount() {
@@ -20,6 +22,15 @@ class AdDetail extends Component {
 
   render() {
     const { ad } = this.state;
+    if (ad.title === '')
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
     return (
       <div className='container my-5'>
         <Link className='btn btn-cz mb-3' to='/advertisement'>

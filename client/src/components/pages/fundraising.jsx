@@ -131,13 +131,24 @@ class Fundraising extends Component {
 
   render() {
     const { funds } = this.state;
-    if (funds.length === 0)
+    if (!funds.length)
       return (
-        <div className='align-self-center justify-content-center text-center'>
-          No fund found
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../../assets/icons/loading.gif')} alt='' />
         </div>
       );
-    else if (funds.length === 47) return <div>No fund found</div>;
+    else if (funds.length === 47)
+      return (
+        <h1
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          No fund found
+        </h1>
+      );
     else
       return (
         <div>

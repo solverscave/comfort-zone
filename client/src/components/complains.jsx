@@ -23,6 +23,7 @@ export default class Complains extends Component {
 
   async componentDidMount() {
     const { data: complains } = await axios.get(apiEndpoint);
+    console.log(complains);
     this.setState({ complains });
   }
 
@@ -53,6 +54,18 @@ export default class Complains extends Component {
   };
 
   render() {
+    if (!this.state.complains.length)
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
+    if (this.state.complains === 'No complain was found')
+      return <h1>No complain was found!</h1>;
+
     const { complains: allComplains, pageSize, currentPage } = this.state;
 
     const filtered =

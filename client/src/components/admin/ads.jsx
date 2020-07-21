@@ -51,6 +51,15 @@ class Ads extends Component {
   };
 
   render() {
+    if (!this.state.ads.length)
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
     const { ads: allAds, pageSize, currentPage } = this.state;
 
     const filtered =
