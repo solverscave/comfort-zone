@@ -9,10 +9,17 @@ import { apiUrl } from '../config.json';
 const apiEndpoint = apiUrl + '/funds/';
 
 class FundDetail extends Component {
-  state = {
-    fund: {},
-    user: {},
-  };
+  constructor(props) {
+    super(props);
+    this.getParams = this.getParams.bind(this);
+    this.state = {
+      fund: { title: '' },
+      user: {},
+      params: this.getParams,
+    };
+    const params = '1';
+    console.log(params);
+  }
 
   async componentDidMount() {
     const { data: funds } = await axios.get(
@@ -29,6 +36,14 @@ class FundDetail extends Component {
     console.log(user);
     this.setState({ user });
   }
+
+  // getParams = (props) => {
+  //   return this.props.match.params.id;
+  // };
+  getParams(props) {
+    return this.props.match.params.id;
+  }
+
   renderAmount = (fund) => {
     if (fund.requiredAmount === 1000)
       return (
@@ -37,7 +52,13 @@ class FundDetail extends Component {
         </h3>
       );
   };
-  async handleToken(token) {
+  handleToken = async (token) => {
+    const { data: funds } = await axios.get(
+      apiEndpoint + '/' + this.props.match.params.id
+    );
+
+    const fund = funds[0];
+
     const response = await axios.post(apiUrl + '/pay/', {
       token,
       product: {
@@ -51,17 +72,27 @@ class FundDetail extends Component {
 
     if (status === 'success') {
       toast('Success! Check email for details', { type: 'success' });
-      await axios.put(apiUrl + '/funds/5e5975b0e3137d315c64418a', {
-        raisedAmount: 154,
-        donations: 1,
+      await axios.put(apiEndpoint + '/' + this.props.match.params.id, {
+        raisedAmount: fund.raisedAmount + 154,
+        donations: fund.donations + 1,
       });
       window.location.reload();
     } else {
       toast('Something went wrong', { type: 'error' });
     }
-  }
+  };
   render() {
     const { fund } = this.state;
+
+    if (fund.title === '')
+      return (
+        <div
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
+        >
+          <img src={require('../assets/icons/loading.gif')} alt='' />
+        </div>
+      );
     return (
       <div className='container my-5'>
         <Link className='btn btn-cz mb-3' to='/fundraising'>
