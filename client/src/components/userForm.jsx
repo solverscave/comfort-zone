@@ -42,17 +42,17 @@ export default class UserForm extends Form {
         this.addNewBill(newUser);
       }
 
-      //RESET FORM AFTER SUBMISSION
-      const data = {
-        membershipNumber: '',
-        password: '',
-        name: '',
-        phone: '',
-        address: '',
-        role: '',
-      };
+      // //RESET FORM AFTER SUBMISSION
+      // const data = {
+      //   membershipNumber: '',
+      //   password: '',
+      //   name: '',
+      //   phone: '',
+      //   address: '',
+      //   role: '',
+      // };
 
-      this.setState({ data });
+      // this.setState({ data });
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -70,9 +70,25 @@ export default class UserForm extends Form {
 
   addNewBill = async (newUser) => {
     console.log(newUser._id);
+
+    var todayDate = new Date();
+    var thisYear = todayDate.getFullYear();
+    var thisMonth = todayDate.getMonth();
+    var thisDate = new Date(thisYear, thisMonth, 1);
+    // var day = d.getDate();
+
+    var nextMonth = todayDate.getMonth() + 1;
+    var nextDate = new Date(thisYear, nextMonth, 1);
+
+    console.log(nextDate);
+    console.log('This Date: ' + thisDate);
+    console.log('This Month: ' + thisMonth);
+    console.log('Next Date: ' + nextDate);
+    console.log('Next Month: ' + nextMonth);
+
     const newBill = await axios.post(apiUrl + '/bills/', {
-      dateOfIssue: new Date(),
-      dueDate: new Date(),
+      dateOfIssue: thisDate,
+      dueDate: nextDate,
       arrearAmount: 0,
       waterCharges: 0,
       conservancyCharges: 300,
@@ -81,7 +97,7 @@ export default class UserForm extends Form {
       graveyardCharges: 0,
       electricityCharges: 1120,
       totalAmount: 1890,
-      dueAmount: 3000,
+      dueAmount: 0,
       userId: newUser._id,
       userImage: newUser.imageUrl,
       userName: newUser.name,

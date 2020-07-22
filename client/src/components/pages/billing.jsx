@@ -31,9 +31,111 @@ class Billing extends Component {
       console.log(user);
     }
 
+    //GETTING LAST BILL FOR THE USER
     const { data } = await axios.get(apiEndpoint + '/' + this.state.user._id);
     const bill = data;
     this.setState({ bill });
+
+    //GETBILL HAS ALL THE DETAILS ABOUT THE BILL
+    const getBill = bill[0];
+
+    //GETTING THINGS FROM THE LAST BILL
+    const date = getBill.dueDate;
+    const isPaid = getBill.isPaid;
+    const totalAmount = getBill.totalAmount;
+    const dueAmount = getBill.dueAmount;
+
+    const dueDay = moment(date).format('DD');
+    const dueMonth = moment(date).format('MM');
+    const dueYear = moment(date).format('YYYY');
+    const dueDate = new Date(dueYear, dueMonth - 1, dueDay);
+    const dueDayJs = dueDate.getDate();
+    const dueMonthJs = dueDate.getMonth();
+
+    const todayDate = new Date();
+    const todayDay = todayDate.getDate();
+    const todayMonth = todayDate.getMonth();
+    const todayYear = todayDate.getFullYear();
+
+    // console.log('isPaid: ' + isPaid);
+    // console.log('totalAmount: ' + totalAmount);
+    // console.log('dueAmount: ' + dueAmount);
+    console.log('dueDay: ' + dueDayJs);
+    console.log('todayDay: ' + todayDay);
+    // console.log('todayMonth: ' + todayMonth);
+    // console.log('todayYear: ' + todayYear);
+    // console.log('Due Month JS: ' + dueMonthJs);
+
+    if (
+      isPaid === 'false' &&
+      dueDayJs < todayDay &&
+      dueMonthJs === todayMonth
+    ) {
+      toast.success('New bill has came!');
+      var todayDate2 = new Date();
+      var year = todayDate2.getFullYear();
+      var month = todayDate2.getMonth();
+      // var day = d.getDate();
+      var nextMonth = todayDate2.getMonth() + 1;
+      var thisDate = new Date(year, month, 1);
+      var nextDate = new Date(year, nextMonth, 1);
+      console.log(nextDate);
+      console.log(nextMonth);
+
+      const newBill = await axios.post(apiUrl + '/bills/', {
+        dateOfIssue: thisDate,
+        dueDate: nextDate,
+        arrearAmount: 0,
+        waterCharges: 0,
+        conservancyCharges: 300,
+        streetLightCharges: 300,
+        roadMaintenanceCharges: 300,
+        graveyardCharges: 0,
+        electricityCharges: 1120,
+        totalAmount: 1890 + totalAmount,
+        dueAmount: dueAmount + totalAmount,
+        userId: user._id,
+        userImage: user.imageUrl,
+        userName: user.name,
+        userMembershipNumber: user.membershipNumber,
+        isPaid: 'false',
+      });
+      window.location.reload();
+      console.log(newBill);
+    }
+    if (isPaid === 'true' && dueDayJs < todayDay && dueMonthJs === todayMonth) {
+      toast.success('New bill has came!');
+      var todayDate2 = new Date();
+      var year = todayDate2.getFullYear();
+      var month = todayDate2.getMonth();
+      // var day = d.getDate();
+      var nextMonth = todayDate2.getMonth() + 1;
+      var thisDate = new Date(year, month, 1);
+      var nextDate = new Date(year, nextMonth, 1);
+      console.log(nextDate);
+      console.log(nextMonth);
+
+      const newBill = await axios.post(apiUrl + '/bills/', {
+        dateOfIssue: thisDate,
+        dueDate: nextDate,
+        arrearAmount: 0,
+        waterCharges: 0,
+        conservancyCharges: 300,
+        streetLightCharges: 300,
+        roadMaintenanceCharges: 300,
+        graveyardCharges: 0,
+        electricityCharges: 1120,
+        totalAmount: 1890,
+        dueAmount: 0,
+        userId: user._id,
+        userImage: user.imageUrl,
+        userName: user.name,
+        userMembershipNumber: user.membershipNumber,
+        isPaid: 'false',
+      });
+      window.location.reload();
+      console.log(newBill);
+    }
 
     document.getElementsByTagName('iframe')[0].style.width = '100%';
     document.getElementsByTagName('iframe')[0].style.height = '720px';
@@ -56,7 +158,7 @@ class Billing extends Component {
       token,
       product: {
         name: bill._id,
-        price: 7.24,
+        price: bill.totalAmount,
         description: bill.userMembershipNumber,
       },
     });
@@ -75,11 +177,12 @@ class Billing extends Component {
   }
 
   getButton() {
+    const billAmount = (this.state.bill.totalAmount / 164) * 100;
     return (
       <StripeCheckout
         stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
         token={this.handleToken}
-        amount={(1120 / 154) * 100}
+        amount={billAmount}
         name='Comfort Zone'
         image='http://localhost:3000/uploads/payment-logo.jpg'
         label='Pay Bill Online'
@@ -88,14 +191,9 @@ class Billing extends Component {
   }
   getButton1() {
     return (
-      <StripeCheckout
-        stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
-        token={this.handleToken}
-        amount={1120 * 100}
-        name='Comfort Zone'
-        image='http://localhost:3000/uploads/payment-logo.jpg'
-        label='Your bill is paid!'
-      />
+      <button className='btn btn-cz' disabled>
+        Your bill is paid!
+      </button>
     );
   }
 
@@ -136,16 +234,18 @@ class Billing extends Component {
                   userMembershipNumber={this.state.user.membershipNumber}
                   userAddress={this.state.user.address}
                   id={thisBill._id}
-                  dateOfIssue={moment(bill.dateOfIssue).format('MMM YYYY')}
-                  dueDate={moment(bill.dueDate).format('MMM YYYY')}
-                  arrearAmount={thisBill.arrearAmount}
+                  dateOfIssue={moment(thisBill.dateOfIssue).format(
+                    'DD MMM YYYY'
+                  )}
+                  dueDate={moment(thisBill.dueDate).format('DD MMM YYYY')}
+                  arrearAmount={thisBill.dueAmount}
                   waterCharges={thisBill.waterCharges}
                   conservancyCharges={thisBill.conservancyCharges}
                   streetLightCharges={thisBill.streetLightCharges}
                   roadMaintenanceCharges={thisBill.roadMaintenanceCharges}
                   graveyardCharges={thisBill.graveyardCharges}
                   electricityCharges={thisBill.electricityCharges}
-                  totalAmount={thisBill.electricityCharges}
+                  totalAmount={thisBill.totalAmount}
                   dueAmount={thisBill.dueAmount}
                 />
               </PDFViewer>

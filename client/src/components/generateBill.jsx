@@ -211,7 +211,7 @@ const GenerateBill = ({
                 fontWeight: 700,
               }}
             >
-              Membership Number: {userMembershipNumber}{' '}
+              Membership#: {userMembershipNumber}{' '}
             </Text>
           </View>
 
