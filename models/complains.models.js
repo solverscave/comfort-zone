@@ -37,6 +37,14 @@ const complainSchema = mongoose.Schema({
     type: Date,
     required: false,
   },
+  complainHandlerName: {
+    type: String,
+    required: false,
+  },
+  complainHandlerPhone: {
+    type: String,
+    required: false,
+  },
 });
 
 // Validating schema
@@ -49,6 +57,8 @@ function validateComplain(complain) {
     userName: Joi.string(),
     userImage: Joi.string(),
     date: Joi.date(),
+    complainHandlerName: Joi.string(),
+    complainHandlerPhone: Joi.string(),
   };
   return Joi.validate(complain, schema);
 }
