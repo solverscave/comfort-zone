@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Page,
   Text,
@@ -6,17 +6,17 @@ import {
   Document,
   StyleSheet,
   Image,
-} from "@react-pdf/renderer";
-import "moment-timezone";
-import bill_Image from "../assets/img/subheaders/billing.jpg";
+} from '@react-pdf/renderer';
+import 'moment-timezone';
+import bill_Image from './../assets/img/subheaders/billing.jpg';
 
 // Create styles
 const styles = StyleSheet.create({
   page: {
-    flexDirection: "row",
-    backgroundColor: "#E4E4E4",
-    padding: "10px",
-    border: "1px solid red",
+    flexDirection: 'row',
+    backgroundColor: '#E4E4E4',
+    padding: '10px',
+    border: '1px solid red',
   },
   section: {
     margin: 10,
@@ -47,11 +47,11 @@ const GenerateBill = ({
   dueAmount,
   totalAmount,
 }) => (
-  <Document style={{ backgroundColor: "blue" }}>
-    <Page size="B5" style={{ backgroundColor: "#f7f7f7" }} src={bill_Image}>
+  <Document style={{ backgroundColor: 'blue' }}>
+    <Page size='B5' style={{ backgroundColor: '#f7f7f7' }}>
       <View style={styles.section}>
-        <Image />
-        <Text style={{ fontSize: 20, textAlign: "center", marginTop: 10 }}>
+        <Image src={bill_Image} />
+        <Text style={{ fontSize: 20, textAlign: 'center', marginTop: 10 }}>
           Airport Housing Society Bill
         </Text>
         <Text style={styles.text}>Name: {userName}</Text>

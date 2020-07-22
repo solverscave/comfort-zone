@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { paginate } from "../../../utils/paginate";
-import axios from "axios";
-import auth from "./../../../services/authService";
-import moment from "moment";
-import { apiUrl } from "../../../config.json";
-import { Link } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
-import Pagination from "./../../common/pagination";
-import ListGroup from "./../../common/listGroup";
-const apiEndpoint = apiUrl + "/bills";
+import React, { Component } from 'react';
+import { paginate } from '../../../utils/paginate';
+import axios from 'axios';
+import auth from './../../../services/authService';
+import moment from 'moment';
+import { apiUrl } from '../../../config.json';
+import { Link } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import Pagination from './../../common/pagination';
+import ListGroup from './../../common/listGroup';
+const apiEndpoint = apiUrl + '/bills';
 
 class BillsMembers extends Component {
   constructor(props) {
@@ -20,9 +20,9 @@ class BillsMembers extends Component {
     user: {},
     bills: [],
     isPaid: [
-      { _id: 0, name: "All", isPaid: null },
-      { _id: 1, name: "Paid", isPaid: "true" },
-      { _id: 2, name: "Not Paid", isPaid: "false" },
+      { _id: 0, name: 'All', isPaid: null },
+      { _id: 1, name: 'Paid', isPaid: 'true' },
+      { _id: 2, name: 'Not Paid', isPaid: 'false' },
     ],
     pageSize: 5,
     currentPage: 1,
@@ -31,7 +31,7 @@ class BillsMembers extends Component {
   async componentDidMount() {
     let user = auth.getCurrentUser();
     if (user) {
-      const { data } = await axios.get(apiUrl + "/users/" + user._id);
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
       user = data[0];
       this.setState({ user });
     } else if (!user) {
@@ -42,7 +42,7 @@ class BillsMembers extends Component {
       console.log(user);
     }
     const { data: bills } = await axios.get(
-      apiEndpoint + "/" + this.state.user._id
+      apiEndpoint + '/' + this.state.user._id
     );
     this.setState({ bills });
   }
@@ -72,10 +72,10 @@ class BillsMembers extends Component {
   };
 
   handlePaid(paid) {
-    if (paid === "true") {
-      return "Paid";
+    if (paid === 'true') {
+      return 'Paid';
     } else {
-      return "Not Paid";
+      return 'Not Paid';
     }
   }
 
@@ -83,10 +83,10 @@ class BillsMembers extends Component {
     if (!this.state.bills.length)
       return (
         <div
-          className="align-self-center justify-content-center text-center"
-          style={{ padding: "150px" }}
+          className='align-self-center justify-content-center text-center'
+          style={{ padding: '150px' }}
         >
-          <img src={require("../../../assets/icons/loading.gif")} alt="" />
+          <img src={require('../../../assets/icons/loading.gif')} alt='' />
         </div>
       );
     const { bills: allBills, pageSize, currentPage } = this.state;
@@ -100,9 +100,9 @@ class BillsMembers extends Component {
 
     return (
       <React.Fragment>
-        <div className="row">
+        <div className='row'>
           <ToastContainer />
-          <div className="col-3">
+          <div className='col-3'>
             {
               <ListGroup
                 items={this.state.isPaid}
@@ -111,24 +111,24 @@ class BillsMembers extends Component {
               />
             }
           </div>
-          <div className="col-9">
-            <table className="table">
-              <thead style={{ color: "#fff", backgroundColor: " #159570" }}>
+          <div className='col-9'>
+            <table className='table'>
+              <thead style={{ color: '#fff', backgroundColor: ' #159570' }}>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Bills</th>
-                  <th scope="col">Paid/NotPaid</th>
-                  <th scope="col">Total Amount</th>
+                  <th scope='col'>#</th>
+                  <th scope='col'>Bills</th>
+                  <th scope='col'>Paid/NotPaid</th>
+                  <th scope='col'>Total Amount</th>
                   {/* <th scope='col'>Delete</th> */}
                 </tr>
               </thead>
               <tbody>
                 {bills.map((bill) => (
                   <tr key={bill._id}>
-                    <th scope="row">{bills.indexOf(bill)}</th>
+                    <th scope='row'>{bills.indexOf(bill)}</th>
                     <td>
                       {/* <Link to={`ad/${bill._id}`}> */}
-                      {moment(bill.dateOfIssue).format("MMM YYYY")}
+                      {moment(bill.dateOfIssue).format('MMM YYYY')}
                       {/* </Link> */}
                     </td>
                     <td>{this.handlePaid(bill.isPaid)}</td>
