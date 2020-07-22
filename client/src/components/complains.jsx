@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Pagination from './common/pagination';
-import Popup from 'reactjs-popup';
 import Joi from 'joi-browser';
+import Popup from 'reactjs-popup';
 import Form from './common/form';
 import ListGroup from './common/listGroup';
 import { apiUrl } from '../config.json';
 const apiEndpoint = apiUrl + '/complains';
 
-export default class Complains extends Component {
+export default class Complains extends Form {
   state = {
     complains: [],
     status: [
@@ -22,21 +22,6 @@ export default class Complains extends Component {
     ],
     pageSize: 5,
     currentPage: 1,
-    data: {
-      complainHandlerName: '',
-      complainHandlerPhone: '',
-    },
-  };
-
-  schema = {
-    complainHandlerName: Joi.string()
-      .required()
-      .min(10)
-      .label('complainHandlerName'),
-    complainHandlerPhone: Joi.string()
-      .required()
-      .min(20)
-      .label('complainHandlerPhone'),
   };
 
   async componentDidMount() {
@@ -123,7 +108,7 @@ export default class Complains extends Component {
                   <th scope='col'>Complains</th>
                   <th scope='col'>Posted by</th>
                   <th scope='col'>Status</th>
-                  <th scope='col'>Assign</th>
+                  <th scope='col'>Assigned to</th>
                   <th scope='col'>Delete</th>
                 </tr>
               </thead>
@@ -154,39 +139,7 @@ export default class Complains extends Component {
                       </span>
                     </td>
                     <td>{complain.status}</td>
-                    <td>
-                      <Popup
-                        trigger={
-                          <button className='btn btn-cz'> Assign</button>
-                        }
-                        position='top center'
-                      >
-                        <h1>Apple</h1>
-                        {/* <form onSubmit={this.handleSubmit}>
-                          {this.renderInput(
-                            'title',
-                            'Title',
-                            'text',
-                            'Enter the title of the issue'
-                          )}
-                          {this.renderTextArea(
-                            'description',
-                            'Description',
-                            'text',
-                            'Enter the description of the issue'
-                          )}
-                          {this.renderSelect(
-                            'category',
-                            'Category',
-                            this.state.category
-                          )}
-                          <div className='row'>
-                            <div className='col-3'></div>
-                          </div>
-                          {this.renderButton('Submit')}
-                        </form> */}
-                      </Popup>
-                    </td>
+                    <td>{complain.complainHandlerName}</td>
                     <td>
                       <button
                         className='btn btn-danger'

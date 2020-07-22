@@ -1,16 +1,16 @@
 @font-face {
-  font-family: "HelveticaNowDisplay";
-  src: url("./assets/fonts/HelveticaNowDisplay-Bold.woff2") format("woff2"),
-    url("./assets/fonts/HelveticaNowDisplay-Bold.woff") format("woff");
+  font-family: 'HelveticaNowDisplay';
+  src: url('./assets/fonts/HelveticaNowDisplay-Bold.woff2') format('woff2'),
+    url('./assets/fonts/HelveticaNowDisplay-Bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "HelveticaNowDisplay";
-  src: url("./assets/fonts/HelveticaNowDisplay-Regular.woff2") format("woff2"),
-    url("./assets/fonts/HelveticaNowDisplay-Regular.woff") format("woff");
+  font-family: 'HelveticaNowDisplay';
+  src: url('./assets/fonts/HelveticaNowDisplay-Regular.woff2') format('woff2'),
+    url('./assets/fonts/HelveticaNowDisplay-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -27,7 +27,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -175,8 +175,8 @@ button.StripeCheckout {
 button.StripeCheckout > span {
   background-color: #159570 !important;
   background-image: none !important;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif !important;
   position: relative !important;
   display: block !important;
@@ -212,19 +212,19 @@ button.StripeCheckout:hover > span {
 }
 
 .subheader-billing {
-  background-image: url("./assets/img/subheaders/billing.jpg");
+  background-image: url('./assets/img/subheaders/billing.jpg');
 }
 .subheader-forum {
-  background-image: url("./assets/img/subheaders/forum.jpg");
+  background-image: url('./assets/img/subheaders/forum.jpg');
 }
 .subheader-fundraising {
-  background-image: url("./assets/img/subheaders/fundraising.jpg");
+  background-image: url('./assets/img/subheaders/fundraising.jpg');
 }
 .subheader-complaint {
-  background-image: url("./assets/img/subheaders/complaint.jpg");
+  background-image: url('./assets/img/subheaders/complaint.jpg');
 }
 .subheader-advertisement {
-  background-image: url("./assets/img/subheaders/ad.jpg");
+  background-image: url('./assets/img/subheaders/ad.jpg');
 }
 .btn:focus {
   border-color: #159570 !important;
@@ -247,8 +247,8 @@ button.StripeCheckout:hover > span {
   border: 1px solid rgb(187, 187, 187) !important;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 50px 30px !important;
   padding: 20px !important;
-  top: 80.5px !important;
-  left: 740.5px !important;
+  /* top: 80.5px !important;
+  left: 740.5px !important; */
   width: 315px !important;
 }
 

@@ -48,6 +48,8 @@ class Complaint extends Form {
       userName: this.state.user.name,
       userImage: this.state.user.imageUrl,
       date: new Date(),
+      complainHandlerName: 'No one assigned yet.',
+      complainHandlerPhone: 'Not given.',
     });
     if (result) {
       toast.success('Your complain has been successfully received to us!');

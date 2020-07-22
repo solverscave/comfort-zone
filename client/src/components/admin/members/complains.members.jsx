@@ -6,6 +6,7 @@ import { apiUrl } from '../../../config.json';
 import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import Popup from 'reactjs-popup';
 import Pagination from './../../common/pagination';
 import ListGroup from './../../common/listGroup';
 const apiEndpoint = apiUrl + '/complains';
@@ -113,6 +114,7 @@ export default class ComplainsMembers extends Component {
                   <tr>
                     <th scope='col'>#</th>
                     <th scope='col'>Title</th>
+                    <th scope='col'>Assigned to:</th>
                     <th scope='col'>Status</th>
                     <th scope='col'>Delete</th>
                   </tr>
@@ -125,6 +127,28 @@ export default class ComplainsMembers extends Component {
                         {/* <Link to={`ad/${bill._id}`}> */}
                         {complain.title}
                         {/* </Link> */}
+                      </td>
+                      <td>
+                        <Popup
+                          trigger={
+                            <span
+                              style={{ color: '#159570', padding: '0px' }}
+                              className='btn'
+                            >
+                              {' '}
+                              {complain.complainHandlerName}
+                            </span>
+                          }
+                          position='right center'
+                        >
+                          <span style={{ fontWeight: 'bold' }}>Name:</span>{' '}
+                          {complain.complainHandlerName}
+                          <br />
+                          <span style={{ fontWeight: 'bold' }}>
+                            Phone:
+                          </span>{' '}
+                          {complain.complainHandlerPhone}
+                        </Popup>
                       </td>
                       <td>{complain.status}</td>
                       <td>
