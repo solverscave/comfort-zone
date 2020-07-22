@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
 const GenerateBill = ({
   userName,
   userMembershipNumber,
+  userAddress,
   id,
   dateOfIssue,
   dueDate,
@@ -198,7 +199,7 @@ const GenerateBill = ({
                 width: '60%',
               }}
             >
-              Month : {dateOfIssue}
+              Address : {userAddress}
             </Text>
             <Text
               style={{

@@ -45,22 +45,23 @@ class Billing extends Component {
     this.setState({ bill });
   }
   async handleToken(token) {
-    const response = await axios.post(apiUrl + '/pay/', {
-      token,
-      product: {
-        name: 'Bill',
-        price: 7.24,
-        description: 'Bill payment',
-      },
-    });
-    const { status } = response.data;
-    console.log('Response:', response.data);
     let user = auth.getCurrentUser();
     console.log(user._id);
 
     const { data } = await axios.get(apiEndpoint + '/' + user._id);
     const bill = data[0];
     console.log(bill);
+
+    const response = await axios.post(apiUrl + '/pay/', {
+      token,
+      product: {
+        name: bill._id,
+        price: 7.24,
+        description: bill.userMembershipNumber,
+      },
+    });
+    const { status } = response.data;
+    console.log('Response:', response.data);
 
     if (status === 'success') {
       await axios.put(apiEndpoint + '/' + bill._id, {
@@ -133,6 +134,7 @@ class Billing extends Component {
                 <GenerateBill
                   userName={this.state.user.name}
                   userMembershipNumber={this.state.user.membershipNumber}
+                  userAddress={this.state.user.address}
                   id={thisBill._id}
                   dateOfIssue={moment(bill.dateOfIssue).format('MMM YYYY')}
                   dueDate={moment(bill.dueDate).format('MMM YYYY')}

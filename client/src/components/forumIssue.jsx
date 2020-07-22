@@ -109,12 +109,14 @@ export default class ForumIssue extends Component {
         <div className='forum-comments mt-5'>
           <div className='mb-2'>
             <form onSubmit={this.handleSubmit} className='mb-2'>
-              <div classname='form-group'>
+              <div className='form-group'>
                 <label for='exampleFormControlTextarea1'>Write a comment</label>
+                <br />
                 <textarea
-                  classname='form-control'
+                  className='form-control'
                   id='exampleFormControlTextarea1'
                   name='newComment'
+                  placeholder='Enteryour comment here'
                   value={newComment}
                   rows='3'
                   onChange={this.handleChange}
