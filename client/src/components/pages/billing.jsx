@@ -7,6 +7,7 @@ import { PDFViewer } from '@react-pdf/renderer';
 import StripeCheckout from 'react-stripe-checkout';
 import { ToastContainer, toast } from 'react-toastify';
 import { apiUrl } from '../../config.json';
+import moment from 'moment';
 const apiEndpoint = apiUrl + '/bills';
 
 class Billing extends Component {
@@ -109,7 +110,7 @@ class Billing extends Component {
       );
     const { bill } = this.state;
     const thisBill = bill[0];
-    console.log(thisBill);
+
     if (bill.length === 0) return null;
     else if (thisBill.isPaid === 'false')
       return (
@@ -133,8 +134,8 @@ class Billing extends Component {
                   userName={this.state.user.name}
                   userMembershipNumber={this.state.user.membershipNumber}
                   id={thisBill._id}
-                  dateOfIssue={thisBill.dateOfIssue}
-                  dueDate={thisBill.dueDate}
+                  dateOfIssue={moment(bill.dateOfIssue).format('MMM YYYY')}
+                  dueDate={moment(bill.dueDate).format('MMM YYYY')}
                   arrearAmount={thisBill.arrearAmount}
                   waterCharges={thisBill.waterCharges}
                   conservancyCharges={thisBill.conservancyCharges}
