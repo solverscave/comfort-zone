@@ -5,14 +5,16 @@ const router = express.Router();
 
 //ADMIN GETS ALL BILLS
 router.get('/', async (req, res) => {
-  const bills = await Bills.find().sort('-dateOfIssue');
+  const bills = await Bills.find()
+    .sort('userMembershipNumber')
+    .sort('-dateOfIssue');
   if (!bills.length) res.json('No bill found!');
   else res.json(bills);
 });
 
 //MEMBER GETS HIS BILL
 router.get('/:id', async (req, res) =>
-  res.json(await Bills.find({ userId: req.params.id }))
+  res.json(await Bills.find({ userId: req.params.id }).sort('-dueDate'))
 );
 
 router.get('/id/:id', async (req, res) =>

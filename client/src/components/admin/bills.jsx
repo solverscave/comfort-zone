@@ -26,7 +26,7 @@ export default class Bills extends Component {
       { _id: 1, name: 'Paid', isPaid: 'true' },
       { _id: 2, name: 'Not Paid', isPaid: 'false' },
     ],
-    pageSize: 10,
+    pageSize: 5,
     currentPage: 1,
   };
 
@@ -58,10 +58,7 @@ export default class Bills extends Component {
       );
     } else {
       return (
-        <button
-          className='btn btn-success'
-          onClick={() => this.handleUpdate(bill)}
-        >
+        <button className='btn btn-cz' onClick={() => this.handleUpdate(bill)}>
           Update
         </button>
       );

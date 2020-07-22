@@ -21,7 +21,11 @@ export default class ComplainDetail extends Form {
 
   schema = {
     complainHandlerName: Joi.string().required().min(5).label('Name'),
-    complainHandlerPhone: Joi.string().required().min(11).label('Phone'),
+    complainHandlerPhone: Joi.string()
+      .required()
+      .min(11)
+      .max(11)
+      .label('Phone'),
   };
 
   async componentDidMount() {
