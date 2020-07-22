@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import { paginate } from '../../../utils/paginate';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
-import Pagination from '../../common/pagination';
-import ListGroup from '../../common/listGroup';
-import auth from '../../../services/authService';
-import { apiUrl } from '../../../config.json';
-const apiEndpoint = apiUrl + '/ads';
+import React, { Component } from "react";
+import { paginate } from "../../../utils/paginate";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import Pagination from "../../common/pagination";
+import ListGroup from "../../common/listGroup";
+import auth from "../../../services/authService";
+import { apiUrl } from "../../../config.json";
+const apiEndpoint = apiUrl + "/ads";
 
 export default class AdsMembers extends Component {
   state = {
     ads: [],
     condition: [
-      { _id: 0, name: 'All' },
-      { _id: 1, name: 'new' },
-      { _id: 2, name: 'used' },
+      { _id: 0, name: "All" },
+      { _id: 1, name: "new" },
+      { _id: 2, name: "used" },
     ],
     pageSize: 5,
     currentPage: 1,
@@ -25,7 +25,7 @@ export default class AdsMembers extends Component {
   async componentDidMount() {
     let user = auth.getCurrentUser();
     if (user) {
-      const { data } = await axios.get(apiUrl + '/users/' + user._id);
+      const { data } = await axios.get(apiUrl + "/users/" + user._id);
       user = data[0];
       this.setState({ user });
     } else if (!user) {
@@ -36,7 +36,7 @@ export default class AdsMembers extends Component {
       console.log(user);
     }
 
-    const { data: ads } = await axios.get(apiEndpoint + '/user/' + user._id);
+    const { data: ads } = await axios.get(apiEndpoint + "/user/" + user._id);
     this.setState({ ads });
   }
 
@@ -47,10 +47,10 @@ export default class AdsMembers extends Component {
     this.setState({ ads });
 
     try {
-      await axios.delete(apiEndpoint + '/' + ad._id);
-      toast.success('You ad is successfully deleted!');
+      await axios.delete(apiEndpoint + "/" + ad._id);
+      toast.success("You ad is successfully deleted!");
     } catch (ex) {
-      toast.error('Failed to delete the complain!');
+      toast.error("Failed to delete the complain!");
       this.setState({ ads: originalAds });
     }
   };
@@ -69,20 +69,20 @@ export default class AdsMembers extends Component {
     if (!this.state.ads.length)
       return (
         <div
-          className='align-self-center justify-content-center text-center'
-          style={{ padding: '100px' }}
+          className="align-self-center justify-content-center text-center"
+          style={{ padding: "100px" }}
         >
-          <img src={require('../../../assets/icons/loading.gif')} alt='' />
+          <img src={require("../../../assets/icons/loading.gif")} alt="" />
         </div>
       );
-    if (this.state.ads === 'No ad was found in the database under this user!')
+    if (this.state.ads === "No ad was found in the database under this user!")
       return (
         <h1
-          className='align-self-center justify-content-center text-center'
-          style={{ padding: '100px' }}
+          className="align-self-center justify-content-center text-center"
+          style={{ padding: "100px" }}
         >
           You haven't posted any ad! <br />
-          <Link to='/advertisement/form' className='btn btn-cz'>
+          <Link to="/advertisement/form" className="btn btn-cz">
             Post an ad
           </Link>
         </h1>
@@ -100,9 +100,9 @@ export default class AdsMembers extends Component {
 
     return (
       <React.Fragment>
-        <div className='row'>
+        <div className="row">
           <ToastContainer />
-          <div className='col-3'>
+          <div className="col-3">
             {
               <ListGroup
                 items={this.state.condition}
@@ -111,21 +111,21 @@ export default class AdsMembers extends Component {
               />
             }
           </div>
-          <div className='col-9'>
-            <table className='table'>
-              <thead>
+          <div className="col-9">
+            <table className="table">
+              <thead style={{ color: "#fff", backgroundColor: " #159570" }}>
                 <tr>
-                  <th scope='col'>#</th>
-                  <th scope='col'>Ads</th>
-                  <th scope='col'>Posted by</th>
-                  <th scope='col'>Condition</th>
-                  <th scope='col'>Delete</th>
+                  <th scope="col">#</th>
+                  <th scope="col">Ads</th>
+                  <th scope="col">Posted by</th>
+                  <th scope="col">Condition</th>
+                  <th scope="col">Delete</th>
                 </tr>
               </thead>
               <tbody>
                 {ads.map((ad) => (
                   <tr key={ad._id}>
-                    <th scope='row'>{ads.indexOf(ad)}</th>
+                    <th scope="row">{ads.indexOf(ad)}</th>
                     <td>
                       <Link to={`/advertisement/${ad._id}`}>{ad.title}</Link>
                     </td>
@@ -133,7 +133,7 @@ export default class AdsMembers extends Component {
                     <td>{ad.condition}</td>
                     <td>
                       <button
-                        className='btn btn-danger'
+                        className="btn btn-danger"
                         onClick={() => this.handleDelete(ad)}
                       >
                         Delete

@@ -48,9 +48,9 @@ const GenerateBill = ({
   totalAmount,
 }) => (
   <Document style={{ backgroundColor: "blue" }}>
-    <Page size="B5" style={{ backgroundColor: "#f7f7f7" }}>
+    <Page size="B5" style={{ backgroundColor: "#f7f7f7" }} src={bill_Image}>
       <View style={styles.section}>
-        <Image src={bill_Image} />
+        <Image />
         <Text style={{ fontSize: 20, textAlign: "center", marginTop: 10 }}>
           Airport Housing Society Bill
         </Text>

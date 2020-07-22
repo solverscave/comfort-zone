@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
-import { paginate } from '../../utils/paginate';
-import axios from 'axios';
-import auth from '../../services/authService';
-import moment from 'moment';
-import { apiUrl } from '../../config.json';
-import { Link } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
-import Pagination from '../common/pagination';
-import ListGroup from '../common/listGroup';
-import { update } from 'lodash';
-import _ from 'lodash';
-const apiEndpoint = apiUrl + '/bills';
+import React, { Component } from "react";
+import { paginate } from "../../utils/paginate";
+import axios from "axios";
+import auth from "../../services/authService";
+import moment from "moment";
+import { apiUrl } from "../../config.json";
+import { Link } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import Pagination from "../common/pagination";
+import ListGroup from "../common/listGroup";
+import { update } from "lodash";
+import _ from "lodash";
+const apiEndpoint = apiUrl + "/bills";
 
 export default class Bills extends Component {
   constructor(props) {
@@ -22,9 +22,9 @@ export default class Bills extends Component {
     user: {},
     bills: [],
     isPaid: [
-      { _id: 0, name: 'All', isPaid: 'null' },
-      { _id: 1, name: 'Paid', isPaid: 'true' },
-      { _id: 2, name: 'Not Paid', isPaid: 'false' },
+      { _id: 0, name: "All", isPaid: "null" },
+      { _id: 1, name: "Paid", isPaid: "true" },
+      { _id: 2, name: "Not Paid", isPaid: "false" },
     ],
     pageSize: 10,
     currentPage: 1,
@@ -33,7 +33,7 @@ export default class Bills extends Component {
   async componentDidMount() {
     let user = auth.getCurrentUser();
     if (user) {
-      const { data } = await axios.get(apiUrl + '/users/' + user._id);
+      const { data } = await axios.get(apiUrl + "/users/" + user._id);
       user = data[0];
       this.setState({ user });
     } else if (!user) {
@@ -47,10 +47,10 @@ export default class Bills extends Component {
     this.setState({ bills });
   }
   renderButton(bill) {
-    if (bill.isPaid === 'true') {
+    if (bill.isPaid === "true") {
       return (
         <button
-          className='btn btn-danger'
+          className="btn btn-danger"
           onClick={() => this.handleUpdate(bill)}
         >
           Update
@@ -59,7 +59,7 @@ export default class Bills extends Component {
     } else {
       return (
         <button
-          className='btn btn-success'
+          className="btn btn-success"
           onClick={() => this.handleUpdate(bill)}
         >
           Update
@@ -72,22 +72,22 @@ export default class Bills extends Component {
     const bills = [...this.state.bills];
     const index = bills.indexOf(bill);
 
-    if (bill.isPaid === 'false') {
-      bill.isPaid = 'true';
+    if (bill.isPaid === "false") {
+      bill.isPaid = "true";
 
-      await axios.put(apiEndpoint + '/' + bill._id, {
-        isPaid: 'true',
+      await axios.put(apiEndpoint + "/" + bill._id, {
+        isPaid: "true",
       });
 
-      toast.success('This bills is successfully paid now');
+      toast.success("This bills is successfully paid now");
     } else {
-      bill.isPaid = 'false';
+      bill.isPaid = "false";
 
-      await axios.put(apiEndpoint + '/' + bill._id, {
-        isPaid: 'false',
+      await axios.put(apiEndpoint + "/" + bill._id, {
+        isPaid: "false",
       });
 
-      toast.error('This bill is now unpaid');
+      toast.error("This bill is now unpaid");
     }
     // const { data } = await axios.get(apiEndpoint + '/id/' + bill._id);
 
@@ -108,10 +108,10 @@ export default class Bills extends Component {
   };
 
   handlePaid(paid) {
-    if (paid === 'true') {
-      return 'Paid';
+    if (paid === "true") {
+      return "Paid";
     } else {
-      return 'Not Paid';
+      return "Not Paid";
     }
   }
 
@@ -119,17 +119,17 @@ export default class Bills extends Component {
     if (!this.state.bills.length)
       return (
         <div
-          className='align-self-center justify-content-center text-center'
-          style={{ padding: '100px' }}
+          className="align-self-center justify-content-center text-center"
+          style={{ padding: "100px" }}
         >
-          <img src={require('../../assets/icons/loading.gif')} alt='' />
+          <img src={require("../../assets/icons/loading.gif")} alt="" />
         </div>
       );
-    if (this.state.bills === 'No bill found!')
+    if (this.state.bills === "No bill found!")
       return (
         <h1
-          className='align-self-center justify-content-center text-center'
-          style={{ padding: '100px' }}
+          className="align-self-center justify-content-center text-center"
+          style={{ padding: "100px" }}
         >
           No bill was found!
         </h1>
@@ -145,9 +145,9 @@ export default class Bills extends Component {
 
     return (
       <React.Fragment>
-        <div className='row'>
+        <div className="row">
           <ToastContainer />
-          <div className='col-3'>
+          <div className="col-3">
             {
               <ListGroup
                 items={this.state.isPaid}
@@ -156,47 +156,47 @@ export default class Bills extends Component {
               />
             }
           </div>
-          <div className='col-9'>
-            <table className='table'>
-              <thead>
+          <div className="col-9">
+            <table className="table">
+              <thead style={{ color: "#fff", backgroundColor: " #159570" }}>
                 <tr>
-                  <th scope='col'>#</th>
-                  <th scope='col'>Name</th>
-                  <th scope='col'>Mem#</th>
-                  <th scope='col'>Bill Date</th>
-                  <th scope='col'>Paid/NotPaid</th>
-                  <th scope='col'>Update</th>
+                  <th scope="col">#</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Mem#</th>
+                  <th scope="col">Bill Date</th>
+                  <th scope="col">Paid/NotPaid</th>
+                  <th scope="col">Update</th>
                   {/* <th scope='col'>Delete</th> */}
                 </tr>
               </thead>
               <tbody>
                 {bills.map((bill) => (
                   <tr key={bill._id}>
-                    <th scope='row'>{bills.indexOf(bill)}</th>
+                    <th scope="row">{bills.indexOf(bill)}</th>
                     <td>
                       <Link
-                        className='text-dark'
+                        className="text-dark"
                         to={`/profile/${bill.userId}`}
                       >
                         <img
                           src={bill.userImage}
-                          width='25'
-                          height='25'
-                          className='avatar d-inline-block align-top'
-                          alt='React Bootstrap logo'
+                          width="25"
+                          height="25"
+                          className="avatar d-inline-block align-top"
+                          alt="React Bootstrap logo"
                         />
                       </Link>
-                      <span style={{ paddingLeft: '10px' }}>
+                      <span style={{ paddingLeft: "10px" }}>
                         <Link
-                          className='text-dark'
+                          className="text-dark"
                           to={`/profile/${bill.userId}`}
                         >
                           {bill.userName}
-                        </Link>{' '}
+                        </Link>{" "}
                       </span>
                     </td>
                     <td>{bill.userMembershipNumber}</td>
-                    <td>{moment(bill.dateOfIssue).format('MMM YYYY')}</td>
+                    <td>{moment(bill.dateOfIssue).format("MMM YYYY")}</td>
                     <td>{this.handlePaid(bill.isPaid)}</td>
                     <td>{this.renderButton(bill)}</td>
                   </tr>
