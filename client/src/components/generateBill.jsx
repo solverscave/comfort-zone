@@ -1,6 +1,14 @@
 import React from "react";
-import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
+import {
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Image,
+} from "@react-pdf/renderer";
 import "moment-timezone";
+import bill_Image from "../assets/img/subheaders/billing.jpg";
 
 // Create styles
 const styles = StyleSheet.create({
@@ -42,6 +50,7 @@ const GenerateBill = ({
   <Document style={{ backgroundColor: "blue" }}>
     <Page size="B5" style={{ backgroundColor: "#f7f7f7" }}>
       <View style={styles.section}>
+        <Image src={bill_Image} />
         <Text style={{ fontSize: 20, textAlign: "center", marginTop: 10 }}>
           Airport Housing Society Bill
         </Text>
