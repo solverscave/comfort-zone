@@ -19,6 +19,7 @@ class FundForm extends Form {
       category: '',
       requiredAmount: null,
       raisedAmount: 0,
+      donations: 0,
     },
     errors: {},
     filename: 'Choose File',
@@ -33,8 +34,9 @@ class FundForm extends Form {
     description: Joi.string().required().min(50).label('Description'),
     status: Joi.string().label('Status'),
     category: Joi.string().required().label('category'),
-    requiredAmount: Joi.number().required(),
+    requiredAmount: Joi.number().min(100).max(50000).required(),
     raisedAmount: Joi.number().required(),
+    donations: Joi.required(),
   };
   async componentDidMount() {
     const category = getCategory();

@@ -5,7 +5,7 @@ import auth from './../../../services/authService';
 import { apiUrl } from '../../../config.json';
 import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import Pagination from './../../common/pagination';
 import ListGroup from './../../common/listGroup';
 const apiEndpoint = apiUrl + '/funds';
@@ -43,20 +43,20 @@ class FundsMembers extends Component {
     this.setState({ funds });
   }
 
-  // handleDelete = async (ad) => {
-  //   const originalAds = this.state.ads;
-  //   const ads = this.state.ads.filter((a) => a._id !== ad._id);
+  handleDelete = async (fund) => {
+    const originalFunds = this.state.funds;
+    const funds = this.state.funds.filter((f) => f._id !== fund._id);
 
-  //   this.setState({ ads });
+    this.setState({ funds });
 
-  //   try {
-  //     await axios.delete(apiEndpoint + '/' + ad._id);
-  //     toast.success('The complain was successfully deleted!');
-  //   } catch (ex) {
-  //     toast.error('Failed to delete the complain!');
-  //     this.setState({ ads: originalAds });
-  //   }
-  // };
+    try {
+      await axios.delete(apiEndpoint + '/' + fund._id);
+      toast.success('The fund is successfully deleted!');
+    } catch (ex) {
+      toast.error('Failed to delete this fund!');
+      this.setState({ funds: originalFunds });
+    }
+  };
 
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
@@ -136,15 +136,15 @@ class FundsMembers extends Component {
                         {/* </Link> */}
                       </td>
                       <td>{fund.raisedAmount}</td>
-                      <td>{}</td>
-                      {/* <td>
-                      <button
-                        className='btn btn-danger'
-                        onClick={() => this.handleDelete(bill)}
-                      >
-                        Delete
-                      </button>
-                    </td> */}
+                      {/* <td>{}</td> */}
+                      <td>
+                        <button
+                          className='btn btn-danger'
+                          onClick={() => this.handleDelete(fund)}
+                        >
+                          Delete
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

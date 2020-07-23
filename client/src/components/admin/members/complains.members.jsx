@@ -136,7 +136,8 @@ export default class ComplainsMembers extends Component {
                               className='btn'
                             >
                               {' '}
-                              {complain.complainHandlerName}
+                              {complain.complainHandlerName}{' '}
+                              <i className='fa fa-hand-pointer-o'></i>
                             </span>
                           }
                           position='right center'

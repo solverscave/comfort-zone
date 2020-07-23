@@ -92,7 +92,7 @@ export default class Complains extends Form {
       <React.Fragment>
         <div className='row'>
           <ToastContainer />
-          <div className='col-3'>
+          <div className='col-2'>
             {
               <ListGroup
                 items={this.state.status}
@@ -101,7 +101,7 @@ export default class Complains extends Form {
               />
             }
           </div>
-          <div className='col-9'>
+          <div className='col-10'>
             <table className='table'>
               <thead style={{ color: '#fff', backgroundColor: ' #159570' }}>
                 <tr>
