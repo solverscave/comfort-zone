@@ -48,7 +48,7 @@ const FundDetailProgress = (props) => (
             transform='translate(910 194)'
           />
         </g>
-        <text className='d' transform='translate(1090 186)'>
+        <text className='d' transform='translate(1070 186)'>
           <tspan x={-160.947} y={0}>
             {'Rs. ' +
               props.raisedAmount +

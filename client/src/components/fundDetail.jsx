@@ -52,7 +52,7 @@ class FundDetail extends Component {
         </h3>
       );
   };
-  handleToken = async (token) => {
+  handleToken100 = async (token) => {
     const { data: funds } = await axios.get(
       apiEndpoint + '/' + this.props.match.params.id
     );
@@ -63,7 +63,7 @@ class FundDetail extends Component {
       token,
       product: {
         name: 'Fund',
-        price: 1,
+        price: 100,
         description: 'Fund Payment',
       },
     });
@@ -73,7 +73,65 @@ class FundDetail extends Component {
     if (status === 'success') {
       toast('Success! Check email for details', { type: 'success' });
       await axios.put(apiEndpoint + '/' + this.props.match.params.id, {
-        raisedAmount: fund.raisedAmount + 154,
+        raisedAmount: fund.raisedAmount + 100,
+        donations: fund.donations + 1,
+      });
+      window.location.reload();
+    } else {
+      toast('Something went wrong', { type: 'error' });
+    }
+  };
+  handleToken500 = async (token) => {
+    const { data: funds } = await axios.get(
+      apiEndpoint + '/' + this.props.match.params.id
+    );
+
+    const fund = funds[0];
+
+    const response = await axios.post(apiUrl + '/pay/', {
+      token,
+      product: {
+        name: 'Fund',
+        price: 500,
+        description: 'Fund Payment',
+      },
+    });
+    const { status } = response.data;
+    console.log('Response:', response.data);
+
+    if (status === 'success') {
+      toast('Success! Check email for details', { type: 'success' });
+      await axios.put(apiEndpoint + '/' + this.props.match.params.id, {
+        raisedAmount: fund.raisedAmount + 500,
+        donations: fund.donations + 1,
+      });
+      window.location.reload();
+    } else {
+      toast('Something went wrong', { type: 'error' });
+    }
+  };
+  handleToken1000 = async (token) => {
+    const { data: funds } = await axios.get(
+      apiEndpoint + '/' + this.props.match.params.id
+    );
+
+    const fund = funds[0];
+
+    const response = await axios.post(apiUrl + '/pay/', {
+      token,
+      product: {
+        name: 'Fund',
+        price: 1000,
+        description: 'Fund Payment',
+      },
+    });
+    const { status } = response.data;
+    console.log('Response:', response.data);
+
+    if (status === 'success') {
+      toast('Successfully paid for this fund!', { type: 'success' });
+      await axios.put(apiEndpoint + '/' + this.props.match.params.id, {
+        raisedAmount: fund.raisedAmount + 1000,
         donations: fund.donations + 1,
       });
       window.location.reload();
@@ -156,15 +214,37 @@ class FundDetail extends Component {
               />
             </div>
             <div className='row align-self-center justify-content-center text-center'>
+              <div className='mr-2'>
+                <StripeCheckout
+                  style={{ float: 'left' }}
+                  stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
+                  token={this.handleToken100}
+                  amount={10000}
+                  name='Comfort Zone'
+                  image='http://localhost:3000/uploads/payment-logo.jpg'
+                  label='Rs. 100'
+                />
+              </div>
+              <div className='mr-2'>
+                <StripeCheckout
+                  style={{ float: 'left' }}
+                  stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
+                  token={this.handleToken500}
+                  amount={50000}
+                  name='Comfort Zone'
+                  image='http://localhost:3000/uploads/payment-logo.jpg'
+                  label='Rs. 500'
+                />
+              </div>
               <div>
                 <StripeCheckout
                   style={{ float: 'left' }}
                   stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
-                  token={this.handleToken}
-                  amount={1 * 100}
+                  token={this.handleToken1000}
+                  amount={100000}
                   name='Comfort Zone'
                   image='http://localhost:3000/uploads/payment-logo.jpg'
-                  label='Donate'
+                  label='Rs. 1000'
                 />
               </div>
             </div>
