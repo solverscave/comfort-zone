@@ -69,6 +69,9 @@ router.post('/', auth, async (req, res) => {
   // }
   // // If no error was found
   // else {
+  if (req.body.imageUrl === 'http://localhost:3000undefined') {
+    req.body.imageUrl = 'http://localhost:3000/uploads/default-ad.jpg';
+  }
   const ad = await Ads.create({ ...req.body });
   res.send(ad);
   // }

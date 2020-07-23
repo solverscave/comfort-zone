@@ -45,6 +45,10 @@ router.get('/user/:userId', async (req, res) => {
 });
 
 router.post('/', auth, async (req, res) => {
+  if (req.body.imageUrl === 'http://localhost:3000undefined') {
+    req.body.imageUrl = 'http://localhost:3000/uploads/default-fund.jpg';
+  }
+
   const fund = await Funds.create({ ...req.body, isApproved: 'Pending' });
   res.send(fund);
 });

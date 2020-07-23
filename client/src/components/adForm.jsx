@@ -91,7 +91,7 @@ export default class AdForm extends Form {
       date: new Date(),
     });
     if (result) {
-      toast.success('Your ad has been successfully received to us!');
+      toast.success('Your ad has been successfully added!');
     } else {
       toast.error('Oh something went wrong');
     }
