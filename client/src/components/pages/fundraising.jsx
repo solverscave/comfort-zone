@@ -88,6 +88,7 @@ class Fundraising extends Component {
       </div>
     );
   }
+
   getMemorialFunds(funds) {
     const memorialFunds = funds.filter((f) => f.category === 'Memorial');
 

@@ -41,6 +41,7 @@ class Funds extends Component {
     this.setState({ funds });
     toast.error('The fund is successfully rejected!');
   };
+
   render() {
     if (!this.state.funds.length)
       return (
