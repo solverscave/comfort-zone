@@ -128,6 +128,58 @@ export default class Forum extends Form {
           <img src={require('../../assets/icons/loading.gif')} alt='' />
         </div>
       );
+    if (this.state.issues === 'No issue found!')
+      return (
+        <div>
+          <div className='subheader-forum py-5 text-white'>
+            <div className='align-self-center justify-content-center text-center'>
+              <div>
+                <h1>Chat Forum</h1>
+              </div>
+              <div>
+                <p>
+                  Use this forum to add issues, find issues and comment on
+                  issues.
+                </p>
+              </div>
+              <Popup
+                trigger={<button className='btn btn-cz'> Add an issue</button>}
+                position='right center'
+              >
+                <form onSubmit={this.handleSubmit}>
+                  {this.renderInput(
+                    'title',
+                    'Title',
+                    'text',
+                    'Enter the title of the issue'
+                  )}
+                  {this.renderTextArea(
+                    'description',
+                    'Description',
+                    'text',
+                    'Enter the description of the issue'
+                  )}
+                  {this.renderSelect(
+                    'category',
+                    'Category',
+                    this.state.category
+                  )}
+                  <div className='row'>
+                    <div className='col-3'></div>
+                  </div>
+                  {this.renderButton('Submit')}
+                </form>
+              </Popup>
+            </div>
+          </div>
+          <h1
+            className='align-self-center justify-content-center text-center'
+            style={{ padding: '150px' }}
+          >
+            No issues found!
+          </h1>
+        </div>
+      );
     const { issues: allIssues, pageSize, currentPage } = this.state;
 
     const filtered =

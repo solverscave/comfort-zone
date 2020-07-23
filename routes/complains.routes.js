@@ -12,7 +12,7 @@ const router = express.Router();
 // Getting
 router.get('/', async (req, res) => {
   // Getting all complains
-  const complains = await Complains.find({});
+  const complains = await Complains.find({}).sort('-date');
   // Checking if complains exits
   if (!complains.length) res.send('No complain was found');
   // Sending the complains to the client

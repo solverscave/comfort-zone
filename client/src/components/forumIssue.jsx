@@ -55,7 +55,6 @@ export default class ForumIssue extends Component {
       apiEndpoint + '/comment/' + this.props.match.params.id,
       comment
     );
-
     const newComment = '';
     this.setState({ newComment });
   };
@@ -116,7 +115,7 @@ export default class ForumIssue extends Component {
                   className='form-control'
                   id='exampleFormControlTextarea1'
                   name='newComment'
-                  placeholder='Enteryour comment here'
+                  placeholder='Enter your comment here'
                   value={newComment}
                   rows='3'
                   onChange={this.handleChange}

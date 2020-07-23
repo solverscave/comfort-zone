@@ -82,7 +82,7 @@ class Workers extends Component {
         <React.Fragment>
           <div className='row'>
             <ToastContainer />
-            <div className='col-9'>
+            <div className='col-12'>
               <table className='table'>
                 <thead style={{ color: '#fff', backgroundColor: ' #159570' }}>
                   <tr>

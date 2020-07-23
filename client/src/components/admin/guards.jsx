@@ -82,13 +82,15 @@ class Guards extends Component {
         <React.Fragment>
           <div className='row'>
             <ToastContainer />
-            <div className='col-9'>
+            <div className='col-12'>
               <table className='table'>
                 <thead style={{ color: '#fff', backgroundColor: ' #159570' }}>
                   <tr>
                     <th scope='col'>#</th>
                     <th scope='col'>Names</th>
                     <th scope='col'>Mobile Numbers</th>
+                    <th scope='col'>Sector</th>
+                    <th scope='col'>Block</th>
                     <th scope='col'>Delete</th>
                   </tr>
                 </thead>
@@ -99,6 +101,8 @@ class Guards extends Component {
 
                       <td>{driver.name}</td>
                       <td>{driver.mobile}</td>
+                      <td>{driver.sector}</td>
+                      <td>{driver.block}</td>
                       <td>
                         <button
                           className='btn btn-danger'

@@ -250,6 +250,11 @@ button.StripeCheckout:hover > span {
   /* top: 80.5px !important;
   left: 740.5px !important; */
   width: 315px !important;
+  z-index: 200000 !important;
+}
+
+nav.navbar.navbar-expand-lg.navbar-cz.sticky-top {
+  z-index: 2 !important;
 }
 
 .card-img-top {
