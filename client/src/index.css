@@ -298,3 +298,29 @@ nav.navbar.navbar-expand-lg.navbar-cz.sticky-top {
 .dropdown-nav-item:hover {
   color: #159570 !important;
 }
+
+.menu-item {
+  padding: 0 40px;
+  margin: 5px 10px;
+  user-select: none;
+  cursor: pointer;
+  border: 50px;
+}
+.menu-item-wrapper.active {
+  border: 1px blue solid;
+}
+.menu-item.active {
+  border: 2px #159570 solid;
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  color: white;
+  background: #159570;
+}
+
+.scroll-menu-arrow {
+  padding: 20px;
+  cursor: pointer;
+}

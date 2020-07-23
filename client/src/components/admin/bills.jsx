@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { paginate } from '../../utils/paginate';
 import axios from 'axios';
+import ScrollMenu from 'react-horizontal-scrolling-menu';
 import auth from '../../services/authService';
 import moment from 'moment';
 import { apiUrl } from '../../config.json';
@@ -13,12 +14,49 @@ import { update } from 'lodash';
 import _ from 'lodash';
 const apiEndpoint = apiUrl + '/bills';
 
+const list = [
+  { name: 'January' },
+  { name: 'Febuary' },
+  { name: 'March' },
+  { name: 'April' },
+  { name: 'May' },
+  { name: 'June' },
+  { name: 'July' },
+  { name: 'August' },
+  { name: 'September' },
+  { name: 'October' },
+  { name: 'November' },
+  { name: 'December' },
+];
+
+const MenuItem = ({ text, selected }) => {
+  return <div className={`menu-item ${selected ? 'active' : ''}`}>{text}</div>;
+};
+
+export const Menu = (list, selected) =>
+  list.map((el) => {
+    const { name } = el;
+
+    return <MenuItem text={name} key={name} selected={selected} />;
+  });
+
+const Arrow = ({ text, className }) => {
+  return <div className={className}>{text}</div>;
+};
+
+const ArrowLeft = Arrow({ text: '←', className: 'arrow-prev' });
+const ArrowRight = Arrow({ text: '→', className: 'arrow-next' });
+
+const selected = 'July';
+
 export default class Bills extends Component {
   constructor(props) {
     super(props);
     this.handlePaid = this.handlePaid.bind(this);
+    this.menuItems = Menu(list, selected);
   }
   state = {
+    selected,
     user: {},
     bills: [],
     isPaid: [
@@ -28,6 +66,10 @@ export default class Bills extends Component {
     ],
     pageSize: 5,
     currentPage: 1,
+  };
+
+  onSelect = (key) => {
+    this.setState({ selected: key });
   };
 
   async componentDidMount() {
@@ -131,8 +173,9 @@ export default class Bills extends Component {
           No bill was found!
         </h1>
       );
-    const { bills: allBills, pageSize, currentPage } = this.state;
+    const { bills: allBills, pageSize, currentPage, selected } = this.state;
 
+    const menu = this.menuItems;
     const filtered =
       this.state.selectedisPaid && this.state.selectedisPaid._id
         ? allBills.filter((i) => i.isPaid === this.state.selectedisPaid.isPaid)
@@ -154,6 +197,13 @@ export default class Bills extends Component {
             }
           </div>
           <div className='col-9'>
+            <ScrollMenu
+              data={menu}
+              arrowLeft={ArrowLeft}
+              arrowRight={ArrowRight}
+              selected={selected}
+              onSelect={this.onSelect}
+            />
             <table className='table'>
               <thead style={{ color: '#fff', backgroundColor: ' #159570' }}>
                 <tr>
