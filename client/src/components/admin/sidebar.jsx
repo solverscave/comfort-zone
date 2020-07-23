@@ -26,7 +26,7 @@ const SideBar = ({ user }) => {
             <NavLink className='nav-item nav-link mr-3' to='/dashboard/ads'>
               <i className='fa fa-audio-description'></i> Ads
             </NavLink>
-            <NavLink className='nav-item nav-link mr-3' to='/dashboard/users'>
+            <NavLink className='nav-item nav-link mr-3' to='/dashboard/members'>
               <i className='fa fa-users'></i> Members
             </NavLink>
             <NavLink className='nav-item nav-link mr-3' to='/dashboard/drivers'>

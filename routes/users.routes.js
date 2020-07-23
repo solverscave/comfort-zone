@@ -5,6 +5,10 @@ const express = require('express');
 const router = express.Router();
 
 //FINDING A SINGLE USER
+router.get('/', async (req, res) => {
+  res.json(await User.find({ role: 'Member' }).sort('-membershipNumber'));
+});
+
 router.get('/:id', async (req, res) => {
   res.json(await User.find({ _id: req.params.id }));
 });
