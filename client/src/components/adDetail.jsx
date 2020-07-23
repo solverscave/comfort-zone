@@ -163,12 +163,12 @@ class AdDetail extends Component {
                 >
                   <i className='fa fa-phone'></i> {ad.userPhone}
                 </a>
-                <a
+                {/* <a
                   href='mailto:harismehmood@comfortzone.pk'
                   className='btn btn-cz btn-lg-new btn-lg mt-2 w-100'
                 >
                   <i className='fa fa-envelope'></i> Send a message
-                </a>
+                </a> */}
               </div>
             </div>
             <div
