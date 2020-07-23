@@ -25,7 +25,7 @@ export default class UserForm extends Form {
     membershipNumber: Joi.string().required().label('Membership Number'),
     password: Joi.string().required().min(5).label('Password'),
     name: Joi.string().required().label('Name'),
-    phone: Joi.string().required().min(11).label('Phone'),
+    phone: Joi.string().required().min(11).max(11).label('Phone'),
     address: Joi.string().required().label('Address'),
     role: Joi.string().required().label('Role'),
   };
@@ -42,17 +42,17 @@ export default class UserForm extends Form {
         this.addNewBill(newUser);
       }
 
-      // //RESET FORM AFTER SUBMISSION
-      // const data = {
-      //   membershipNumber: '',
-      //   password: '',
-      //   name: '',
-      //   phone: '',
-      //   address: '',
-      //   role: '',
-      // };
+      //RESET FORM AFTER SUBMISSION
+      const data = {
+        membershipNumber: '',
+        password: '',
+        name: '',
+        phone: '',
+        address: '',
+        role: '',
+      };
 
-      // this.setState({ data });
+      this.setState({ data });
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const errors = { ...this.state.errors };
@@ -123,7 +123,7 @@ export default class UserForm extends Form {
             'membershipNumber',
             'Membership Number',
             'text',
-            'Enter user membershipNumber'
+            'Enter user Membership Number'
           )}
           {this.renderInput(
             'password',
@@ -132,7 +132,7 @@ export default class UserForm extends Form {
             'Enter user password'
           )}
           {this.renderInput('name', 'Name', 'text', 'Enter user name')}
-          {this.renderInput('phone', 'Phone', 'text', 'Enter user phone')}
+          {this.renderInput('phone', 'Phone', 'number', 'Enter user phone')}
           {this.renderInput('address', 'Address', 'text', 'Enter user address')}
           {this.renderSelect('role', 'Role', [
             { name: 'Admin', _id: 'Admin' },

@@ -11,7 +11,8 @@ const router = express.Router();
 // Getting
 router.get('/', async (req, res) => {
   const issues = await Issues.find({}).sort('-date');
-  res.json(issues);
+  if (!issues.length) res.json('No issue found!');
+  else res.json(issues);
 });
 
 router.get('/:id', async (req, res) => {

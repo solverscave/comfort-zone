@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
 import Pagination from './common/pagination';
+import moment from 'moment';
 import Joi from 'joi-browser';
 import Popup from 'reactjs-popup';
 import Form from './common/form';
@@ -138,7 +139,23 @@ export default class Complains extends Form {
                         </Link>{' '}
                       </span>
                     </td>
-                    <td>{complain.status}</td>
+                    <td>
+                      <Popup
+                        trigger={
+                          <span
+                            style={{ color: '#159570', padding: '0px' }}
+                            className='btn'
+                          >
+                            {' '}
+                            {complain.status}
+                          </span>
+                        }
+                        position='top center'
+                      >
+                        <span style={{ fontWeight: 'bold' }}>Date:</span>{' '}
+                        {moment(complain.date).format('hh:mm - MMM DD ')}
+                      </Popup>
+                    </td>
                     <td>{complain.complainHandlerName}</td>
                     <td>
                       <button

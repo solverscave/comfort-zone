@@ -156,7 +156,7 @@ export default class ComplainDetail extends Form {
                   {this.renderInput(
                     'complainHandlerPhone',
                     'Complain Handler Phone',
-                    'text',
+                    'number',
                     'Enter the complain handler phone'
                   )}
                   {/* {this.renderTextArea(
