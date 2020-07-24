@@ -86,7 +86,7 @@ class FundDetail extends Component {
         description:
           'Mem# ' +
           user.membershipNumber +
-          ' has donated 100 for Fund ID# ' +
+          ' has donated Rs. 100 for Fund ID# ' +
           fund._id,
       },
     });
@@ -117,8 +117,6 @@ class FundDetail extends Component {
       user = {
         _id: null,
       };
-      this.setState({ user });
-      console.log(user);
     }
 
     const { data: funds } = await axios.get(
@@ -135,7 +133,7 @@ class FundDetail extends Component {
         description:
           'Mem# ' +
           user.membershipNumber +
-          ' has donated 500 for Fund ID# ' +
+          ' has donated Rs. 500 for Fund ID# ' +
           fund._id,
       },
     });
@@ -143,7 +141,7 @@ class FundDetail extends Component {
     console.log('Response:', response.data);
 
     if (status === 'success') {
-      toast('Success donated 500 to the Fund# ' + fund._id, {
+      toast('Success donated Rs. 500 to the Fund# ' + fund._id, {
         type: 'success',
       });
       await axios.put(apiEndpoint + '/' + this.props.match.params.id, {
@@ -161,13 +159,10 @@ class FundDetail extends Component {
     if (user) {
       const { data } = await axios.get(apiUrl + '/users/' + user._id);
       user = data[0];
-      this.setState({ user });
     } else if (!user) {
       user = {
         _id: null,
       };
-      this.setState({ user });
-      console.log(user);
     }
 
     const { data: funds } = await axios.get(
@@ -184,7 +179,7 @@ class FundDetail extends Component {
         description:
           'Mem# ' +
           user.membershipNumber +
-          ' has donated 1000 for Fund ID# ' +
+          ' has donated Rs. 1000 for Fund ID# ' +
           fund._id,
       },
     });
