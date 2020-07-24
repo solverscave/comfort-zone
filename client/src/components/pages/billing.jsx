@@ -162,8 +162,8 @@ class Billing extends Component {
         description:
           'Mem# ' +
           bill.userMembershipNumber +
-          ' has successfully paid the Bill Ref# ' +
-          bill._id,
+          ' has successfully paid the Bill for ' +
+          moment(bill.dateOfIssue).format('MMM YYYY'),
       },
     });
     const { status } = response.data;
@@ -181,13 +181,14 @@ class Billing extends Component {
   }
 
   getButton() {
-    const billAmount = (this.state.bill.totalAmount / 164) * 100;
+    const billAmount = this.state.bill.totalAmount * 100;
     return (
       <StripeCheckout
         stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
         token={this.handleToken}
         amount={billAmount}
         name='Comfort Zone'
+        currency='PKR'
         image='http://localhost:3000/uploads/payment-logo.jpg'
         label='Pay Bill Online'
       />

@@ -88,7 +88,7 @@ class Users extends Component {
     let filtered = allUsers;
     if (searchQuery)
       filtered = allUsers.filter((m) =>
-        m.name.toLowerCase().startsWith(searchQuery.toLowerCase())
+        m.membershipNumber.toLowerCase().startsWith(searchQuery.toLowerCase())
       );
     else if (selectedGenre && selectedGenre._id)
       filtered = allUsers.filter((m) => m.genre._id === selectedGenre._id);

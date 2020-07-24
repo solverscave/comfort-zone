@@ -63,12 +63,11 @@ class FundDetail extends Component {
     if (user) {
       const { data } = await axios.get(apiUrl + '/users/' + user._id);
       user = data[0];
-      this.setState({ user });
     } else if (!user) {
       user = {
         _id: null,
       };
-      this.setState({ user });
+
       console.log(user);
     }
 
@@ -78,6 +77,9 @@ class FundDetail extends Component {
 
     const fund = funds[0];
 
+    let fundingUser = await axios.get(apiUrl + '/users/' + fund.userId);
+    let fundUser = fundingUser.data[0];
+
     const response = await axios.post(apiUrl + '/pay/', {
       token,
       product: {
@@ -86,8 +88,8 @@ class FundDetail extends Component {
         description:
           'Mem# ' +
           user.membershipNumber +
-          ' has donated Rs. 100 for Fund ID# ' +
-          fund._id,
+          ' has donated Rs. 100 for Fund posted by Mem# ' +
+          fundUser.membershipNumber,
       },
     });
     const { status } = response.data;
@@ -112,7 +114,6 @@ class FundDetail extends Component {
     if (user) {
       const { data } = await axios.get(apiUrl + '/users/' + user._id);
       user = data[0];
-      this.setState({ user });
     } else if (!user) {
       user = {
         _id: null,
@@ -125,6 +126,9 @@ class FundDetail extends Component {
 
     const fund = funds[0];
 
+    let fundingUser = await axios.get(apiUrl + '/users/' + fund.userId);
+    let fundUser = fundingUser.data[0];
+
     const response = await axios.post(apiUrl + '/pay/', {
       token,
       product: {
@@ -133,8 +137,8 @@ class FundDetail extends Component {
         description:
           'Mem# ' +
           user.membershipNumber +
-          ' has donated Rs. 500 for Fund ID# ' +
-          fund._id,
+          ' has donated Rs. 500 for a Fund posted by Mem# ' +
+          fundUser.membershipNumber,
       },
     });
     const { status } = response.data;
@@ -171,6 +175,9 @@ class FundDetail extends Component {
 
     const fund = funds[0];
 
+    let fundingUser = await axios.get(apiUrl + '/users/' + fund.userId);
+    let fundUser = fundingUser.data[0];
+
     const response = await axios.post(apiUrl + '/pay/', {
       token,
       product: {
@@ -179,8 +186,8 @@ class FundDetail extends Component {
         description:
           'Mem# ' +
           user.membershipNumber +
-          ' has donated Rs. 1000 for Fund ID# ' +
-          fund._id,
+          ' has donated Rs. 1000 for Fund posted by Mem# ' +
+          fundUser.membershipNumber,
       },
     });
     const { status } = response.data;
@@ -280,6 +287,7 @@ class FundDetail extends Component {
                   stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
                   token={this.handleToken100}
                   amount={10000}
+                  currency='PKR'
                   name='Comfort Zone'
                   image='http://localhost:3000/uploads/payment-logo.jpg'
                   label='Rs. 100'
@@ -291,6 +299,7 @@ class FundDetail extends Component {
                   stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
                   token={this.handleToken500}
                   amount={50000}
+                  currency='PKR'
                   name='Comfort Zone'
                   image='http://localhost:3000/uploads/payment-logo.jpg'
                   label='Rs. 500'
@@ -302,6 +311,7 @@ class FundDetail extends Component {
                   stripeKey='pk_test_w433bBxBkSoMrsjcU3Tkmy2w00WzDBwp1J'
                   token={this.handleToken1000}
                   amount={100000}
+                  currency='PKR'
                   name='Comfort Zone'
                   image='http://localhost:3000/uploads/payment-logo.jpg'
                   label='Rs. 1000'
