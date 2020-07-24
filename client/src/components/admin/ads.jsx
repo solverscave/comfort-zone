@@ -102,7 +102,7 @@ class Ads extends Component {
                     <th scope='col'>#</th>
                     <th scope='col'>Ads</th>
                     <th scope='col'>Posted by</th>
-                    <th scope='col'>Condition</th>
+                    <th scope='col'>Price</th>
                     <th scope='col'>Delete</th>
                   </tr>
                 </thead>
@@ -132,7 +132,7 @@ class Ads extends Component {
                           </Link>{' '}
                         </span>
                       </td>
-                      <td>{ad.condition}</td>
+                      <td>{ad.price}</td>
                       <td>
                         <button
                           className='btn btn-danger'

@@ -123,7 +123,7 @@ class DashboardDesc extends Component {
           <div className='row mt-3'>
             <div className='col-3'>
               <Card style={{ width: '17rem' }}>
-                <Link to='/dashboard/members'>
+                <Link to='/dashboard/users'>
                   <Card.Img variant='top' src={userImg} />
                 </Link>
                 <Card.Body>
@@ -133,7 +133,7 @@ class DashboardDesc extends Component {
                   </Card.Text>
                   <Link
                     className='btn btn-cz'
-                    to='/dashboard/members'
+                    to='/dashboard/users'
                     variant='primary'
                   >
                     Manage now
