@@ -102,7 +102,7 @@ export default class AdsMembers extends Component {
       <React.Fragment>
         <div className='row'>
           <ToastContainer />
-          <div className='col-3'>
+          {/* <div className='col-3'>
             {
               <ListGroup
                 items={this.state.condition}
@@ -110,15 +110,15 @@ export default class AdsMembers extends Component {
                 selectedItem={this.state.selectedCondition}
               />
             }
-          </div>
-          <div className='col-9'>
+          </div> */}
+          <div className='col-12'>
             <table className='table'>
               <thead style={{ color: '#fff', backgroundColor: ' #159570' }}>
                 <tr>
                   <th scope='col'>#</th>
                   <th scope='col'>Ads</th>
                   <th scope='col'>Posted by</th>
-                  <th scope='col'>Condition</th>
+                  <th scope='col'>Price</th>
                   <th scope='col'>Delete</th>
                 </tr>
               </thead>
@@ -130,7 +130,7 @@ export default class AdsMembers extends Component {
                       <Link to={`/advertisement/${ad._id}`}>{ad.title}</Link>
                     </td>
                     <td>{ad.userName}</td>
-                    <td>{ad.condition}</td>
+                    <td>{ad.requiredAmount}</td>
                     <td>
                       <button
                         className='btn btn-danger'

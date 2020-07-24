@@ -12,6 +12,8 @@ import Issue from './../issue';
 import Pagination from '../common/pagination';
 import ListGroup from '../common/listGroups';
 import { apiUrl } from '../../config.json';
+import Dashboard from '../admin/dashboard';
+import LoginForm from '../loginForm';
 const apiEndpoint = apiUrl + '/issues';
 
 export default class Forum extends Form {
@@ -25,7 +27,7 @@ export default class Forum extends Form {
     ],
     pageSize: 5,
     currentPage: 1,
-    user: {},
+    user: { role: '' },
     data: {
       title: '',
       description: '',
@@ -119,6 +121,12 @@ export default class Forum extends Form {
   };
 
   render() {
+    if (this.state.user.role === 'Admin') {
+      return <Dashboard />;
+    }
+    if (this.state.user.role === undefined) {
+      return <LoginForm />;
+    }
     if (!this.state.issues.length)
       return (
         <div

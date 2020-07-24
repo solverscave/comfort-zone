@@ -12,24 +12,33 @@ import workerImg from '../../assets/img/dashboard/workers.jpg';
 import auth from '../../services/authService';
 import axios from 'axios';
 import { apiUrl } from '../../config.json';
+import LoginForm from '../loginForm';
 
 class DashboardDesc extends Component {
   state = {
     user: {
-      role: 'None',
+      role: '',
     },
   };
 
-  async componentWillMount() {
+  async componentDidMount() {
     let user = auth.getCurrentUser();
     if (user) {
       const { data } = await axios.get(apiUrl + '/users/' + user._id);
       user = data[0];
+      this.setState({ user });
+    } else if (!user) {
+      user = {
+        _id: null,
+      };
+      this.setState({ user });
     }
-    this.setState({ user });
   }
 
   render() {
+    if (this.state.user.role === undefined) {
+      return <LoginForm />;
+    }
     if (this.state.user.role === 'Admin') {
       return (
         <div className='my-5 text-center'>

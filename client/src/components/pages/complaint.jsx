@@ -1,17 +1,19 @@
 import React from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
-import auth from '../.././services/authService';
+import auth, { login } from '../.././services/authService';
 import Joi from 'joi-browser';
 import Form from '../common/form';
 import Popup from 'reactjs-popup';
 import axios from 'axios';
 import { apiUrl } from '../../config.json';
+import Dashboard from '../admin/dashboard';
+import LoginForm from '../loginForm';
 const apiEndpoint = apiUrl + '/complains';
 
 class Complaint extends Form {
   state = {
-    user: {},
+    user: { role: '' },
     data: { title: '', description: '', status: 'Pending...' },
     errors: {},
     categories: [
@@ -63,6 +65,12 @@ class Complaint extends Form {
   };
 
   render() {
+    if (this.state.user.role === 'Admin') {
+      return <Dashboard />;
+    }
+    if (this.state.user.role === undefined) {
+      return <LoginForm />;
+    }
     return (
       <React.Fragment>
         <div className='subheader-complaint py-5 text-white'>

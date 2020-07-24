@@ -19,10 +19,11 @@ import FundsMembers from './members/funds.members';
 import auth from '../../services/authService';
 import axios from 'axios';
 import { apiUrl } from '../../config.json';
+import LoginForm from '../loginForm';
 
 export default class Dashboard extends Component {
   state = {
-    user: {},
+    user: { role: '' },
   };
 
   async componentDidMount() {
@@ -30,11 +31,19 @@ export default class Dashboard extends Component {
     if (user) {
       const { data } = await axios.get(apiUrl + '/users/' + user._id);
       user = data[0];
+      this.setState({ user });
+    } else if (!user) {
+      user = {
+        _id: null,
+      };
+      this.setState({ user });
     }
-    this.setState({ user });
   }
 
   render() {
+    if (this.state.user.role === undefined) {
+      return <LoginForm />;
+    }
     return (
       <div className='container my-5'>
         <div className='mb-5'>

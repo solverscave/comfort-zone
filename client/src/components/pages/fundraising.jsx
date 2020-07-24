@@ -9,17 +9,31 @@ import medicalFunds from '../../assets/icons/medical-funds.svg';
 import memorialFunds from '../../assets/icons/memorial-funds.svg';
 import personalFunds from '../../assets/icons/personal-funds.svg';
 import { apiUrl } from '../../config.json';
+import Dashboard from '../admin/dashboard';
+import LoginForm from '../loginForm';
 
 const apiEndpoint = apiUrl + '/funds/isApproved/';
 
 class Fundraising extends Component {
   state = {
     funds: [],
-    user: {},
+    user: { role: '' },
   };
 
   async componentDidMount() {
-    const user = auth.getCurrentUser();
+    let user = auth.getCurrentUser();
+    if (user) {
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
+      user = data[0];
+      this.setState({ user });
+    } else if (!user) {
+      user = {
+        _id: null,
+      };
+      this.setState({ user });
+    }
+    console.log(this.state.user);
+
     this.setState({ user });
 
     const data = await axios.get(apiEndpoint + 'Approved');
@@ -131,6 +145,12 @@ class Fundraising extends Component {
   }
 
   render() {
+    if (this.state.user.role === 'Admin') {
+      return <Dashboard />;
+    }
+    if (this.state.user.role === undefined) {
+      return <LoginForm />;
+    }
     const { funds } = this.state;
     if (!funds.length)
       return (

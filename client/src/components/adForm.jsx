@@ -5,6 +5,8 @@ import Joi from 'joi-browser';
 import Form from './common/form';
 import axios from 'axios';
 import { apiUrl } from '../config.json';
+import Dashboard from './admin/dashboard';
+import LoginForm from './loginForm';
 const apiEndpoint = apiUrl + '/ads';
 
 export default class AdForm extends Form {
@@ -18,7 +20,7 @@ export default class AdForm extends Form {
     filename: 'Choose File',
     file: {},
     setUploadedFile: {},
-    user: {},
+    user: { role: '' },
   };
 
   async componentDidMount() {
@@ -102,6 +104,12 @@ export default class AdForm extends Form {
   };
 
   render() {
+    if (this.state.user.role === 'Admin') {
+      return <Dashboard />;
+    }
+    if (this.state.user.role === undefined) {
+      return <LoginForm />;
+    }
     return (
       <div className='container my-5'>
         <button

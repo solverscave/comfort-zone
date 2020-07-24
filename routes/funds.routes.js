@@ -53,6 +53,13 @@ router.post('/', auth, async (req, res) => {
   res.send(fund);
 });
 
+router.delete('/:id', auth, async (req, res) => {
+  const data = await Funds.findByIdAndDelete(req.params.id);
+  res.json({
+    message: data ? 'Successfully deleted!' : "Wasn't able to delete!",
+  });
+});
+
 router.put('/:id', [auth, admin], async (req, res) => {
   await Funds.findByIdAndUpdate(req.params.id, {
     $set: { ...req.body },

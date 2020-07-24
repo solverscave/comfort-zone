@@ -5,17 +5,30 @@ import AdCard from '../adCard';
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { apiUrl } from '../../config.json';
+import Dashboard from '../admin/dashboard';
+import LoginForm from '../loginForm';
 
 const apiEndpoint = apiUrl + '/ads';
 
 class Advertisement extends Component {
   state = {
     ads: [],
-    user: {},
+    user: { role: '' },
   };
 
   async componentDidMount() {
-    const user = auth.getCurrentUser();
+    let user = auth.getCurrentUser();
+    if (user) {
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
+      user = data[0];
+      this.setState({ user });
+    } else if (!user) {
+      user = {
+        _id: null,
+      };
+      this.setState({ user });
+      console.log(user);
+    }
     this.setState({ user });
 
     const data = await axios.get(apiEndpoint);
@@ -44,6 +57,12 @@ class Advertisement extends Component {
   }
 
   render() {
+    if (this.state.user.role === 'Admin') {
+      return <Dashboard />;
+    }
+    if (this.state.user.role === undefined) {
+      return <LoginForm />;
+    }
     const { ads } = this.state;
     if (!this.state.ads.length)
       return (

@@ -8,13 +8,16 @@ import StripeCheckout from 'react-stripe-checkout';
 import { ToastContainer, toast } from 'react-toastify';
 import { apiUrl } from '../../config.json';
 import moment from 'moment';
+import Dashboard from '../admin/dashboard';
+import LoginForm from '../loginForm';
 const apiEndpoint = apiUrl + '/bills';
 
 class Billing extends Component {
   state = {
-    user: {},
+    user: { role: '' },
     bill: [],
     product: {},
+    message: '',
   };
 
   async componentDidMount() {
@@ -30,113 +33,121 @@ class Billing extends Component {
       this.setState({ user });
       console.log(user);
     }
-
-    //GETTING LAST BILL FOR THE USER
-    const { data } = await axios.get(apiEndpoint + '/' + this.state.user._id);
-    const bill = data;
-    this.setState({ bill });
-
-    //GETBILL HAS ALL THE DETAILS ABOUT THE BILL
-    const getBill = bill[0];
-
-    //GETTING THINGS FROM THE LAST BILL
-    const date = getBill.dueDate;
-    const isPaid = getBill.isPaid;
-    const totalAmount = getBill.totalAmount;
-    const dueAmount = getBill.dueAmount;
-
-    const dueDay = moment(date).format('DD');
-    const dueMonth = moment(date).format('MM');
-    const dueYear = moment(date).format('YYYY');
-    const dueDate = new Date(dueYear, dueMonth - 1, dueDay);
-    const dueDayJs = dueDate.getDate();
-    const dueMonthJs = dueDate.getMonth();
-
-    const todayDate = new Date();
-    const todayDay = todayDate.getDate();
-    const todayMonth = todayDate.getMonth();
-    const todayYear = todayDate.getFullYear();
-
-    // console.log('isPaid: ' + isPaid);
-    // console.log('totalAmount: ' + totalAmount);
-    // console.log('dueAmount: ' + dueAmount);
-    console.log('dueDay: ' + dueDayJs);
-    console.log('todayDay: ' + todayDay);
-    // console.log('todayMonth: ' + todayMonth);
-    // console.log('todayYear: ' + todayYear);
-    // console.log('Due Month JS: ' + dueMonthJs);
-
-    if (
-      isPaid === 'false' &&
-      dueDayJs < todayDay &&
-      dueMonthJs === todayMonth
-    ) {
-      toast.success('New bill has came!');
-      var todayDate2 = new Date();
-      var year = todayDate2.getFullYear();
-      var month = todayDate2.getMonth();
-      // var day = d.getDate();
-      var nextMonth = todayDate2.getMonth() + 1;
-      var thisDate = new Date(year, month, 1);
-      var nextDate = new Date(year, nextMonth, 1);
-      console.log(nextDate);
-      console.log(nextMonth);
-
-      const newBill = await axios.post(apiUrl + '/bills/', {
-        dateOfIssue: thisDate,
-        dueDate: nextDate,
-        arrearAmount: 0,
-        waterCharges: 0,
-        conservancyCharges: 300,
-        streetLightCharges: 300,
-        roadMaintenanceCharges: 300,
-        graveyardCharges: 0,
-        electricityCharges: 1120,
-        totalAmount: 1890 + totalAmount,
-        dueAmount: dueAmount + totalAmount,
-        userId: user._id,
-        userImage: user.imageUrl,
-        userName: user.name,
-        userMembershipNumber: user.membershipNumber,
-        isPaid: 'false',
-      });
-      window.location.reload();
-      console.log(newBill);
+    if (user.role === '') {
+      const message = 'Check for login.';
+      this.setState({ message });
     }
-    if (isPaid === 'true' && dueDayJs < todayDay && dueMonthJs === todayMonth) {
-      toast.success('New bill has came!');
-      var todayDate2 = new Date();
-      var year = todayDate2.getFullYear();
-      var month = todayDate2.getMonth();
-      // var day = d.getDate();
-      var nextMonth = todayDate2.getMonth() + 1;
-      var thisDate = new Date(year, month, 1);
-      var nextDate = new Date(year, nextMonth, 1);
-      console.log(nextDate);
-      console.log(nextMonth);
+    if (user.role === 'Member') {
+      //GETTING LAST BILL FOR THE USER
+      const { data } = await axios.get(apiEndpoint + '/' + this.state.user._id);
+      const bill = data;
+      this.setState({ bill });
 
-      const newBill = await axios.post(apiUrl + '/bills/', {
-        dateOfIssue: thisDate,
-        dueDate: nextDate,
-        arrearAmount: 0,
-        waterCharges: 0,
-        conservancyCharges: 300,
-        streetLightCharges: 300,
-        roadMaintenanceCharges: 300,
-        graveyardCharges: 0,
-        electricityCharges: 1120,
-        totalAmount: 1890,
-        dueAmount: 0,
-        userId: user._id,
-        userImage: user.imageUrl,
-        userName: user.name,
-        userMembershipNumber: user.membershipNumber,
-        isPaid: 'false',
-      });
-      window.location.reload();
-      console.log(newBill);
+      //GETBILL HAS ALL THE DETAILS ABOUT THE BILL
+      const getBill = bill[0];
+
+      //GETTING THINGS FROM THE LAST BILL
+      const date = getBill.dueDate;
+      const isPaid = getBill.isPaid;
+      const totalAmount = getBill.totalAmount;
+      const dueAmount = getBill.dueAmount;
+
+      const dueDay = moment(date).format('DD');
+      const dueMonth = moment(date).format('MM');
+      const dueYear = moment(date).format('YYYY');
+      const dueDate = new Date(dueYear, dueMonth - 1, dueDay);
+      const dueDayJs = dueDate.getDate();
+      const dueMonthJs = dueDate.getMonth();
+
+      const todayDate = new Date();
+      const todayDay = todayDate.getDate();
+      const todayMonth = todayDate.getMonth();
+      const todayYear = todayDate.getFullYear();
+
+      // console.log('isPaid: ' + isPaid);
+      // console.log('totalAmount: ' + totalAmount);
+      // console.log('dueAmount: ' + dueAmount);
+      console.log('dueDay: ' + dueDayJs);
+      console.log('todayDay: ' + todayDay);
+      // console.log('todayMonth: ' + todayMonth);
+      // console.log('todayYear: ' + todayYear);
+      // console.log('Due Month JS: ' + dueMonthJs);
+
+      if (
+        isPaid === 'false' &&
+        dueDayJs < todayDay &&
+        dueMonthJs === todayMonth
+      ) {
+        toast.success('New bill has came!');
+        var todayDate2 = new Date();
+        var year = todayDate2.getFullYear();
+        var month = todayDate2.getMonth();
+        // var day = d.getDate();
+        var nextMonth = todayDate2.getMonth() + 1;
+        var thisDate = new Date(year, month, 1);
+        var nextDate = new Date(year, nextMonth, 1);
+        console.log(nextDate);
+        console.log(nextMonth);
+
+        const newBill = await axios.post(apiUrl + '/bills/', {
+          dateOfIssue: thisDate,
+          dueDate: nextDate,
+          arrearAmount: 0,
+          waterCharges: 0,
+          conservancyCharges: 300,
+          streetLightCharges: 300,
+          roadMaintenanceCharges: 300,
+          graveyardCharges: 0,
+          electricityCharges: 1120,
+          totalAmount: 1890 + totalAmount,
+          dueAmount: dueAmount + totalAmount,
+          userId: user._id,
+          userImage: user.imageUrl,
+          userName: user.name,
+          userMembershipNumber: user.membershipNumber,
+          isPaid: 'false',
+        });
+        window.location.reload();
+        console.log(newBill);
+      }
+      if (
+        isPaid === 'true' &&
+        dueDayJs < todayDay &&
+        dueMonthJs === todayMonth
+      ) {
+        toast.success('New bill has came!');
+        var todayDate2 = new Date();
+        var year = todayDate2.getFullYear();
+        var month = todayDate2.getMonth();
+        // var day = d.getDate();
+        var nextMonth = todayDate2.getMonth() + 1;
+        var thisDate = new Date(year, month, 1);
+        var nextDate = new Date(year, nextMonth, 1);
+        console.log(nextDate);
+        console.log(nextMonth);
+
+        const newBill = await axios.post(apiUrl + '/bills/', {
+          dateOfIssue: thisDate,
+          dueDate: nextDate,
+          arrearAmount: 0,
+          waterCharges: 0,
+          conservancyCharges: 300,
+          streetLightCharges: 300,
+          roadMaintenanceCharges: 300,
+          graveyardCharges: 0,
+          electricityCharges: 1120,
+          totalAmount: 1890,
+          dueAmount: 0,
+          userId: user._id,
+          userImage: user.imageUrl,
+          userName: user.name,
+          userMembershipNumber: user.membershipNumber,
+          isPaid: 'false',
+        });
+        window.location.reload();
+        console.log(newBill);
+      }
     }
-
     document.getElementsByTagName('iframe')[0].style.width = '100%';
     document.getElementsByTagName('iframe')[0].style.height = '720px';
   }
@@ -203,15 +214,22 @@ class Billing extends Component {
   }
 
   render() {
-    if (!this.state.bill.length)
-      return (
-        <div
-          className='align-self-center justify-content-center text-center'
-          style={{ padding: '150px' }}
-        >
-          <img src={require('../../assets/icons/loading.gif')} alt='' />
-        </div>
-      );
+    if (this.state.user.role === 'Admin') {
+      return <Dashboard />;
+    }
+    if (this.state.user.role === undefined) {
+      return <LoginForm />;
+    }
+    if (this.state.user.role === 'Member')
+      if (!this.state.bill.length)
+        return (
+          <div
+            className='align-self-center justify-content-center text-center'
+            style={{ padding: '150px' }}
+          >
+            <img src={require('../../assets/icons/loading.gif')} alt='' />
+          </div>
+        );
     const { bill } = this.state;
     const thisBill = bill[0];
 
