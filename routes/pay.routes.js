@@ -23,7 +23,8 @@ router.post('/', async (req, res) => {
         currency: 'usd',
         customer: customer.id,
         receipt_email: token.email,
-        description: `Mem# ${product.description} has successfully paid the Bill Ref# ${product.name}`,
+        // description: `Mem# ${product.description} has successfully paid the Bill Ref# ${product.name}`,
+        description: `${product.description}`,
         shipping: {
           name: token.card.name,
           address: {

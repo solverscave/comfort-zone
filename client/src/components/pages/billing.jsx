@@ -159,7 +159,11 @@ class Billing extends Component {
       product: {
         name: bill._id,
         price: bill.totalAmount,
-        description: bill.userMembershipNumber,
+        description:
+          'Mem# ' +
+          bill.userMembershipNumber +
+          ' has successfully paid the Bill Ref# ' +
+          bill._id,
       },
     });
     const { status } = response.data;

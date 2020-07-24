@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import thousandRupees from '../assets/img/PKR_Rs_1000.jpg';
 import FundDetailProgress from '../../src/components/pages/fundDetailProgress';
+import auth from '../services/authService';
 import StripeCheckout from 'react-stripe-checkout';
 import { ToastContainer, toast } from 'react-toastify';
 import { apiUrl } from '../config.json';
@@ -15,6 +16,7 @@ class FundDetail extends Component {
     this.state = {
       fund: { title: '' },
       user: {},
+      loggedUser: {},
       params: this.getParams,
     };
     const params = '1';
@@ -22,6 +24,9 @@ class FundDetail extends Component {
   }
 
   async componentDidMount() {
+    let loggedUser = auth.getCurrentUser();
+    this.setState({ loggedUser });
+
     const { data: funds } = await axios.get(
       apiEndpoint + '/' + this.props.match.params.id
     );
@@ -53,6 +58,20 @@ class FundDetail extends Component {
       );
   };
   handleToken100 = async (token) => {
+    let user = auth.getCurrentUser();
+
+    if (user) {
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
+      user = data[0];
+      this.setState({ user });
+    } else if (!user) {
+      user = {
+        _id: null,
+      };
+      this.setState({ user });
+      console.log(user);
+    }
+
     const { data: funds } = await axios.get(
       apiEndpoint + '/' + this.props.match.params.id
     );
@@ -64,14 +83,20 @@ class FundDetail extends Component {
       product: {
         name: 'Fund',
         price: 100,
-        description: 'Fund Payment',
+        description:
+          'Mem# ' +
+          user.membershipNumber +
+          ' has donated 100 for Fund ID# ' +
+          fund._id,
       },
     });
     const { status } = response.data;
     console.log('Response:', response.data);
 
     if (status === 'success') {
-      toast('Success! Check email for details', { type: 'success' });
+      toast('Success donated 100 to the Fund# ' + fund._id, {
+        type: 'success',
+      });
       await axios.put(apiEndpoint + '/' + this.props.match.params.id, {
         raisedAmount: fund.raisedAmount + 100,
         donations: fund.donations + 1,
@@ -82,6 +107,20 @@ class FundDetail extends Component {
     }
   };
   handleToken500 = async (token) => {
+    let user = auth.getCurrentUser();
+
+    if (user) {
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
+      user = data[0];
+      this.setState({ user });
+    } else if (!user) {
+      user = {
+        _id: null,
+      };
+      this.setState({ user });
+      console.log(user);
+    }
+
     const { data: funds } = await axios.get(
       apiEndpoint + '/' + this.props.match.params.id
     );
@@ -93,14 +132,20 @@ class FundDetail extends Component {
       product: {
         name: 'Fund',
         price: 500,
-        description: 'Fund Payment',
+        description:
+          'Mem# ' +
+          user.membershipNumber +
+          ' has donated 500 for Fund ID# ' +
+          fund._id,
       },
     });
     const { status } = response.data;
     console.log('Response:', response.data);
 
     if (status === 'success') {
-      toast('Success! Check email for details', { type: 'success' });
+      toast('Success donated 500 to the Fund# ' + fund._id, {
+        type: 'success',
+      });
       await axios.put(apiEndpoint + '/' + this.props.match.params.id, {
         raisedAmount: fund.raisedAmount + 500,
         donations: fund.donations + 1,
@@ -111,6 +156,20 @@ class FundDetail extends Component {
     }
   };
   handleToken1000 = async (token) => {
+    let user = auth.getCurrentUser();
+
+    if (user) {
+      const { data } = await axios.get(apiUrl + '/users/' + user._id);
+      user = data[0];
+      this.setState({ user });
+    } else if (!user) {
+      user = {
+        _id: null,
+      };
+      this.setState({ user });
+      console.log(user);
+    }
+
     const { data: funds } = await axios.get(
       apiEndpoint + '/' + this.props.match.params.id
     );
@@ -122,14 +181,20 @@ class FundDetail extends Component {
       product: {
         name: 'Fund',
         price: 1000,
-        description: 'Fund Payment',
+        description:
+          'Mem# ' +
+          user.membershipNumber +
+          ' has donated 1000 for Fund ID# ' +
+          fund._id,
       },
     });
     const { status } = response.data;
     console.log('Response:', response.data);
 
     if (status === 'success') {
-      toast('Successfully paid for this fund!', { type: 'success' });
+      toast('Success donated 1000 to the Fund# ' + fund._id, {
+        type: 'success',
+      });
       await axios.put(apiEndpoint + '/' + this.props.match.params.id, {
         raisedAmount: fund.raisedAmount + 1000,
         donations: fund.donations + 1,
