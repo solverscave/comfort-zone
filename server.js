@@ -15,8 +15,7 @@ if (!config.get('jwtPrivateKey')) {
 
 //MONGOOSE
 mongoose.connect(
-  process.env.MONGO_URI ||
-    'mongodb+srv://imuhammadosama:comfortzone@comfort-zone-cluster-2o6ke.mongodb.net/comfortzone?retryWrites=true&w=majority',
+  'mongodb+srv://imuhammadosama:comfortzone@comfort-zone-cluster-2o6ke.mongodb.net/comfortzone?retryWrites=true&w=majority',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -89,10 +88,6 @@ server.post('/upload', (req, res) => {
     }
   );
 });
-
-if (process.env.NODE_EV == 'production') {
-  app.use(express.static('client/build'));
-}
 
 const PORT = process.env.PORT || 5000;
 
