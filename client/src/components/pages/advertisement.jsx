@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { apiUrl } from '../../config.json';
 import Dashboard from '../admin/dashboard';
 import LoginForm from '../loginForm';
+import SearchBox from '../searchBox';
 
 const apiEndpoint = apiUrl + '/ads';
 
@@ -112,6 +113,7 @@ class Advertisement extends Component {
           </div>
 
           <div className='container my-5'>
+            <SearchBox />
             <div className='row'>
               {ads.map((ad) => (
                 <div className='my-2' key={ad.id}>

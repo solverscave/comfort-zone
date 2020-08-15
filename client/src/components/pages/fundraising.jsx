@@ -11,6 +11,7 @@ import personalFunds from '../../assets/icons/personal-funds.svg';
 import { apiUrl } from '../../config.json';
 import Dashboard from '../admin/dashboard';
 import LoginForm from '../loginForm';
+import SearchBox from '../searchBox';
 
 const apiEndpoint = apiUrl + '/funds/isApproved/';
 
@@ -200,6 +201,7 @@ class Fundraising extends Component {
           </div>
 
           <div className='container my-3'>
+            <SearchBox />
             <div className='row ml-3 mb-3'>
               <img src={educationalFunds} alt='' />
               <h3 className='ml-1 mt-2 align-self-center justify-content-center text-center'>

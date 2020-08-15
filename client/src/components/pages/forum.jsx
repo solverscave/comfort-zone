@@ -14,6 +14,7 @@ import ListGroup from '../common/listGroups';
 import { apiUrl } from '../../config.json';
 import Dashboard from '../admin/dashboard';
 import LoginForm from '../loginForm';
+import SearchBox from '../searchBox';
 const apiEndpoint = apiUrl + '/issues';
 
 export default class Forum extends Form {
@@ -248,6 +249,7 @@ export default class Forum extends Form {
               />
             </div>
             <div className='col'>
+              <SearchBox />
               {issues.map((issue) => (
                 <div key={issue._id}>
                   <Issue

@@ -17,6 +17,10 @@ router.get('/:id', async (req, res) =>
   res.json(await Bills.find({ userId: req.params.id }).sort('-dueDate'))
 );
 
+router.get('/d/:dateOfIssue', async (req, res) =>
+  res.json(await Bills.find({ dateOfIssue: req.params.dateOfIssue }))
+);
+
 router.get('/id/:id', async (req, res) =>
   res.json(await Bills.find({ _id: req.params.id }))
 );

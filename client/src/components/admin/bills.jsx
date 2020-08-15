@@ -69,6 +69,7 @@ export default class Bills extends Component {
   };
 
   onSelect = (key) => {
+    console.log(key);
     this.setState({ selected: key });
   };
 

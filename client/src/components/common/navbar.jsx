@@ -13,6 +13,9 @@ const Navbar = ({ user }) => {
         <div className='navbar-nav ml-auto'>
           {!user && (
             <React.Fragment>
+              <NavLink className='nav-item nav-link' to='/mobile'>
+                App Manager
+              </NavLink>
               <NavLink className='nav-item nav-link' to='/login'>
                 Login
               </NavLink>
